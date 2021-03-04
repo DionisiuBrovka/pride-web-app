@@ -1,0 +1,24 @@
+{% extends 'root/root.html' %}
+
+{% block content %}
+
+{% load widget_tweaks %}
+
+{% include 'staffapp/elements/el_navbar.html'%}
+
+<div class="container font-main">
+    <div class="rov">
+        <div class="col upbox" id="session-add-block">
+            <form method="POST">
+                {% csrf_token %}
+                    <h1>Новая смена</h1><hr>
+                    <h5>Выберите заведение</h5>
+                    <input type="text" class="stl-input"><br>
+                    {% render_field sessionForm.place multiple="multiple" size="12" %}
+                    <button type="submit" class="downbox font-main">Создать</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
