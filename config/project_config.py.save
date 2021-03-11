@@ -1,0 +1,15 @@
+SECRET_KEY = '$449rsdr-n5kn@11gw5fjymvo-x&v!9a@39pd7id=@(hu+kvfa'
+
+DEBUG = True,
+
+DB_NAME = 'devdb'
+
+DB_USERNAME = 'dbuser'
+
+DB_PASSWORD = 'qJem0kRWFb'
+
+DB_HOST = 'localhost'
+
+DB_HOST_PORT = '5432'
+
+ALLOWED_HOSTS = ['localhost','46.243.183.2','127.0.0.1']
