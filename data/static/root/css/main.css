@@ -350,14 +350,3 @@ p.logoone{
     padding-left: 60px;
     padding-right: 60px;
 }
-
-
-/* ======================== ( NO  DISPLAY ) ================================== */
-
-#navbar-menu{
-    display: none;
-}
-
-#mobile-footer{
-    display: none;
-}

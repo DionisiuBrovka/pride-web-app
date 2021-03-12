@@ -223,24 +223,3 @@ hr{
     margin: 10px;
     padding: 10px;
 }
-/* ========================  NO  DISPLAY  ================================== */
-
-#navbar-logout{
-    display: none;
-}
-
-#id_clock{
-    display: none;
-}
-
-#navbar-setting{
-    display: none;
-}
-
-#stats{
-    display: none;
-}
-
-.session-block{
-    display: none;
-}
