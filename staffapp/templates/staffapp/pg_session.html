@@ -59,21 +59,21 @@
     
     {% include 'staffapp/elements/scr_list_show.html' %}
 
-    <div class="rov" id="session-block-status-items">
+    <div class="rov upbox" id="session-block-status-items">
         <div class="col" id="control">
-            <button class="downbox" onclick="showItemsAll()">All</button>
-            <button class="downbox" onclick="showItemsInit()">Начало смены</button>
-            <button class="downbox" onclick="showItemsAdd()">Привоз</button>
-            <button class="downbox" onclick="showItemsDec()">Увоз</button>        
+            <button class="active" onclick="showItemsAll()" id="b-all">All</button>
+            <button class="downbox" onclick="showItemsInit()" id="b-init">Начало смены</button>
+            <button class="downbox" onclick="showItemsAdd()" id="b-add">Привоз</button>
+            <button class="downbox" onclick="showItemsDec()" id="b-dec">Увоз</button>        
 
             {% if session.isOpen %}
                 <button class="downbox">Закрыть смену</button>
             {% else %}
-                <button class="downbox" onclick="showItemsEnd()">Оканчание Смены</button>
+                <button class="downbox" onclick="showItemsEnd()" id="b-end">Оканчание Смены</button>
             {% endif %}
         </div>
 
-        <div class="col upbox" id="items-lists">
+        <div class="col" id="items-lists">
 
             <div class="superdownbox" id="items-all">
                 <table border="1">

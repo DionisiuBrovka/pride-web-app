@@ -239,18 +239,6 @@ hr{
     min-height: 370px;
 }
 
-.close-sessions-item{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-
-    padding: 10px;
-    margin-bottom: 15px;
-
-    width: 100%;
-}
-
 /* =======================================( INDEX BLOCK )=========================================== */
 
 #index-block{
@@ -357,6 +345,43 @@ p.logoone{
 ========================================================================================================
 */
 
+/* ======================== ( session min BLOCK ) ================================== */
+
+.close-sessions-item{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 10px;
+    margin-bottom: 15px;
+
+    width: 100%;
+}
+
+@keyframes example {
+    0%   {text-shadow: 0px 0px 2px rgb(227, 255, 188);}
+    50%  {text-shadow: 0px 0px 8px rgb(154, 255, 12);}
+    100% {text-shadow: 0px 0px 2px rgb(227, 255, 188);}
+  }
+
+.close-sessions-item #close-session-indicator{
+    color: greenyellow;
+    text-shadow: 0px 0px 2px rgb(227, 255, 188);
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.close-sessions-item #close-session-show a{
+    color: gainsboro;
+}
+
+.close-sessions-item #close-session-show .downbox{
+    padding: 5px;
+}
+
+
 /* ======================== ( session BLOCK ) ================================== */
 
 /*======== info */
@@ -371,6 +396,10 @@ p.logoone{
 }
 
 /*======== control */
+#session-block-status-items{
+    margin-top: 20px;
+}
+
 #session-block-status-items #control{
     padding: 5px;
     margin-bottom: 10px;
@@ -378,10 +407,17 @@ p.logoone{
 
 #session-block-status-items button{
     color: gainsboro;
-    padding: 7px;
+    padding: 3px;
+    padding-right: 10px;
+    padding-left: 10px;
+
     margin: 3px;
 
-    width: 160px;
+    min-width: 100px;
+}
+
+#session-block-status-items .active{
+    background-color: orangered;
 }
 
 /*======== items-lists */
