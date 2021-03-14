@@ -150,9 +150,19 @@ def pg_session(request, pk=1):
     if not user.is_authenticated:
         return redirect('autherror')
 
+    curSession = Session.objects.get(id = pk)
+    itemsInit = StartSession.objects.filter(session = curSession)
+    itemsEnd = EndSession.objects.filter(session=curSession)
+    itemsAdd = AddToSession.objects.filter(session=curSession)
+    itemsDec = DeleteOnSession.objects.filter(session=curSession)
+
     content = {
        'user':user,
-       'session':Session.objects.get(id = pk),
+       'session':curSession,
+       'itemsInit':itemsInit,
+       'itemsEnd':itemsEnd,
+       'itemsAdd':itemsAdd,
+       'itemsDec':itemsDec,
     }
     return render(request, 'staffapp/pg_session.html',content)
 
