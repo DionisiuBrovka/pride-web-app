@@ -1,74 +1,81 @@
 <script>
-    function showItemsAll(){
+
+    function closeAll(){
         var div_all = document.getElementById("items-all");
         var div_init = document.getElementById("items-init");
         var div_add = document.getElementById("items-add");
         var div_dec = document.getElementById("items-dec");
         var div_end = document.getElementById("items-end");
 
-        div_all.style.display = "block";
+        var div_b_all = document.getElementById("b-all");
+        var div_b_init = document.getElementById("b-init");
+        var div_b_add = document.getElementById("b-add");
+        var div_b_dec = document.getElementById("b-dec");
+        var div_b_end = document.getElementById("b-end");
+
+        div_all.style.display = "none";
         div_init.style.display = "none";
         div_add.style.display = "none";
         div_dec.style.display = "none";
         div_end.style.display = "none";
+
+        div_b_all.className = "downbox"
+        div_b_init.className = "downbox"
+        div_b_add.className = "downbox"
+        div_b_dec.className = "downbox"
+        div_b_end.className = "downbox"
+    }
+
+    function showItemsAll(){
+        var div_all = document.getElementById("items-all");
+        var div_b_all = document.getElementById("b-all");
+
+        closeAll();
+
+        div_all.style.display = "block";
+        div_b_all.className = "active"
     }
 
     function showItemsInit(){
-        var div_all = document.getElementById("items-all");
         var div_init = document.getElementById("items-init");
-        var div_add = document.getElementById("items-add");
-        var div_dec = document.getElementById("items-dec");
-        var div_end = document.getElementById("items-end");
+        var div_b_init = document.getElementById("b-init");
 
-        div_all.style.display = "none";
+        closeAll();
+
         div_init.style.display = "block";
-        div_add.style.display = "none";
-        div_dec.style.display = "none";
-        div_end.style.display = "none";
+        div_b_init.className = "active"
     }
 
     function showItemsAdd(){
-        var div_all = document.getElementById("items-all");
-        var div_init = document.getElementById("items-init");
         var div_add = document.getElementById("items-add");
-        var div_dec = document.getElementById("items-dec");
-        var div_end = document.getElementById("items-end");
+        var div_b_add = document.getElementById("b-add");
+        
+        closeAll();
 
-        div_all.style.display = "none";
-        div_init.style.display = "none";
         div_add.style.display = "block";
-        div_dec.style.display = "none";
-        div_end.style.display = "none";
+        div_b_add.className = "active"
     }
 
     function showItemsDec(){
-        var div_all = document.getElementById("items-all");
-        var div_init = document.getElementById("items-init");
-        var div_add = document.getElementById("items-add");
         var div_dec = document.getElementById("items-dec");
-        var div_end = document.getElementById("items-end");
+        var div_b_dec = document.getElementById("b-dec");
 
-        div_all.style.display = "none";
-        div_init.style.display = "none";
-        div_add.style.display = "none";
+        closeAll();
+
         div_dec.style.display = "block";
-        div_end.style.display = "none";
+        div_b_dec.className = "active"
     }
 
     function showItemsEnd(){
-        var div_all = document.getElementById("items-all");
-        var div_init = document.getElementById("items-init");
-        var div_add = document.getElementById("items-add");
-        var div_dec = document.getElementById("items-dec");
         var div_end = document.getElementById("items-end");
+        var div_b_end = document.getElementById("b-end");
 
-        div_all.style.display = "none";
-        div_init.style.display = "none";
-        div_add.style.display = "none";
-        div_dec.style.display = "none";
+        closeAll();
+        
         div_end.style.display = "block";
+        div_b_end.className = "active"
     }
-
+        
     window.onload = function() {
         var div_all = document.getElementById("items-all");
         var div_init = document.getElementById("items-init");
@@ -81,5 +88,7 @@
         div_add.style.display = "none";
         div_dec.style.display = "none";
         div_end.style.display = "none";
+
+        
     }
 </script>
