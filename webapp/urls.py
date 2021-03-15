@@ -23,3 +23,6 @@ urlpatterns = [
     path('staffapp/', include('staffapp.urls')),
     path('adminapp/', include('adminapp.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()
