@@ -74,6 +74,7 @@ class Place(models.Model):
         )
     preview = models.ImageField(
         'Превью',
+        upload_to = 'images/',
         blank = True,
         )
    
