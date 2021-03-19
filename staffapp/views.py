@@ -68,7 +68,7 @@ def pg_session_end(request, pk=1):
 
     if request.method == "POST":
         if request.POST.get('ActionType') == 'add':
-            newForm = EndSessionForm(request.Post)
+            newForm = EndSessionForm(request.POST)
             if newForm.is_valid():
                 newEndSession = EndSession(
                     session = curSession,
@@ -95,6 +95,7 @@ def pg_session_end(request, pk=1):
        'user':user,
        'forms':forms,
        'complete':completeItems,
+       'session':curSession,
 
     }
     return render(request, 'staffapp/pg_end_session.html',content)
@@ -141,6 +142,8 @@ def pg_session_init(request, pk=1):
        'user':user,
        'forms':forms,
        'complete':completeItems,
+       'session':curSession,
+       
     }
     return render(request, 'staffapp/pg_init_session.html',content)
 

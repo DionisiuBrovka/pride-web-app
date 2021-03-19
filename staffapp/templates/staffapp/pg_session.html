@@ -5,9 +5,10 @@
 {% include 'staffapp/elements/el_navbar.html'%}
 
 <div class="container font-main">
+    
     <div class="row" >
         <div class="col upbox">
-            <h1>Смена № {{session.id}}</h1>
+            <h1><a href="{% url 'staffapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Смена № {{session.id}}</h1>
             <table border="1" id="session-info-table">
                 <tr>
                     <td><p>Статус :</p></td>
@@ -68,22 +69,33 @@
     {% if session.isOpen %}
     <div class="row upbox" id="session-control-block">
         <div class="col">
-            <button class="hoverbox">Добавить инвентарь (начало смены)</button>
-            <button class="hoverbox">Добавить инвентарь (привоз)</button>
-            <button class="hoverbox">Добавить инвентарь (увоз)</button>
-            <button class="hoverbox">Добавить инвентарь (оканчание смены)</button> 
+            <form action="/staffapp/session/{{session.id}}/init/">
+                <button class="hoverbox">Добавить инвентарь (начало смены)</button>
+            </form>
+            <form action="/staffapp/session/{{session.id}}/change/">
+                <button class="hoverbox">Добавить инвентарь (привоз/увоз)</button>
+            </form>
+            <form action="/staffapp/session/{{session.id}}/end/">
+                <button class="hoverbox">Добавить инвентарь (оканчание смены)</button>
+            </form> 
         </div>
         <div class="col">
-            <button class="hoverbox">Добавить *ущерб*</button>
-            <button class="hoverbox">Добавить кальян</button>
-            <button class="hoverbox">Закрыть смену</button>
+            <form action="#">
+                <button class="hoverbox">Добавить *ущерб*</button>
+            </form> 
+            <form action="#">
+                <button class="hoverbox">Добавить кальян</button>
+            </form> 
+            <form action="#">
+                <button class="hoverbox">Закрыть смену</button>
+            </form> 
         </div>
     </div>
     {% endif %}
 
     {% include 'staffapp/elements/scr_list_show.html' %}
     <!-- {% include 'staffapp/elements/scr_block_items_show.html' %}
-                ЭТО ВАН ТЕБЕ ПОХАВАТЬ
+                ЭТО ВАНЯ ТЕБЕ ПОХАВАТЬ
     {% include 'staffapp/elements/scr_block_items_show_onload.html' %} -->
 
     <div class="row upbox" id="session-block-status-items">
