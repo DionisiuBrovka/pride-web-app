@@ -61,6 +61,9 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+class Recvisites(models.Model):
+    pass
+
 class Place(models.Model):
     title = models.CharField(
         'Название',
@@ -77,6 +80,11 @@ class Place(models.Model):
         upload_to = 'images/',
         blank = True,
         )
+    recvisites = models.CharField(
+        'Реквизиты',
+        blank= True,
+    )
+    
    
     def __str__(self):
         return self.title
@@ -95,6 +103,22 @@ class Position(models.Model):
         'Стоимость позиции',
         default=23.0
         )
+    forGuest = "FG"
+    forSelf = "FS"
+    bonus = "B"
+    posTypeChoices = (
+        (forGuest, 'Гостю'),
+        (forSelf,'Себе'),
+        (bonus, 'Бонусный'),
+    )
+    positionType = models.CharField(
+        'Тип кальяна', 
+        max_length= 2,
+        choices=posTypeChoices,
+        default = forGuest,
+        blank= True,
+        )
+    
 
     def __str__(self):
         return self.title+' '+str(self.cost)
@@ -203,6 +227,22 @@ class Item(models.Model):
         verbose_name='Тип исчисления',
         on_delete = models.CASCADE,
         )
+    itemTypeChoices = (
+        'v', 'Расходный материал',
+        'c', 'Инвентарь',
+        )
+    itemType = models.CharField(
+        'Тип',
+        max_length=1,
+        choices=itemTypeChoices,
+        default='c',
+        blank=True,
+        )
+    cost = models.FloatField(
+        'Стоимость',
+        default=0,
+        blank=True,
+    )
     
     def __str__(self):
         return self.title+', '+self.countType.__str__()
@@ -210,6 +250,35 @@ class Item(models.Model):
     class Meta:
         verbose_name = 'Позиция инвентаря'
         verbose_name_plural = 'Позиции инвентаря'
+
+class ItemPositionRelation(models.Model):
+    position = models.ForeignKey(
+        Position,
+        verbose_name= 'Позиция',
+        on_delete = models.CASCADE,
+    )
+    item = models.ForeignKey(
+        Item,
+        verbose_name='Материал',
+        on_delete = models.CASCADE,
+    )
+    count = models.FloatField(
+        'Норма расхода',
+        default= 20,
+    )
+
+class ItemItemRelation(models.Model):
+    alphaItem = models.ForeignKey(
+        Item,
+        verbose_name= 'Пополняемый расходник',
+        on_delete = models.CASCADE,
+    )
+    omegaItem = models.ForeignKey(
+        Item,
+        verbose_name= 'Пополняющий расходник',
+        on_delete = models.CASCADE
+    )
+
 
 class StartSession(models.Model):
     session = models.ForeignKey(

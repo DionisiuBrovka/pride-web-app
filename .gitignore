@@ -1,7 +1,6 @@
 workspace.code-workspace
 
 __pycashe__/
-media/
 *.py[cod]
 
 *project_config.py
