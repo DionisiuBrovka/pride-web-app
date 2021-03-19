@@ -33,6 +33,10 @@ hr{
     font-family: Apex;
 }
 
+.text-status-open{
+    color: greenyellow;
+}
+
 /* =======================================( ELS )=========================================== */
 
 .stl-input{
@@ -339,12 +343,6 @@ p.logoone{
     padding-right: 60px;
 }
 
-/* 
-========================================================================================================
-                                          NEW
-========================================================================================================
-*/
-
 /* ======================== ( session min BLOCK ) ================================== */
 
 .close-sessions-item{
@@ -395,13 +393,16 @@ p.logoone{
     margin-right: 15px;
 }
 
-/*======== control */
+/*======== item-list-control */
 #session-block-status-items{
     margin-top: 20px;
+    padding: 10px ;
+
 }
 
-#session-block-status-items #control{
+#session-block-status-items #item-list-control{
     padding: 5px;
+    margin-left: 5px;
     margin-bottom: 10px;
 }
 
@@ -418,6 +419,14 @@ p.logoone{
 
 #session-block-status-items .active{
     background-color: orangered;
+
+    border-radius: 12px;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: 
+        inset 4px 4px 4px 1px rgba(247, 247, 247, 0.25), 
+        inset -6px -6px 6px 1px rgba(0, 0, 0, 0.2),
+        2px 2px 2px 0px rgba(75, 75, 75, 0.25), 
+        -2px -2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
 /*======== items-lists */
@@ -430,8 +439,71 @@ p.logoone{
     text-align: center;
 }
 
+#items-lists td{
+    padding-left: 10px;
+}
+
 #items-lists .superdownbox{
-    margin: 5px;
     padding: 15px;
     margin-bottom: 10px;
+}
+
+/* ======= */
+#session-block-status-items .show-content-btn{
+    min-width: 10px;
+}
+
+/* ======================== ( session CONTROL BLOCK ) ================================== */
+#session-control-block{
+    margin-top: 20px;
+    padding: 10px;
+}
+
+#session-control-block button{
+    color: gainsboro;
+    background-color: rgba(75, 75, 75, 0.25);
+
+    width: 100%;
+    padding: 7px;
+    margin-bottom: 15px;
+}
+
+#session-control-block button:hover{
+    color: black;
+    background-color: orangered;
+}
+
+/* ======================== ( session CONTROL BLOCK ) ================================== */
+#session-block-status-hookahs{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+#session-block-status-hookahs button{
+    color: gainsboro;
+    padding: 3px;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    margin: 3px;
+
+    min-width: 100px;
+}
+
+#session-block-status-hookahs .active{
+    background-color: orangered;
+
+    border-radius: 12px;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: 
+        inset 4px 4px 4px 1px rgba(247, 247, 247, 0.25), 
+        inset -6px -6px 6px 1px rgba(0, 0, 0, 0.2),
+        2px 2px 2px 0px rgba(75, 75, 75, 0.25), 
+        -2px -2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+#session-block-status-hookahs .show-content-btn{
+    min-width: 10px;
+    color: gainsboro;
 }
