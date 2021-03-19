@@ -82,6 +82,7 @@ class Place(models.Model):
         )
     recvisites = models.CharField(
         'Реквизиты',
+        max_length=16,
         blank= True,
     )
     
@@ -228,8 +229,8 @@ class Item(models.Model):
         on_delete = models.CASCADE,
         )
     itemTypeChoices = (
-        'v', 'Расходный материал',
-        'c', 'Инвентарь',
+        ("v", 'Расходный материал'),
+        ("c", 'Инвентарь'),
         )
     itemType = models.CharField(
         'Тип',
@@ -272,11 +273,13 @@ class ItemItemRelation(models.Model):
         Item,
         verbose_name= 'Пополняемый расходник',
         on_delete = models.CASCADE,
+        related_name= 'alpha',
     )
     omegaItem = models.ForeignKey(
         Item,
         verbose_name= 'Пополняющий расходник',
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
+        related_name= 'omega',
     )
 
 
