@@ -5,7 +5,7 @@
 {% include 'staffapp/elements/el_navbar.html'%}
 
 <div class="container font-main">
-    <div class="rov" >
+    <div class="row" >
         <div class="col upbox">
             <h1>Смена № {{session.id}}</h1>
             <table border="1" id="session-info-table">
@@ -13,7 +13,7 @@
                     <td><p>Статус :</p></td>
                     <td>
                         {% if session.isOpen %}
-                            <p>Открыта</p>
+                            <p class="text-status-open">Открыта</p>
                         {% else %}
                             <p>Закрыта</p>
                         {% endif %}
@@ -21,7 +21,9 @@
                 </tr>
 
                 <tr>
-                    <td><p>Открыта :</p></td>
+                    <td>
+                        <p>Открыта :</p>
+                    </td>
                     <td>
                         <p>{{ session.startTime }}</p>
                     </td>
@@ -41,7 +43,7 @@
                 <tr>
                     <td><p>Заведение :</p></td>
                     <td>
-                        <p>{{ session.place }}</p>
+                        <p><a href="#">{{ session.place }}</a></p>
                     </td>
                 </tr>
 
@@ -50,15 +52,41 @@
                         <p>Сотрудник :</p>
                     </td>
                     <td>
-                        <p>{{ session.staff }}</p>
+                        <p>
+                            {{ session.staff }}  
+
+                            {% if session.isOpen %}
+                                <a href="#"><i class="fas fa-user-plus"></i></a>
+                            {% endif %}
+                        </p>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
     
-    {% include 'staffapp/elements/scr_list_show.html' %}
+    {% if session.isOpen %}
+    <div class="row upbox" id="session-control-block">
+        <div class="col">
+            <button class="hoverbox">Добавить инвентарь (начало смены)</button>
+            <button class="hoverbox">Добавить инвентарь (привоз)</button>
+            <button class="hoverbox">Добавить инвентарь (увоз)</button>
+            <button class="hoverbox">Добавить инвентарь (оканчание смены)</button> 
+        </div>
+        <div class="col">
+            <button class="hoverbox">Добавить *ущерб*</button>
+            <button class="hoverbox">Добавить кальян</button>
+            <button class="hoverbox">Закрыть смену</button>
+        </div>
+    </div>
+    {% endif %}
 
+    {% include 'staffapp/elements/scr_list_show.html' %}
+    <!-- {% include 'staffapp/elements/scr_block_items_show.html' %}
+                ЭТО ВАН ТЕБЕ ПОХАВАТЬ
+    {% include 'staffapp/elements/scr_block_items_show_onload.html' %} -->
+
+<<<<<<< HEAD
     <div class="rov upbox" id="session-block-status-items">
         <div class="col" id="control">
             <button class="active" onclick="showItemsAll()" id="b-all">All</button>
@@ -121,68 +149,241 @@
                         </tr> 
                     {% endfor %}
                 </table>              
+=======
+    <div class="row upbox" id="session-block-status-items">
+        <div class="col">   
+
+            <div class="row" id="block-head">
+                <div class="col">
+                    <h4>
+                        Инвентарь :
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn"><i class="fas fa-caret-down"></i></button>
+                </div>
+>>>>>>> 91867a2a71298a6642955cbd551fdb6f8461819e
             </div>
 
-            <div class="superdownbox" id="items-init">
-                <table border="1">
-                    <tr>
-                        <th><p>Позиция</p></th>
-                        <th><p>Количество</p></th>
-                    </tr>
-                    {% for item in itemsInit %}
-                        <tr>
-                            <td>{{ item.item.title }}</td>
-                            <td>{{ item.count }} {{ item.item.countType }}</td>
-                        </tr> 
-                    {% endfor %}
-                </table>              
+            <div class="row">
+                <div class="col" id="item-list-control">
+                    <button class="active" onclick="showItemsAll()" id="b-all">All</button>
+                    <button class="downbox" onclick="showItemsInit()" id="b-init">Начало смены</button>
+                    <button class="downbox" onclick="showItemsAdd()" id="b-add">Привоз</button>
+                    <button class="downbox" onclick="showItemsDec()" id="b-dec">Увоз</button>        
+
+                    {% if session.isOpen %}
+                        <button class="downbox" onclick="showItemsEnd()" id="b-end">Закрыть смену</button>
+                    {% else %}
+                        <button class="downbox" onclick="showItemsEnd()" id="b-end">Оканчание Смены</button>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col" id="items-lists">
+
+                    <!-- СПИСОК ВСЕХ ПОЗИЦИЙ -->
+                    <div class="superdownbox" id="items-all">
+                        <table border="1">
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                            </tr>
+                            <tr>
+                                <th colspan="2"><p>Начало смены</p></th>
+                            </tr>
+                            {% if itemsInit|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsInit %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+
+                            <!-- ПРИВОЗ -->
+                            <tr>
+                                <th colspan="2"><p>Привоз</p></th>
+                            </tr>
+                            {% if itemsAdd|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsAdd %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+
+                            <!-- УВОЗ -->
+                            <tr>
+                                <th colspan="2"><p>Увоз</p></th>
+                            </tr>
+                            {% if itemsDec|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsAdd %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+
+                            <!-- КОНЕЦ -->
+                            <tr>
+                                <th colspan="2"><p>Оканчание смены</p></th>
+                            </tr>
+                            {% if itemsEnd|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsEnd %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+                        </table>              
+                    </div>
+
+                    <!-- СПИСОК НАЧАЛА СМЕНЫ -->
+                    <div class="superdownbox" id="items-init">
+                        <table border="1">
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                            </tr>
+                            {% if itemsInit|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsInit %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+                        </table>              
+                    </div>
+
+                    <!-- СПИСОК ПРИВОЗА -->
+                    <div class="superdownbox" id="items-add">
+                        <table border="1">
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                            </tr>
+                            {% if itemsAdd|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsAdd %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+                        </table>              
+                    </div>
+
+                    <!-- СПИСОК УВОЗА -->
+                    <div class="superdownbox" id="items-dec">
+                        <table border="1">
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                            </tr>
+                            {% if itemsDec|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsDec %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+                        </table>
+                    </div>
+
+                    <!-- СПИСОК КОНЦА -->
+                    <div class="superdownbox" id="items-end">
+                        <table border="1">
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                            </tr>
+                            {% if itemsEnd|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsEnd %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row upbox" id="session-block-status-hookahs">
+        <div class="col">
+            <div class="row block-head">
+                <div class="col">
+                    <h4>
+                        Кальяны :
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn" ><i class="fas fa-caret-down"></i></button>
+                </div>
             </div>
 
-            <div class="superdownbox" id="items-add">
-                <table border="1">
-                    <tr>
-                        <th><p>Позиция</p></th>
-                        <th><p>Количество</p></th>
-                    </tr>
-                    {% for item in itemsAdd %}
-                        <tr>
-                            <td>{{ item.item.title }}</td>
-                            <td>{{ item.count }} {{ item.item.countType }}</td>
-                        </tr> 
-                    {% endfor %}
-                </table>              
+            <div class="row">
+                <div class="col" id="hookahs-list-control">
+                    <button class="active" onclick="" id="b-all">All</button>
+                    <button class="downbox" onclick="" id="b-init">Заказы</button>
+                    <button class="downbox" onclick="" id="b-add">Себе</button>
+                    <button class="downbox" onclick="" id="b-dec">Бонусы</button>        
+                </div>
             </div>
 
-            <div class="superdownbox" id="items-dec">
-                <table border="1">
-                    <tr>
-                        <th><p>Позиция</p></th>
-                        <th><p>Количество</p></th>
-                    </tr>
-                    {% for item in itemsDec %}
-                        <tr>
-                            <td>{{ item.item.title }}</td>
-                            <td>{{ item.count }} {{ item.item.countType }}</td>
-                        </tr> 
-                    {% endfor %}
-                </table>
+            <div class="row">
+                <div class="col"></div>
             </div>
-
-            <div class="superdownbox" id="items-end">
-                <table border="1">
-                    <tr>
-                        <th><p>Позиция</p></th>
-                        <th><p>Количество</p></th>
-                    </tr>
-                    {% for item in itemsEnd %}
-                        <tr>
-                            <td>{{ item.item.title }}</td>
-                            <td>{{ item.count }} {{ item.item.countType }}</td>
-                        </tr> 
-                    {% endfor %}
-                </table>
-            </div>
-
         </div>
     </div>
 </div>
