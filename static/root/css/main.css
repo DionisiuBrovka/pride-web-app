@@ -351,13 +351,51 @@ p.logoone{
     padding-right: 60px;
 }
 
+/* 
+========================================================================================================
+                                          NEW
+========================================================================================================
+*/
 
-/* ======================== ( NO  DISPLAY ) ================================== */
+/* ======================== ( session BLOCK ) ================================== */
 
-#navbar-menu{
-    display: none;
+/*======== info */
+#session-info-table{
+    margin: 10px;
+    width: 45%;
 }
 
-#mobile-footer{
-    display: none;
+#session-info-table td p{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/*======== control */
+#session-block-status-items #control{
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#session-block-status-items button{
+    color: gainsboro;
+    padding: 7px;
+    margin: 3px;
+
+    width: 160px;
+}
+
+/*======== items-lists */
+#items-lists table{
+    width: 100%;
+    
+}
+
+#items-lists th p{
+    text-align: center;
+}
+
+#items-lists .superdownbox{
+    margin: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
 }
