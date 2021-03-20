@@ -5,9 +5,10 @@
 {% include 'staffapp/elements/el_navbar.html'%}
 
 <div class="container font-main">
+    
     <div class="row" >
         <div class="col upbox">
-            <h1>Смена № {{session.id}}</h1>
+            <h1><a href="{% url 'staffapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Смена № {{session.id}}</h1>
             <table border="1" id="session-info-table">
                 <tr>
                     <td><p>Статус :</p></td>
@@ -68,24 +69,99 @@
     {% if session.isOpen %}
     <div class="row upbox" id="session-control-block">
         <div class="col">
-            <button class="hoverbox">Добавить инвентарь (начало смены)</button>
-            <button class="hoverbox">Добавить инвентарь (привоз)</button>
-            <button class="hoverbox">Добавить инвентарь (увоз)</button>
-            <button class="hoverbox">Добавить инвентарь (оканчание смены)</button> 
+            <form action="/staffapp/session/{{session.id}}/init/">
+                <button class="hoverbox">Добавить инвентарь (начало смены)</button>
+            </form>
+            <form action="/staffapp/session/{{session.id}}/change/">
+                <button class="hoverbox">Добавить инвентарь (привоз/увоз)</button>
+            </form>
+            <form action="/staffapp/session/{{session.id}}/end/">
+                <button class="hoverbox">Добавить инвентарь (оканчание смены)</button>
+            </form> 
         </div>
         <div class="col">
-            <button class="hoverbox">Добавить *ущерб*</button>
-            <button class="hoverbox">Добавить кальян</button>
-            <button class="hoverbox">Закрыть смену</button>
+            <form action="#">
+                <button class="hoverbox">Добавить *ущерб*</button>
+            </form> 
+            <form action="#">
+                <button class="hoverbox">Добавить кальян</button>
+            </form> 
+            <form action="#">
+                <button class="hoverbox">Закрыть смену</button>
+            </form> 
         </div>
     </div>
     {% endif %}
 
     {% include 'staffapp/elements/scr_list_show.html' %}
     <!-- {% include 'staffapp/elements/scr_block_items_show.html' %}
-                ЭТО ВАН ТЕБЕ ПОХАВАТЬ
+                ЭТО ВАНЯ ТЕБЕ ПОХАВАТЬ
     {% include 'staffapp/elements/scr_block_items_show_onload.html' %} -->
 
+<<<<<<< HEAD
+    <div class="rov upbox" id="session-block-status-items">
+        <div class="col" id="control">
+            <button class="active" onclick="showItemsAll()" id="b-all">All</button>
+            <button class="downbox" onclick="showItemsInit()" id="b-init">Начало смены</button>
+            <button class="downbox" onclick="showItemsAdd()" id="b-add">Привоз</button>
+            <button class="downbox" onclick="showItemsDec()" id="b-dec">Увоз</button>        
+
+            {% if session.isOpen %}
+                <button class="downbox">Закрыть смену</button>
+            {% else %}
+                <button class="downbox" onclick="showItemsEnd()" id="b-end">Окончание Смены</button>
+            {% endif %}
+        </div>
+
+        <div class="col" id="items-lists">
+
+            <div class="superdownbox" id="items-all">
+                <table border="1">
+                    <tr>
+                        <th><p>Позиция</p></th>
+                        <th><p>Количество</p></th>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><p>Начало смены</p></th>
+                    </tr>
+                    {% for item in itemsInit %}
+                        <tr>
+                            <td>{{ item.item.title }}</td>
+                            <td>{{ item.count }} {{ item.item.countType }}</td>
+                        </tr> 
+                    {% endfor %}
+
+                    <tr>
+                        <th colspan="2"><p>Привоз</p></th>
+                    </tr>
+                    {% for item in itemsAdd %}
+                        <tr>
+                            <td>{{ item.item.title }}</td>
+                            <td>{{ item.count }} {{ item.item.countType }}</td>
+                        </tr> 
+                    {% endfor %}
+
+                    <tr>
+                        <th colspan="2"><p>Увоз</p></th>
+                    </tr>
+                    {% for item in itemsDec %}
+                        <tr>
+                            <td>{{ item.item.title }}</td>
+                            <td>{{ item.count }} {{ item.item.countType }}</td>
+                        </tr> 
+                    {% endfor %}
+
+                    <tr>
+                        <th colspan="2"><p>Окончание смены</p></th>
+                    </tr>
+                    {% for item in itemsEnd %}
+                        <tr>
+                            <td>{{ item.item.title }}</td>
+                            <td>{{ item.count }} {{ item.item.countType }}</td>
+                        </tr> 
+                    {% endfor %}
+                </table>              
+=======
     <div class="row upbox" id="session-block-status-items">
         <div class="col">   
 
@@ -98,6 +174,7 @@
                 <div class="col">
                     <button onclick="showBlock()" class="downbox float-right show-content-btn"><i class="fas fa-caret-down"></i></button>
                 </div>
+>>>>>>> 91867a2a71298a6642955cbd551fdb6f8461819e
             </div>
 
             <div class="row">

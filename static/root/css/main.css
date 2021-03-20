@@ -49,6 +49,12 @@ hr{
     margin-bottom: 10px;
 }
 
+.back-btn i{
+    color: gainsboro;
+    padding: 10px;
+    font-size: 20px;
+}
+
 /* =======================================( BOXS )=========================================== */
 
 .upbox{
