@@ -6,13 +6,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col upbox font-main">
+        <div class="col upbox font-main" id="init-items-list-block">
             <h1><a href="/staffapp/session/{{session.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Добавить инвентарь (начало смены)</h1>
 
             <div class="superdownbox">
                 {% for el in forms %}
 
-                <div class="hoverbox">
+                <div class="hoverbox el-item-input-form">
                     <form method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="ItemID" value="{{el.item.item.id}}">
@@ -24,35 +24,45 @@
 
                         <div class="">
                             {{el.form.count}}
-                        </div>
                         
-                        
-                        <button type="submit">
-                            ADD
+                        <button type="submit" class="downbox">
+                            <i class="fas fa-plus"></i>
                         </button>
+                        </div>
                     </form> 
                 </div>
                 
                 {% endfor %}
-            </div>
 
-            <!-- {% for el in forms %}
-            <form method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="ItemID" value="{{el.item.item.id}}">
-                <input type="hidden" name="ActionType" value="add">
-                {{el.item.item}}
-                {{el.form.count}}
-                <button type="submit">
-                    ADD
-                </button>
-            </form>
-            {% endfor %} -->
+                <div class="hoverbox el-item-input-form">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="ItemID" value="{{el.item.item.id}}">
+                        <input type="hidden" name="ActionType" value="add">
+                        
+                        <div class="">
+                            <p>Some new  INv</p>
+                        </div>
+
+                        <div class="">
+                            <input>
+                        </div>
+
+                        <div class="">
+                            <input>                     
+                        
+                        <button type="submit" class="downbox">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col upbox font-main">  
+        <div class="col upbox font-main" id="init-items-list-block-complite">  
             <div class="superdownbox">
                 <table border="1">
                     <tr>
@@ -65,9 +75,9 @@
                     </tr>
                     {% for el in complete %}
                         <tr>
-                            <th>{{el.item}}</th>
-                            <th>{{el.count}}</th>
-                            <th>
+                            <td>{{el.item}}</td>
+                            <td>{{el.count}}</td>
+                            <td>
                                 <form method="POST">
                                     {% csrf_token %}
                                     <input type="hidden" name="ItemID" value="{{el.id}}">
@@ -76,7 +86,7 @@
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
-                            </th>
+                            </td>
                         </tr>
                     {% endfor %}
                 </table>
@@ -95,5 +105,5 @@
         </div>
     </div>
 </div>
-
+{% include 'staffapp/elements/el_bottom.html'%}
 {% endblock %}

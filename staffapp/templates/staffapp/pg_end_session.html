@@ -6,6 +6,73 @@
 
 <div class="container">
     <div class="row">
+        <div class="col upbox font-main" id="end-items-list-block">
+            <h1><a href="/staffapp/session/{{session.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Добавить инвентарь (конец смены)</h1>
+
+            <div class="superdownbox">
+                {% for el in forms %}
+
+                <div class="hoverbox el-item-input-form">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="ItemID" value="{{el.item.item.id}}">
+                        <input type="hidden" name="ActionType" value="add">
+                        
+                        <div class="">
+                            {{el.item.item}}
+                        </div>
+
+                        <div class="">
+                            {{el.form.count}}
+                        
+                        <button type="submit" class="downbox">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        </div>
+                    </form> 
+                </div>
+                
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col upbox font-main" id="end-items-list-block-complite">  
+            <div class="superdownbox">
+                <table border="1">
+                    <tr>
+                        <th colspan="3"><p>Конец смены</p></th>
+                    </tr>
+                    <tr>
+                        <th><p>Позиция</p></th>
+                        <th><p>Количество</p></th>
+                        <th></th>
+                    </tr>
+                    {% for el in complete %}
+                        <tr>
+                            <td>{{el.item}}</td>
+                            <td>{{el.count}}</td>
+                            <td>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="ItemID" value="{{el.id}}">
+                                    <input type="hidden" name="ActionType" value="dec">
+                                    <button type="submit">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container">
+    <div class="row">
         <div class="col upbox font-main">
             {% for el in forms %}
             <form method="POST">
@@ -33,6 +100,6 @@
             {% endfor %}
         </div>
     </div>
-</div>
+</div> -->
 
 {% endblock %}
