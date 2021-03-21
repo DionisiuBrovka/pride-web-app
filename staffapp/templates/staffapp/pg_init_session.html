@@ -17,6 +17,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="ItemID" value="{{el.item.item.id}}">
                         <input type="hidden" name="ActionType" value="add">
+                        
                         <div class="">
                             {{el.item.item}}
                         </div>
