@@ -4,3 +4,6 @@ __pycashe__/
 *.py[cod]
 
 *project_config.py
+
+/static/
+/media/

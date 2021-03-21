@@ -27,5 +27,8 @@ urlpatterns = [
     path('adminapp/', include('adminapp.urls')),
 ]
 
+handler404 = 'data.views.error404'
+handler500 = 'data.views.error500'
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()

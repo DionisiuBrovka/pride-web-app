@@ -6,3 +6,9 @@ def test(request):
 
 def index(request):
     return render(request, 'index/index.html')
+
+def error404(request, exception):
+    return render(request, 'root/404.html')
+
+def error500(request):
+    return render(request, 'root/500.html')
