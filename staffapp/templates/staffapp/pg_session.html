@@ -78,15 +78,18 @@
             <form action="/staffapp/session/{{session.id}}/end/">
                 <button class="hoverbox">Добавить инвентарь (оканчание смены)</button>
             </form> 
-        </div>
-        <div class="col">
-            <form action="#">
+            <form action="/staffapp/session/{{session.id}}/addloss/">
                 <button class="hoverbox">Добавить *ущерб*</button>
             </form> 
-            <form action="#">
+        </div>
+        <div class="col">
+            <form action="/staffapp/session/{{session.id}}/addorder/">
                 <button class="hoverbox">Добавить кальян</button>
+            </form>
+            <form action="/staffapp/session/{{session.id}}/adddraft/">
+                <button class="hoverbox">Добавить чек</button>
             </form> 
-            <form action="#">
+            <form action="/staffapp/session/{{session.id}}/close/">
                 <button class="hoverbox">Закрыть смену</button>
             </form> 
         </div>
@@ -94,9 +97,6 @@
     {% endif %}
 
     {% include 'staffapp/elements/scr_list_show.html' %}
-    <!-- {% include 'staffapp/elements/scr_block_items_show.html' %}
-                ЭТО ВАНЯ ТЕБЕ ПОХАВАТЬ
-    {% include 'staffapp/elements/scr_block_items_show_onload.html' %} -->
 
     <div class="row upbox" id="session-block-status-items">
         <div class="col">   
@@ -425,8 +425,43 @@
             </div>
         </div>
     </div>
-</div>
 
+    <div class="row upbox font-main" id="session-block-status-drafts">
+        <div class="col">
+            <div class="row block-head">
+                <div class="col">
+                    <h4>
+                        Чеки :
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn" ><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="hookahs-list">
+                    <div class="superdownbox">
+                        <table border="1">
+                            <tr>
+                                <th>
+                                    <p>Фото</p>
+                                </th>
+                                <th>
+                                    <p>Комментарий</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% include 'staffapp/elements/el_bottom.html'%}
 {% endblock %}
 

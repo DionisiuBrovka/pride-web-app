@@ -10,4 +10,6 @@ urlpatterns = [
     path('session/<int:pk>/change/', views.pg_session_change, name="session-change"),
     path('session/<int:pk>/init/', views.pg_session_init, name="session-init"),
     path('session/<int:pk>/addorder/', views.pg_session_addorder, name="session-addorder"),
+    path('session/<int:pk>/addloss/', views.pg_session_addloss, name="session-addloss"),
+    path('session/<int:pk>/adddraft/', views.pg_session_adddraft, name="session-adddraft"),
 ]

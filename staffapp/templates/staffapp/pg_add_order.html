@@ -2,9 +2,86 @@
 
 {% block content %}
 
+{% load widget_tweaks %}
+
 {% include 'staffapp/elements/el_navbar.html'%}
 {% if session.isOpen %}
+    <div class="container">
+        <div class="row ">
+            <div class="col upbox font-main">
+                <div class="row">
+                    <div class="col">
+                        <h1><a href="/staffapp/session/{{session.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Добавить заказ</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <form action="POST">
+                            <div class="">
+                                {% render_field form.position  size="5" %}
+                            </div>
+                            <div class="">
+                                {% render_field form.comment  size="12" %}
+                            </div>
+                        
+                            <button type="submit">
+                                ADD
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col upbox font-main">
+                <div class="superdownbox">
+                    <table border="1">
+                        <tr>
+                            <th><p>Позиция</p></th>
+                            <th><p>Количество</p></th>
+                            <th><p>Время</p></th>
+                            <th><p>Комментарий</p></th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <th colspan="5"><p>Заказы</p></th>
+                        </tr>
+                        <tr>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="4"><p>Себе</p></th>
+                        </tr>
+                        <tr>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="4"><p>Бонусы</p></th>
+                        </tr>
+                        <tr>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% else %}
     <div class="container">
         <div class="row">

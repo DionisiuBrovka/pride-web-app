@@ -254,3 +254,31 @@ def pg_session_addorder(request, pk=1):
        'session':curSession,
     }
     return render(request, 'staffapp/pg_add_order.html',content)
+
+def pg_session_addloss(request, pk=1):
+    user = request.user
+
+    if not user.is_authenticated:
+        return redirect('autherror')
+
+    curSession = Session.objects.get(id = pk)
+
+    content = {
+       'user':user,
+       'session':curSession,
+    }
+    return render(request, 'staffapp/pg_add_loss.html',content)
+
+def pg_session_adddraft(request, pk=1):
+    user = request.user
+
+    if not user.is_authenticated:
+        return redirect('autherror')
+
+    curSession = Session.objects.get(id = pk)
+
+    content = {
+       'user':user,
+       'session':curSession,
+    }
+    return render(request, 'staffapp/pg_add_draft.html',content)

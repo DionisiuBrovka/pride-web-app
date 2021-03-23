@@ -11,10 +11,9 @@
         <div class="col upbox" id="session-add-block">
             <form method="POST">
                 {% csrf_token %}
-                    <h1>Новая смена</h1><hr>
+                    <h1>Новая смена</h1>
                     <h5>Выберите заведение</h5>
-                    <input type="text" class="stl-input"><br>
-                    {% render_field sessionForm.place multiple="multiple" size="12" %}
+                    {% render_field sessionForm.place  size="12" %}
                     <button type="submit" class="downbox font-main">Создать</button>
             </form>
         </div>
