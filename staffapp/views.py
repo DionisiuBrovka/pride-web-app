@@ -11,10 +11,14 @@ def pg_index(request):
         return redirect('autherror')
 
     userSessions = Session.objects.filter(staff__id=user.profile.id).order_by('-startTime')
+    userOpenSessions = Session.objects.filter(staff__id=user.profile.id, isOpen=True)
+
+    print(userOpenSessions)
 
     content = {
        'user':user,
-       'userSessions':userSessions
+       'userSessions':userSessions,
+       'userOpenSessions':userOpenSessions,
     }
 
     print(userSessions)
@@ -213,12 +217,17 @@ def pg_session_change(request, pk=1):
         
     nowAdd = AddToSession.objects.filter(session__id = pk)
     nowDec = DeleteOnSession.objects.filter(session__id = pk)
+    curSession = Session.objects.get(id = pk)
+ 
+
     content = {
        'user':user,
        'form':AddToSessionForm(),
        'addItems':nowAdd,
        'decItems':nowDec,
+       'session':curSession,
     }
+
     return render(request, 'staffapp/pg_change_session.html',content)
 
 def pg_session_addorder(request, pk=1):
@@ -226,6 +235,8 @@ def pg_session_addorder(request, pk=1):
 
     if not user.is_authenticated:
         return redirect('autherror')
+
+    curSession = Session.objects.get(id = pk)
 
     if request.method == "POST":
         newOrderForm = OrderForm(request.POST)
@@ -240,5 +251,6 @@ def pg_session_addorder(request, pk=1):
     content = {
        'user':user,
        'form':OrderForm(),
+       'session':curSession,
     }
     return render(request, 'staffapp/pg_add_order.html',content)

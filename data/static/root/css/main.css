@@ -159,6 +159,7 @@ td{
 .close-error .downbox{
     margin-top: 40px;
     padding: 10px;
+    color: gainsboro;
 }
 
 /* =======================================( NAVBAR )=========================================== */

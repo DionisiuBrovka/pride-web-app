@@ -6,6 +6,7 @@
 
 <div class="container font-main">
     <div class="row">
+        {% if userOpenSessions|length == 0 %}
         <div class="col session-block">
             <div class="">
                 <h3>Нет открытых смен</h3>
@@ -15,6 +16,7 @@
             </div>
             
         </div>
+        {% endif %}
         
     </div>
     <div class="row">
@@ -39,6 +41,13 @@
 </div>
 
 {% include 'staffapp/elements/el_bottom.html'%}
-{% include 'staffapp/elements/el_mobile_session_add_button.html'%}
 
+{% if userOpenSessions|length == 0 %}
+    {% include 'staffapp/elements/el_mobile_session_add_button.html'%}
+{% endif %}
+
+{% endblock %}
+
+{% block title%}
+HookahPride | Смены
 {% endblock %}
