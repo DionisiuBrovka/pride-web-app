@@ -131,9 +131,37 @@ td{
         0px 4px 4px 2px rgba(0, 0, 0, 0.25);
         
 }
+/* =======================================( ERROR BOX )=========================================== */
+.error-box{
+    padding: 20px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.error-box .big{
+    font-size: 172px;
+}
+
+.close-error{
+    padding: 20px;
+    text-align: center;
+}
+
+.close-error .error-logo{
+    font-size: 72px;
+    margin-bottom: 25px;
+}
+
+.close-error p{
+    margin-bottom: 30px;
+}
+
+.close-error .downbox{
+    margin-top: 40px;
+    padding: 10px;
+}
 
 /* =======================================( NAVBAR )=========================================== */
-
 #navbar{
     display: flex;
     align-items: center;

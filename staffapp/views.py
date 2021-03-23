@@ -10,7 +10,7 @@ def pg_index(request):
     if not user.is_authenticated:
         return redirect('autherror')
 
-    userSessions = Session.objects.filter(staff__id=user.profile.id)
+    userSessions = Session.objects.filter(staff__id=user.profile.id).order_by('-startTime')
 
     content = {
        'user':user,
