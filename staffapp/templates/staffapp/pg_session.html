@@ -6,10 +6,10 @@
 
 <div class="container font-main">
     
-    <div class="row" >
-        <div class="col upbox">
+    <div class="row upbox" id="session-info-table">
+        <div class="col">
             <h1><a href="{% url 'staffapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Смена № {{session.id}}</h1>
-            <table border="1" id="session-info-table">
+            <table>
                 <tr>
                     <td><p>Статус :</p></td>
                     <td>
@@ -70,27 +70,27 @@
     <div class="row upbox" id="session-control-block">
         <div class="col">
             <form action="/staffapp/session/{{session.id}}/init/">
-                <button class="hoverbox">Добавить инвентарь (начало смены)</button>
+                <button class="">Добавить инвентарь (начало смены)</button>
             </form>
             <form action="/staffapp/session/{{session.id}}/change/">
-                <button class="hoverbox">Добавить инвентарь (привоз/увоз)</button>
+                <button class="">Добавить инвентарь (привоз/увоз)</button>
             </form>
             <form action="/staffapp/session/{{session.id}}/end/">
-                <button class="hoverbox">Добавить инвентарь (оканчание смены)</button>
+                <button class="">Добавить инвентарь (оканчание смены)</button>
             </form> 
             <form action="/staffapp/session/{{session.id}}/addloss/">
-                <button class="hoverbox">Добавить *ущерб*</button>
+                <button class="">Добавить *ущерб*</button>
             </form> 
         </div>
         <div class="col">
             <form action="/staffapp/session/{{session.id}}/addorder/">
-                <button class="hoverbox">Добавить кальян</button>
+                <button class="">Добавить кальян</button>
             </form>
             <form action="/staffapp/session/{{session.id}}/adddraft/">
-                <button class="hoverbox">Добавить чек</button>
+                <button class="">Добавить чек</button>
             </form> 
             <form action="/staffapp/session/{{session.id}}/close/">
-                <button class="hoverbox">Закрыть смену</button>
+                <button class="">Закрыть смену</button>
             </form> 
         </div>
     </div>
@@ -114,15 +114,15 @@
 
             <div class="row">
                 <div class="col" id="item-list-control">
-                    <button class="active" onclick="showItemsAll()" id="b-all">All</button>
-                    <button class="downbox" onclick="showItemsInit()" id="b-init">Начало смены</button>
-                    <button class="downbox" onclick="showItemsAdd()" id="b-add">Привоз</button>
-                    <button class="downbox" onclick="showItemsDec()" id="b-dec">Увоз</button>        
+                    <button class="" onclick="showItemsAll()" id="b-all">All</button>
+                    <button class="" onclick="showItemsInit()" id="b-init">Начало смены</button>
+                    <button class="" onclick="showItemsAdd()" id="b-add">Привоз</button>
+                    <button class="" onclick="showItemsDec()" id="b-dec">Увоз</button>        
 
                     {% if session.isOpen %}
-                        <button class="downbox" onclick="showItemsEnd()" id="b-end">Закрыть смену</button>
+                        <button class="" onclick="showItemsEnd()" id="b-end">Закрыть смену</button>
                     {% else %}
-                        <button class="downbox" onclick="showItemsEnd()" id="b-end">Оканчание Смены</button>
+                        <button class="" onclick="showItemsEnd()" id="b-end">Оканчание Смены</button>
                     {% endif %}
                 </div>
             </div>
@@ -132,7 +132,7 @@
 
                     <!-- СПИСОК ВСЕХ ПОЗИЦИЙ -->
                     <div class="superdownbox" id="items-all">
-                        <table border="1">
+                        <table>
                             <tr>
                                 <th><p>Позиция</p></th>
                                 <th><p>Количество</p></th>
@@ -212,7 +212,7 @@
 
                     <!-- СПИСОК НАЧАЛА СМЕНЫ -->
                     <div class="superdownbox" id="items-init">
-                        <table border="1">
+                        <table>
                             <tr>
                                 <th><p>Позиция</p></th>
                                 <th><p>Количество</p></th>
@@ -235,7 +235,7 @@
 
                     <!-- СПИСОК ПРИВОЗА -->
                     <div class="superdownbox" id="items-add">
-                        <table border="1">
+                        <table>
                             <tr>
                                 <th><p>Позиция</p></th>
                                 <th><p>Количество</p></th>
@@ -258,7 +258,7 @@
 
                     <!-- СПИСОК УВОЗА -->
                     <div class="superdownbox" id="items-dec">
-                        <table border="1">
+                        <table>
                             <tr>
                                 <th><p>Позиция</p></th>
                                 <th><p>Количество</p></th>
@@ -281,7 +281,7 @@
 
                     <!-- СПИСОК КОНЦА -->
                     <div class="superdownbox" id="items-end">
-                        <table border="1">
+                        <table>
                             <tr>
                                 <th><p>Позиция</p></th>
                                 <th><p>Количество</p></th>
@@ -321,17 +321,17 @@
 
             <div class="row">
                 <div class="col" id="hookahs-list-control">
-                    <button class="active" onclick="" id="b-all">All</button>
-                    <button class="downbox" onclick="" id="b-init">Заказы</button>
-                    <button class="downbox" onclick="" id="b-add">Себе</button>
-                    <button class="downbox" onclick="" id="b-dec">Бонусы</button>        
+                    <button class="" onclick="" id="b-all">All</button>
+                    <button class="" onclick="" id="b-init">Заказы</button>
+                    <button class="" onclick="" id="b-add">Себе</button>
+                    <button class="" onclick="" id="b-dec">Бонусы</button>        
                 </div>
             </div>
 
             <div class="row">
                 <div class="col" id="hookahs-list">
                     <div class="superdownbox">
-                        <table border="1">
+                        <table>
                             <tr>
                                 <th><p>Позиция</p></th>
                                 <th><p>Количество</p></th>
@@ -372,7 +372,7 @@
                     </div>
 
                     <div class="superdownbox">
-                        <table border="1">
+                        <table>
                             <tr>
                                 <th><p>Позиция</p></th>
                                 <th><p>Количество</p></th>
@@ -389,7 +389,7 @@
                     </div>
 
                     <div class="superdownbox">
-                        <table border="1">
+                        <table>
                             <tr>
                                 <th><p>Позиция</p></th>
                                 <th><p>Количество</p></th>
@@ -406,7 +406,7 @@
                     </div>
 
                     <div class="superdownbox">
-                        <table border="1">
+                        <table>
                             <tr>
                                 <th><p>Позиция</p></th>
                                 <th><p>Количество</p></th>
@@ -426,7 +426,7 @@
         </div>
     </div>
 
-    <div class="row upbox font-main" id="session-block-status-drafts">
+    <div class="row upbox" id="session-block-status-drafts">
         <div class="col">
             <div class="row block-head">
                 <div class="col">
@@ -452,7 +452,7 @@
                                 </th>
                             </tr>
                             <tr>
-                                <td>---</td>
+                                <td class="test">---</td>
                                 <td>---</td>
                             </tr>
                         </table>

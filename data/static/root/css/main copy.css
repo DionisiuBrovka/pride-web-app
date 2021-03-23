@@ -1,0 +1,640 @@
+/* =======================================(COMMON SETUPS)=========================================== */
+
+@font-face{
+    font-family: Apex;
+    src: url('../font/ProximaNova-Light.ttf') format("truetype");
+}
+
+p{
+    margin: 0px;
+}
+
+a{
+    color: orangered;
+}
+
+a:hover{
+    color: rgb(255, 97, 40);
+}
+
+body{
+    background-color: #2b2b2b;
+}
+
+hr{
+    border: 0.5px solid rgb(51, 51, 51);
+    margin-bottom: 1.5em;
+}
+
+/* =======================================( FONTS )=========================================== */
+
+.font-main{
+    color: gainsboro;
+    font-family: Apex;
+}
+
+.text-status-open{
+    color: greenyellow;
+}
+
+/* =======================================( ELS )=========================================== */
+
+.stl-input{
+    background-color: rgb(27, 27, 27);
+    color:gainsboro;
+    border-radius: 5px;
+
+    width: 100%;
+
+    margin-bottom: 10px;
+}
+
+.back-btn i{
+    color: gainsboro;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 20px;
+}
+
+table{
+    width: 100%;
+    
+}
+
+td p{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+th p{
+    text-align: center;
+}
+
+td{
+    padding-left: 10px;
+}
+
+/* =======================================( BOXS )=========================================== */
+
+.upbox{
+    background-color: #2b2b2b;
+
+    border-radius: 12px;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: -4px -4px 14px 4px rgba(75, 75, 75, 0.25), 6px 6px 20px 2px rgba(0, 0, 0, 0.3);
+}
+
+.downbox{
+    background-color: #2b2b2b;
+
+    border-radius: 12px;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: 
+        inset 4px 4px 4px 1px rgba(75, 75, 75, 0.25), 
+        inset -6px -6px 6px 1px rgba(0, 0, 0, 0.2),
+        2px 2px 2px 0px rgba(75, 75, 75, 0.25), 
+        -2px -2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.downbox a{
+    color: gainsboro;
+}
+
+.downbox:hover{
+    background-color: #272727;
+
+    box-shadow: 
+        inset 4px 4px 2px 1px rgba(75, 75, 75, 0.25), 
+        inset -6px -6px 3px 1px rgba(0, 0, 0, 0.2),
+        2px 2px 2px 0px rgba(75, 75, 75, 0.25), 
+        -2px -2px 2px 0px rgba(0, 0, 0, 0.3);   
+}
+
+.superdownbox{
+    background-color: #1a1a1a;
+
+    border-radius: 12px;
+    box-shadow: 
+        inset 4px 4px 4px 1px rgba(0, 0, 0, 0.25), 
+        inset -6px -6px 6px 1px rgba(0, 0, 0, 0.2),
+        2px 2px 2px 0px rgba(75, 75, 75, 0.25), 
+        -2px -2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.hoverbox{
+    background-color: #2b2b2b;
+
+    border-radius: 3px;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: 
+        0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+        
+}
+/* =======================================( ERROR BOX )=========================================== */
+.error-box{
+    padding: 20px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.error-box .big{
+    font-size: 172px;
+}
+
+.close-error{
+    padding: 20px;
+    text-align: center;
+}
+
+.close-error .error-logo{
+    font-size: 72px;
+    margin-bottom: 25px;
+}
+
+.close-error p{
+    margin-bottom: 30px;
+}
+
+.close-error .downbox{
+    margin-top: 40px;
+    padding: 10px;
+    color: gainsboro;
+}
+
+/* =======================================( NAVBAR )=========================================== */
+#navbar{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 0.5em;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.navflex#start{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.navflex#end{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.navbar-item{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#avatar {
+    font-size: 1.6em;
+}
+
+#id_clock{
+    font-family: Apex;
+    color: gray;
+}
+
+.navbar-end-bttn{
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    margin: 0px;
+    margin-left: 8px;
+}
+/* =======================================( EL item-input )=========================================== */
+.el-item-input-form{
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    margin-bottom: 10px ;
+}
+
+.el-item-input-form form{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.el-item-input-form input{
+    background-color: rgb(27, 27, 27);
+    color:gainsboro;
+    border-radius: 5px;
+}
+
+.el-item-input-form button{
+    color: gainsboro;   
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+/* =======================================( WORKERAPP MAIN BLOCK )=========================================== */
+
+#workerapp-mainblock{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.footer {
+    color: rgb(99, 99, 99);
+    font-family: Apex;
+    font-size: 12px;
+
+    margin-top: 2em;
+    margin-bottom: 6em;
+    text-align: center;
+}
+
+#mobile-footer{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+}
+
+.mobile-add-button{
+    color: black;
+    font-family: Apex;
+    text-align: center;
+
+    background-color: #ff7d32;
+
+    border-radius: 3px;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: 
+        0px 4px 20px 6px rgba(0, 0, 0, 0.25);
+
+    
+    height: 60px;
+    width: 400px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.session-block{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+
+    font-family: Apex;
+    color: gainsboro;
+}
+
+#session-new-bttn{
+    padding: 10px;
+    margin: 1em;
+}
+
+#stats{
+    padding: 10px;
+    font-family: Apex;
+    color: gainsboro;
+
+    margin-left: 20px;
+    width: 350px;
+}
+
+#close-sessions{
+    padding: 10px;
+    font-family: Apex;
+    color: gainsboro;
+    width: inherit;
+
+}
+
+#close-sessions-array{
+    padding: 13px;
+    min-height: 370px;
+}
+
+/* =======================================( INDEX BLOCK )=========================================== */
+
+#index-block{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    font-family: Apex;
+    color: gainsboro;
+
+    width: 60%;
+    margin-left:20%;
+    margin-right: 20%;
+    margin-top: 20%;
+}
+
+p.logoone{
+    margin: 0px;
+    font-size: 86px;
+}
+
+#index-block-bttn{
+    padding: 10px;
+    margin: 10px;
+}
+/* ======================== ( FILTER ) ================================== */
+.filter-box{
+    margin-bottom: 15px;
+    float: right;
+}
+
+.filter-box .downbox{
+    padding: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+}
+
+#filter-input{
+    color: gainsboro;
+    background-color: #1a1a1a;
+
+    border-radius: 12px;
+    box-shadow: 
+        inset 4px 4px 4px 1px rgba(0, 0, 0, 0.25), 
+        inset -6px -6px 6px 1px rgba(0, 0, 0, 0.2),
+        2px 2px 2px 0px rgba(75, 75, 75, 0.25), 
+        -2px -2px 2px 0px rgba(0, 0, 0, 0.3);
+
+    padding: 2px;
+    padding-left: 15px;
+}
+/* ======================== ( ADD SESSION BOX ) ================================== */
+
+#session-add-block{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 20px;
+}
+
+#session-add-block input{
+    width: 100%;
+}
+
+#session-add-block select{
+    width: 100%;
+    background-color: rgb(51, 51, 51);
+    color:  gainsboro;
+
+    border-radius: 5px;
+}
+
+/* ======================== ( LOGIN BLOCK ) ================================== */
+
+#login-block{
+    width: 50%;
+    margin-top: 2em;
+    margin-left: 25%;
+    margin-right: 25%;
+
+    padding: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+/* ======================== ( AUTH BLOCK ) ================================== */
+
+#autherror-block{
+    width: 50%;
+    margin-top: 2em;
+    margin-left: 25%;
+    margin-right: 25%;
+
+    padding: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+/* ======================== ( session min BLOCK ) ================================== */
+
+.close-sessions-item{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 10px;
+    margin-bottom: 15px;
+
+    width: 100%;
+}
+
+@keyframes example {
+    0%   {text-shadow: 0px 0px 2px rgb(227, 255, 188);}
+    50%  {text-shadow: 0px 0px 8px rgb(154, 255, 12);}
+    100% {text-shadow: 0px 0px 2px rgb(227, 255, 188);}
+  }
+
+.close-sessions-item #close-session-indicator{
+    color: greenyellow;
+    text-shadow: 0px 0px 2px rgb(227, 255, 188);
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.close-sessions-item #close-session-show a{
+    color: gainsboro;
+}
+
+.close-sessions-item #close-session-show .downbox{
+    padding: 5px;
+}
+
+
+/* ======================== ( session BLOCK ) ================================== */
+
+/*======== info */
+#session-info-table{
+    margin: 10px;
+    width: 45%;
+}
+
+/*======== item-list-control */
+#session-block-status-items{
+    margin-top: 20px;
+    padding: 10px ;
+
+}
+
+#session-block-status-items #item-list-control{
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+#session-block-status-items button{
+    color: gainsboro;
+    padding: 3px;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    margin: 3px;
+
+    min-width: 100px;
+}
+
+#session-block-status-items .active{
+    background-color: orangered;
+
+    border-radius: 12px;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: 
+        inset 4px 4px 4px 1px rgba(247, 247, 247, 0.25), 
+        inset -6px -6px 6px 1px rgba(0, 0, 0, 0.2),
+        2px 2px 2px 0px rgba(75, 75, 75, 0.25), 
+        -2px -2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+/*======== items-lists */
+#items-lists .superdownbox{
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+/* ======= */
+#session-block-status-items .show-content-btn{
+    min-width: 10px;
+}
+
+/* ======================== ( session CONTROL BLOCK ) ================================== */
+#session-control-block{
+    margin-top: 20px;
+    padding: 10px;
+}
+
+#session-control-block button{
+    color: gainsboro;
+    background-color: rgba(75, 75, 75, 0.25);
+
+    width: 100%;
+    padding: 7px;
+    margin-bottom: 15px;
+}
+
+#session-control-block button:hover{
+    color: black;
+    background-color: orangered;
+}
+
+/* ======================== ( session CONTROL BLOCK ) ================================== */
+#session-block-status-hookahs{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+#session-block-status-hookahs button{
+    color: gainsboro;
+    padding: 3px;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    margin: 3px;
+
+    min-width: 100px;
+}
+
+#session-block-status-hookahs .active{
+    background-color: orangered;
+
+    border-radius: 12px;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: 
+        inset 4px 4px 4px 1px rgba(247, 247, 247, 0.25), 
+        inset -6px -6px 6px 1px rgba(0, 0, 0, 0.2),
+        2px 2px 2px 0px rgba(75, 75, 75, 0.25), 
+        -2px -2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+#session-block-status-hookahs .show-content-btn{
+    min-width: 10px;
+    color: gainsboro;
+}
+
+/* ======================== ( init-items-list-block ) ================================== */
+#init-items-list-block{
+    padding-top: 5px;
+    margin-bottom: 23px;
+}
+
+#init-items-list-block .superdownbox{
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+#init-items-list-block-complite{
+    padding-top: 20px;
+    margin-bottom: 23px;
+}
+
+#init-items-list-block-complite .superdownbox{
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+/* ======================== ( end-items-list-block ) ================================== */
+#end-items-list-block{
+    padding-top: 5px;
+    margin-bottom: 23px;
+}
+
+#end-items-list-block .superdownbox{
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+#end-items-list-block-complite{
+    padding-top: 20px;
+    margin-bottom: 23px;
+}
+
+#end-items-list-block-complite .superdownbox{
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+/* ======================== ( chng-items-list-block ) ================================== */
+#chng-items-list-block{
+    padding-top: 5px;
+    margin-bottom: 23px;
+}
+
+#chng-add-items-list-block{
+    padding: 15px;
+    margin-bottom: 23px;
+}
+
+#chng-add-items-list-block .superdownbox{
+    padding: 10px;
+}
+
+#chng-dec-items-list-block{
+    padding: 15px;
+    margin-bottom: 23px;
+}
+
+#chng-dec-items-list-block .superdownbox{
+    padding: 10px;
+}

@@ -4,39 +4,29 @@
 
 {% include 'staffapp/elements/el_navbar.html'%}
 
-<div class="container font-main">
+<div class="container">
     <div class="row">
         {% if userOpenSessions|length == 0 %}
-        <div class="col session-block">
-            <div class="">
+        <div class="col add-new-session-block">
+            <div>
                 <h3>Нет открытых смен</h3>
             </div>
             <div>
-                <p class="downbox" id="session-new-bttn"><i class="fas fa-plus"></i><a href="{% url 'session-add' %}">  Начать новую смену</a></p>
-            </div>
-            
+                <p id="session-new-btn"><i class="fas fa-plus"></i><a href="{% url 'session-add' %}">  Начать новую смену</a></p>
+            </div>     
         </div>
         {% endif %}
-        
     </div>
-    <div class="row">
-        <div class="col">
-            <div class="row">
-                <div class="col" id="workerapp-mainblock">
-                    <div class="upbox" id="close-sessions">
-                        {% include 'staffapp/elements/el_filter.html' %}
-                        <div class="superdownbox" id="close-sessions-array">
-                            {% for el in userSessions %}
-                                {% include 'staffapp/elements/el_closesession_min.html'%}
-                            {% endfor %}
-                            
-                        </div>
-                    </div>
-                              
-                    {% include 'staffapp/elements/el_stats_min.html'%}
-                </div>
+
+    <div class="row upbox">       
+        <div class="col" id="workerapp-mainblock">
+            {% include 'staffapp/elements/el_filter.html' %}
+            <div class="superdownbox" id="main-sessions-array">
+                {% for el in userSessions %}
+                    {% include 'staffapp/elements/el_session_min.html'%}
+                {% endfor %}  
             </div>
-        </div>
+        </div>         
     </div>
 </div>
 
