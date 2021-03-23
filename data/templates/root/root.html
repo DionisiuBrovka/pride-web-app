@@ -12,9 +12,18 @@
     <link rel="stylesheet" media="screen and (min-width: 600px)" href="{% static 'root/css/main.css' %}" />
     <link rel="stylesheet" media="screen and (max-width: 600px)" href="{% static 'root/css/no-display-mobile.css' %}" />
     <link rel="stylesheet" media="screen and (min-width: 600px)" href="{% static 'root/css/no-display.css' %}" />
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+
     {% include 'el/el_digital_clock.html' %}
 </head>
 
