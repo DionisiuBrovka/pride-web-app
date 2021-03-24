@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Place, Session, StartSession, AddToSession, EndSession, Order
+from .models import Place, Session, StartSession, AddToSession, EndSession, Order, Profile
 
 class PlaceForm(ModelForm):
     class Meta:
@@ -30,3 +30,8 @@ class OrderForm(ModelForm):
     class Meta:
         model = Order
         fields = ['position','comment']
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['name','famName','fathName','vk','telegramNick','avatar']

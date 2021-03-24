@@ -1,0 +1,37 @@
+{% load widget_tweaks %}
+<p>Имя  Фамилия Отчество</p>
+{% for el in users %}
+<tr>
+    <td>{{el.name}}</td>
+    <td>{{el.famName}}</td>
+    <td>{{el.fathName}}</td>
+    <td>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="UserID" value="{{el.id}}">
+            <input type="hidden" name="ActionType" value="dec">
+            <button type="submit">
+                DEC
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+
+<details>
+    <summary><button>Add User</button></summary>
+    <form method="POST">
+        {% csrf_token %} <br>
+        Имя {% render_field form.name %} <br>
+        Фамилия {% render_field form.famName %} <br>
+        Отчество {% render_field form.fathName %} <br>
+        ВК {% render_field form.vk %} <br>
+        Телеграм {% render_field form.telegramNick %} <br>
+        Фото {% render_field form.avatar %} <br>
+        <button type="submit">
+            ADD
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </form>
+</details>

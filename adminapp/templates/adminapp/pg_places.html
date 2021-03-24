@@ -1,0 +1,4 @@
+<p>Название адрес   изображение</p>
+{% for el in places %}
+<b><p>{{el.title}}  {{el.adres}}    <img src="{{ el.preview.url }}" width="20" height="20"></p></b>
+{% endfor %}
