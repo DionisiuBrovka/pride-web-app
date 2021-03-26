@@ -2,10 +2,11 @@
 
 {% block content %}
 <div class="container font-main">
-    <div class="row">
-        <div class="col upbox" id="autherror-block">
-            <h1>Ты хто такие ? я вас не звал ! идите нахуй !</h1>
-            <a href="{% url 'login' %}">Войти</a>
+    <div class="row upbox" id="autherror-block">
+        <div class="col">
+            <h1>Ошибка авторизации</h1>
+            <p>Попробуйте повторно войти в сервис</p>
+            <a class="downbox" href="{% url 'login' %}">Войти</a>
         </div>
     </div>
 </div>

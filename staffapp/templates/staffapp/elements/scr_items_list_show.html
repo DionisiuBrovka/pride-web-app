@@ -19,11 +19,11 @@
         div_dec.style.display = "none";
         div_end.style.display = "none";
 
-        div_b_all.className = "downbox"
-        div_b_init.className = "downbox"
-        div_b_add.className = "downbox"
-        div_b_dec.className = "downbox"
-        div_b_end.className = "downbox"
+        div_b_all.className = ""
+        div_b_init.className = ""
+        div_b_add.className = ""
+        div_b_dec.className = ""
+        div_b_end.className = ""
     }
 
     function showItemsAll(){
@@ -77,18 +77,6 @@
     }
         
     window.onload = function() {
-        var div_all = document.getElementById("items-all");
-        var div_init = document.getElementById("items-init");
-        var div_add = document.getElementById("items-add");
-        var div_dec = document.getElementById("items-dec");
-        var div_end = document.getElementById("items-end");
-
-        div_all.style.display = "block";
-        div_init.style.display = "none";
-        div_add.style.display = "none";
-        div_dec.style.display = "none";
-        div_end.style.display = "none";
-
-        
+        showItemsAll()        
     }
 </script>

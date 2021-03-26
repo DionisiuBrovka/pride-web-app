@@ -10,7 +10,16 @@
                 ##     ## #########  ##  ##  ####      ##             ##       ## 
                 ##     ## ##     ##  ##  ##   ###  ### ##    ## ##    ## ##    ## 
                 ##     ## ##     ## #### ##    ##  ###  ######   ######   ######  
+*/
+:root {
+    color-scheme: dark;
 
+    --c-black: black;
+    --c-primary: orangered;
+    --c-upbox-back: #2b2b2b;
+}
+
+/*
 ============================================================================================================
 ------------------------------------------------------------------------------------------------------------
 ============================================================================================================
@@ -23,6 +32,10 @@
                                                                   
                                                                   
 =======================================(COMMON SETUPS)=========================================== */
+*::selection {
+    color: black;
+    background: orangered;
+}
 
 @font-face{
     font-family: Apex;
@@ -48,6 +61,8 @@ body{
     color: gainsboro;
     font-family: Apex;
 }
+
+
 /* =======================================(FONTS)=========================================== */
 .font-main{
     color: gainsboro;
@@ -80,7 +95,7 @@ a .link-active:hover{
 
 /* =======================================(BOXS)=========================================== */
 .upbox{
-    background-color: #2b2b2b;
+    background-color: var(--c-upbox-back);
     color: gainsboro;
 
     border-radius: 12px;
@@ -206,6 +221,68 @@ td{
 ============================================================================================================
 ------------------------------------------------------------------------------------------------------------
 ============================================================================================================
+
+ _                   _       
+(_)                 | |      
+ _ _ __  _ __  _   _| |_ ___ 
+| | '_ \| '_ \| | | | __/ __|
+| | | | | |_) | |_| | |_\__ \
+|_|_| |_| .__/ \__,_|\__|___/
+        | |                  
+        |_|                  
+
+=======================================( ??? )===========================================*/
+
+input{
+    background-color: #1a1a1a;
+    color: gainsboro;
+
+}
+
+select{
+    background-color: #1a1a1a;
+    color: gainsboro;
+
+    border-radius: 5px;
+
+    border: none;
+
+    min-height: 25px;
+}
+
+button{
+    background-color: var(--c-upbox-back);
+
+    border-radius: 5px;
+    border: 1px solid rgb(51, 51, 51);
+
+    box-shadow: 
+        inset 4px 4px 4px 1px rgba(75, 75, 75, 0.25), 
+        inset -6px -6px 6px 1px rgba(0, 0, 0, 0.2),
+        2px 2px 2px 0px rgba(75, 75, 75, 0.25), 
+        -2px -2px 2px 0px rgba(0, 0, 0, 0.3);
+
+    margin: 3px;
+}
+
+button.active{
+    background-color: var(--c-primary);
+    color: var(--c-black);
+    font-weight: bold;
+}
+
+button.show-content-btn{
+    min-width: 25px;
+}
+
+.list-controls button{
+    min-width: 150px;
+}
+
+/* 
+============================================================================================================
+------------------------------------------------------------------------------------------------------------
+============================================================================================================
                 _                         _               
                | |                       | |              
   ___ _   _ ___| |_ ___  _ __ ___     ___| |_ __ ___  ___ 
@@ -295,7 +372,7 @@ i#min-session-indicator{
     text-align: center;
 }
 
-
+/* =======================================( MIN SESSIONS ITEM )===========================================  */
 .min-sessions-item{
     display: flex;
     align-items: center;
@@ -306,6 +383,80 @@ i#min-session-indicator{
     margin-bottom: 15px;
 
 }
+
+/* =======================================( MIN SESSIONS ITEM )===========================================  */
+.list-controls{
+    margin-bottom: 15px;
+}
+
+/* =======================================( MIN SESSIONS ITEM )===========================================  */
+#main-sessions-array{
+    min-height: 400px;
+}
+
+/* =======================================( INDEX BLOCK )===========================================  */
+#index-block{
+    text-align: center;
+
+    margin-top: 200px;
+}
+
+#index-block .logoone{
+    font-size: 82px;
+}
+
+#index-block a{
+    padding: 10px;
+}
+
+/* =======================================( INDEX BLOCK )===========================================  */
+#session-info-table table{
+    border: 2px solid var(--c-upbox-back);
+}
+
+/* =======================================( INDEX BLOCK )===========================================  */
+#login-block{
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 10%;
+}
+
+#login-block input{
+    width: 100%;
+}
+
+#login-block button{
+    width: 100%;
+    height: 40px;
+}
+
+/* =======================================( INDEX BLOCK )===========================================  */
+#autherror-block{
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 10%;
+
+    text-align: center;
+}
+
+#autherror-block p{
+    margin-bottom: 15px;
+}
+
+#session-control-block button{
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: rgb(61, 61, 61);
+}
+
+#session-control-block button:hover{
+    background-color: rgb(53, 53, 53);
+    box-shadow: 
+        0px 1px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
 
 /* 
 ============================================================================================================

@@ -1,0 +1,69 @@
+<script>
+
+    function closeAllh(){
+        var div_all = document.getElementById("hookahs-all");
+        var div_orders = document.getElementById("hookahs-orders");
+        var div_self= document.getElementById("hookahs-self");
+        var div_bonus = document.getElementById("hookahs-bonus");
+
+        var div_b_all = document.getElementById("b-all");
+        var div_b_orders = document.getElementById("b-orders");
+        var div_b_self = document.getElementById("b-self");
+        var div_b_bonus = document.getElementById("b-bonus");
+
+        div_all.style.display = "none";
+        div_init.style.display = "none";
+        div_add.style.display = "none";
+        div_dec.style.display = "none";
+
+        div_b_all.className = ""
+        div_b_orders.className = ""
+        div_b_self.className = ""
+        div_b_bonus.className = ""
+
+    }
+
+    function showHookahsAll(){
+        var div_all = document.getElementById("hookahs-all");
+        var div_b_all = document.getElementById("b-all");
+
+        closeAllh();
+
+        div_all.style.display = "block";
+        div_b_all.className = "active"
+    }
+
+    function showHookahsOrders(){
+        var div_orders = document.getElementById("hookahs-orders");
+        var div_b_orders = document.getElementById("b-orders");
+
+        closeAllh();
+
+        div_orders.style.display = "block";
+        div_b_orders.className = "active"
+    }
+
+    function showHookahsSelf(){
+        var div_self= document.getElementById("hookahs-self");
+        var div_b_self = document.getElementById("b-self");
+
+        closeAllh();
+
+        div_self.style.display = "block";
+        div_b_self.className = "active"
+    }
+
+    function showHookahsBonus(){
+        var div_bonus = document.getElementById("hookahs-bonus");
+        var div_b_bonus = document.getElementById("b-bonus");
+
+        closeAllh();
+
+        div_bonus.style.display = "block";
+        div_b_bonus.className = "active"
+    }
+    
+    window.onload = function() {
+        showHookahsAll()        
+    }
+</script>
