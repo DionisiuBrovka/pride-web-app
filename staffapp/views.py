@@ -10,15 +10,11 @@ def pg_index(request):
     if not user.is_authenticated:
         return redirect('autherror')
 
-    userSessions = Session.objects.filter(staff__id=user.profile.id).order_by('-startTime')
-    userOpenSessions = Session.objects.filter(staff__id=user.profile.id, isOpen=True)
-
-    print(userOpenSessions)
+    userSessions = Session.objects.filter(staff__id=user.profile.id)
 
     content = {
        'user':user,
-       'userSessions':userSessions,
-       'userOpenSessions':userOpenSessions,
+       'userSessions':userSessions
     }
 
     print(userSessions)
@@ -72,7 +68,7 @@ def pg_session_end(request, pk=1):
 
     if request.method == "POST":
         if request.POST.get('ActionType') == 'add':
-            newForm = EndSessionForm(request.POST)
+            newForm = EndSessionForm(request.Post)
             if newForm.is_valid():
                 newEndSession = EndSession(
                     session = curSession,
@@ -99,7 +95,6 @@ def pg_session_end(request, pk=1):
        'user':user,
        'forms':forms,
        'complete':completeItems,
-       'session':curSession,
 
     }
     return render(request, 'staffapp/pg_end_session.html',content)
@@ -114,8 +109,13 @@ def pg_session_init(request, pk=1):
 
     curSession = Session.objects.get(id = pk)
     curPlace = curSession.place
-    latestSession = Session.objects.filter(place = curPlace, isOpen=False).latest('endTime')
-    items = EndSession.objects.filter(session = latestSession)
+    latestSession = {}
+    items = {}
+
+    if Session.objects.filter(place = curPlace, isOpen=False):
+        latestSession = Session.objects.filter(place = curPlace, isOpen=False).latest('endTime')
+        items = EndSession.objects.filter(session = latestSession)
+        
 
     if request.method == "POST":
         if request.POST.get('ActionType') == 'add':
@@ -147,7 +147,6 @@ def pg_session_init(request, pk=1):
        'forms':forms,
        'complete':completeItems,
        'session':curSession,
-       
     }
     return render(request, 'staffapp/pg_init_session.html',content)
 
@@ -217,26 +216,43 @@ def pg_session_change(request, pk=1):
         
     nowAdd = AddToSession.objects.filter(session__id = pk)
     nowDec = DeleteOnSession.objects.filter(session__id = pk)
-    curSession = Session.objects.get(id = pk)
- 
-
     content = {
        'user':user,
        'form':AddToSessionForm(),
        'addItems':nowAdd,
        'decItems':nowDec,
-       'session':curSession,
+    }
+    return render(request, 'staffapp/pg_change_session.html',content)
+
+def pg_session_addloss(request, pk=1):
+    user = request.user
+
+    if not user.is_authenticated:
+        return redirect('autherror')
+    
+    content = {
+        'user':user,
     }
 
-    return render(request, 'staffapp/pg_change_session.html',content)
+    return render(request, 'staffapp/pg_add_loss.html',content)
+
+def pg_session_adddraft(request, pk=1):
+    user = request.user
+
+    if not user.is_authenticated:
+        return redirect('autherror')
+    
+    content = {
+        'user':user,
+    }
+
+    return render(request, 'staffapp/pg_add_draft.html',content)
 
 def pg_session_addorder(request, pk=1):
     user = request.user
 
     if not user.is_authenticated:
         return redirect('autherror')
-
-    curSession = Session.objects.get(id = pk)
 
     if request.method == "POST":
         newOrderForm = OrderForm(request.POST)
@@ -251,34 +267,5 @@ def pg_session_addorder(request, pk=1):
     content = {
        'user':user,
        'form':OrderForm(),
-       'session':curSession,
     }
     return render(request, 'staffapp/pg_add_order.html',content)
-
-def pg_session_addloss(request, pk=1):
-    user = request.user
-
-    if not user.is_authenticated:
-        return redirect('autherror')
-
-    curSession = Session.objects.get(id = pk)
-
-    content = {
-       'user':user,
-       'session':curSession,
-    }
-    return render(request, 'staffapp/pg_add_loss.html',content)
-
-def pg_session_adddraft(request, pk=1):
-    user = request.user
-
-    if not user.is_authenticated:
-        return redirect('autherror')
-
-    curSession = Session.objects.get(id = pk)
-
-    content = {
-       'user':user,
-       'session':curSession,
-    }
-    return render(request, 'staffapp/pg_add_draft.html',content)
