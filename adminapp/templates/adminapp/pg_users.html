@@ -1,37 +1,49 @@
-{% load widget_tweaks %}
-<p>Имя  Фамилия Отчество</p>
-{% for el in users %}
-<tr>
-    <td>{{el.name}}</td>
-    <td>{{el.famName}}</td>
-    <td>{{el.fathName}}</td>
-    <td>
-        <form method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="UserID" value="{{el.id}}">
-            <input type="hidden" name="ActionType" value="dec">
-            <button type="submit">
-                DEC
-                <i class="fas fa-trash-alt"></i>
-            </button>
-        </form>
-    </td>
-</tr>
-{% endfor %}
+{% extends 'root/root.html' %}
 
-<details>
-    <summary><button>Add User</button></summary>
-    <form method="POST">
-        {% csrf_token %} <br>
-        Имя {% render_field form.name %} <br>
-        Фамилия {% render_field form.famName %} <br>
-        Отчество {% render_field form.fathName %} <br>
-        ВК {% render_field form.vk %} <br>
-        Телеграм {% render_field form.telegramNick %} <br>
-        Фото {% render_field form.avatar %} <br>
-        <button type="submit">
-            ADD
-            <i class="fas fa-trash-alt"></i>
-        </button>
-    </form>
-</details>
+{% block content %}
+
+{% include 'staffapp/elements/el_navbar.html'%}
+
+<div class="container">
+    <div class="row upbox" id="admin-users-filter-block">
+        <div class="col">
+            <h1><a href="{% url 'staffapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Персонал :</h1>
+            <hr>
+            <form action="">
+                
+            </form>
+        </div>
+    </div>
+
+    <div class="row upbox" id="users-list-block">
+        <div class="col">
+            <div class="row block-head">
+                <div class="col">
+                    <h4>
+                    
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn" ><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="users-list">
+                    <div class="superdownbox">
+                        {% for item in users %}
+                            {% include 'adminapp/elements/el_users_min.html'%}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'staffapp/elements/el_bottom.html'%}
+{% endblock %}
+
+{% block title%}
+HookahPride - AdminPanel | Пользователи
+{% endblock %}

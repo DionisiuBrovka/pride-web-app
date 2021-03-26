@@ -1,0 +1,95 @@
+{% extends 'root/root.html' %}
+
+{% block content %}
+
+{% include 'staffapp/elements/el_navbar.html'%}
+
+<div class="container">
+    <div class="row upbox" id="admin-users-filter-block">
+        <div class="col">
+            <h1><a href="{% url 'users' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Пользователь #{{selectUser.id}}</h1>
+                <table>
+                    <tr>
+                        <td>Имя</td>
+                        <td>{{selectUser.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Фамилия</td>
+                        <td>{{selectUser.famName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Отчество</td>
+                        <td>{{selectUser.fathName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Вк</td>
+                        <td>{{selectUser.vk}}</td>
+                    </tr>
+                    <tr>
+                        <td>Телеграм</td>
+                        <td>{{selectUser.telegramNick}}</td>
+                    </tr>
+                    <tr>
+                        <td>Номер телефона</td>
+                        <td> --- </td>
+                    </tr>
+                </table>
+        </div>
+    </div>
+
+    <div class="row upbox" id="users-list-block">
+        <div class="col">
+            <div class="row block-head">
+                <div class="col">
+                    <h4>
+                        Смены :
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn" ><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="users-list">
+                    <div class="superdownbox">
+                        {% if selectUserSessions|length != 0 %}
+                            <table>
+                                <tr>
+                                    <th><p>Заведение</p></th>
+                                    <th><p>Дата</p></th>
+                                    <th><p>Статус</p></th>
+                                    <th></th>
+                                </tr>
+                                {% for item in selectUserSessions %}
+                                    <tr>
+                                        <td>{{item.place}}</td>
+                                        <td>{{item.startTime}}</td>
+                                        <td>
+                                            {% if item.isOpen %}
+                                                Открыта
+                                            {% else %}
+                                                Закрыта
+                                            {% endif %}
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                {% endfor %}
+                                
+                            </table>                        
+                        {% else %}
+                            <p>Упс... тут ничего нет</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'staffapp/elements/el_bottom.html'%}
+{% endblock %}
+
+{% block title%}
+HookahPride - AdminPanel | Пользователи
+{% endblock %}
