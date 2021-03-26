@@ -237,6 +237,12 @@ input{
     background-color: #1a1a1a;
     color: gainsboro;
 
+    border-radius: 5px;
+
+    outline: none;
+    padding-left: 3px;
+    padding-right: 3px;
+
 }
 
 select{
@@ -263,6 +269,10 @@ button{
         -2px -2px 2px 0px rgba(0, 0, 0, 0.3);
 
     margin: 3px;
+}
+
+button:hover{
+    background-color: rgba(75, 75, 75, 0.25);
 }
 
 button.active{
@@ -457,7 +467,29 @@ i#min-session-indicator{
         0px 1px 1px 2px rgba(0, 0, 0, 0.25);
 }
 
+/* =======================================( INDEX BLOCK )===========================================  */
+.filter-box{
+    margin-bottom: 5px;
+    float: right;
+}
 
+.add-new-session-block{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+
+    margin-bottom: 20px;
+}
+
+/* =======================================( INDEX BLOCK )===========================================  */
+.add-new-session-block .downbox{
+    margin-left: 15px;
+}
+
+.add-new-session-block a{
+    color: gainsboro;
+}
 /* 
 ============================================================================================================
 ------------------------------------------------------------------------------------------------------------
