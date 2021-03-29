@@ -1,4 +1,49 @@
-<p>Название адрес   изображение</p>
-{% for el in places %}
-<b><p>{{el.title}}  {{el.adres}}    <img src="{{ el.preview.url }}" width="20" height="20"></p></b>
-{% endfor %}
+{% extends 'root/root.html' %}
+
+{% block content %}
+
+{% include 'staffapp/elements/el_navbar.html'%}
+
+<div class="container">
+    <div class="row upbox" id="admin-places-filter-block">
+        <div class="col">
+            <h1><a href="{% url 'adminapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Заведения :</h1>
+            <hr>
+            <form action="">
+                
+            </form>
+        </div>
+    </div>
+
+    <div class="row upbox" id="places-list-block">
+        <div class="col">
+            <div class="row block-head">
+                <div class="col">
+                    <h4>
+                    
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn" ><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="users-list">
+                    <div class="superdownbox">
+                        {% for item in places %}
+                            {% include 'adminapp/elements/el_places_min.html'%}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'staffapp/elements/el_bottom.html'%}
+{% endblock %}
+
+{% block title%}
+HookahPride - AdminPanel | Заведения
+{% endblock %}

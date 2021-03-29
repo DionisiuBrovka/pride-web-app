@@ -47,7 +47,8 @@ def pg_places(request):
         return redirect('autherror')
     
     data = {
-        'places':Place.objects.all()
+        'user':user,
+        'places':Place.objects.all(),
     }
     return render(request, 'adminapp/pg_places.html', data)
 
