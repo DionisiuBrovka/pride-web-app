@@ -5,9 +5,9 @@
 {% include 'staffapp/elements/el_navbar.html'%}
 
 <div class="container">
-    <div class="row upbox" id="admin-users-filter-block">
+    <div class="row upbox" id="admin-user-info-block">
         <div class="col">
-            <h1><a href="{% url 'users' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Пользователь #{{selectUser.id}}</h1>
+            <h1><a href="{% url 'adminapp-users' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Пользователь #{{selectUser.id}}</h1>
                 <table>
                     <tr>
                         <td>Имя</td>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="row upbox" id="users-list-block">
+    <div class="row upbox" id="user-sessions-list-block">
         <div class="col">
             <div class="row block-head">
                 <div class="col">
@@ -51,7 +51,7 @@
             </div>
 
             <div class="row">
-                <div class="col" id="users-list">
+                <div class="col" id="user-sessions-list">
                     <div class="superdownbox">
                         {% if selectUserSessions|length != 0 %}
                             <table>
@@ -91,5 +91,5 @@
 {% endblock %}
 
 {% block title%}
-HookahPride - AdminPanel | Пользователи
+HookahPride - AdminPanel | {{selectUser.name}} {{selectUser.famName}}
 {% endblock %}

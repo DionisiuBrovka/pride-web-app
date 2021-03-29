@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from data.models import Profile, Place, Session
+from data.models import Profile, Place, Session, Recvisites
 from data.forms import ProfileForm
 
 # Create your views here.
@@ -47,3 +47,41 @@ def pg_places(request):
         'places':Place.objects.all()
     }
     return render(request, 'adminapp/pg_places.html', data)
+
+def pg_place(request, pk=1):
+    user = request.user
+
+    if not user.is_authenticated:
+        return redirect('autherror')
+    
+    selectPlace = Place.objects.get(id=pk)
+    selectPlaceSessions = Session.objects.filter(place__id=pk)
+
+    data = {
+        'user':user,
+        'selectPlace':selectPlace,
+        'selectPlaceSessions':selectPlaceSessions,
+    }
+    return render(request, 'adminapp/pg_place.html', data)
+
+def pg_sessions(request):
+    user = request.user
+
+    if not user.is_authenticated:
+        return redirect('autherror')
+    
+    data = {
+        'user':user,
+    }
+    return render(request, 'adminapp/pg_sessions.html', data)
+
+def pg_session(request, pk=1):
+    user = request.user
+
+    if not user.is_authenticated:
+        return redirect('autherror')
+    
+    data = {
+        'user':user,
+    }
+    return render(request, 'adminapp/pg_session.html', data)

@@ -1,5 +1,24 @@
 {% extends 'root/root.html' %}
 
 {% block content %}
-    <h1>Adminapp</h1>
+
+{% include 'staffapp/elements/el_navbar.html'%}
+
+<div class="container">
+    <div class="row upbox" id="admin-users-filter-block">
+        <div class="col">
+            <h1>HookahPride - AdminPanel</h1>
+            <hr>
+            <a href="{% url 'adminapp-places' %}">Заведения</a><br>
+            <a href="{% url 'adminapp-users' %}">Персонал</a><br>
+            <a href="#">Смены</a><br>
+        </div>
+    </div>
+</div>
+
+{% include 'staffapp/elements/el_bottom.html'%}
+{% endblock %}
+
+{% block title%}
+HookahPride - AdminPanel
 {% endblock %}

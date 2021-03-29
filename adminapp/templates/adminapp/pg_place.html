@@ -1,0 +1,72 @@
+{% extends 'root/root.html' %}
+
+{% block content %}
+
+{% include 'staffapp/elements/el_navbar.html'%}
+
+<div class="container">
+    <div class="row upbox" id="admin-place-info-block">
+        <div class="col">
+            <h1><a href="{% url 'adminapp-users' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> {{selectPlace}}</h1>
+                <table>
+                    <tr>
+                        <th colspan="2"><p>Реквизиты</p></th>
+                    </tr>
+                    <tr>
+                        <td>Название</td>
+                        <td>{{selectPlace.recvisites.title}}</td>
+                    </tr>
+                    <tr>
+                        <td>УВП</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Адресс</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>ibanBYN</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>ibanUSD</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>bankcode</td>
+                        <td></td>
+                    </tr>
+                </table>
+        </div>
+    </div>
+
+    <div class="row upbox" id="place-sessions-list-block">
+        <div class="col">
+            <div class="row block-head">
+                <div class="col">
+                    <h4>
+                        Смены :
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn" ><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="place-sessions-list">
+                    <div class="superdownbox">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'staffapp/elements/el_bottom.html'%}
+{% endblock %}
+
+{% block title%}
+HookahPride - AdminPanel | {{selectPlace}}
+{% endblock %}
