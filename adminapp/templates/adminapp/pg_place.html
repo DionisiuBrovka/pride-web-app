@@ -11,29 +11,36 @@
                 <table>
                     <tr>
                         <th colspan="2"><p>Реквизиты</p></th>
+                        <th></th>
                     </tr>
                     <tr>
                         <td>Название</td>
                         <td>{{selectPlace.recvisites.title}}</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>УВП</td>
+                        <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>Адресс</td>
                         <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>ibanBYN</td>
+                        <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>ibanUSD</td>
                         <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>bankcode</td>
+                        <td></td>
                         <td></td>
                     </tr>
                 </table>
@@ -75,7 +82,7 @@
                                                 Закрыта
                                             {% endif %}
                                         </td>
-                                        <td></td>
+                                        <td><a href="/adminapp/session/{{item.id}}/" class="downbox"><i class="fas fa-eye"></i></a></td>
                                     </tr>
                                 {% endfor %}
                                 

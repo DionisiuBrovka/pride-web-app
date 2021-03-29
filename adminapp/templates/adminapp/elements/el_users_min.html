@@ -1,6 +1,10 @@
 <div class="hoverbox" id="user-item-min">
     <div class="">
-        <p><i class="fas fa-user-circle"></i>  -  {{item.famName}} {{item.name}}</p>
+        <p><i class="fas fa-user-circle"></i>  -  {{item.famName}} {{item.name}}
+        {% if item.user.is_staff %}
+            <i class="sub">(Администратор)</i>          
+        {% endif %}
+        </p>
     </div>
     <div class="">
         <a href="/adminapp/user/{{item.id}}/" class="downbox"><i class="fas fa-eye"></i></a>
