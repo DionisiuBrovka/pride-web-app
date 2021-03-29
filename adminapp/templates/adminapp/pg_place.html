@@ -56,7 +56,33 @@
             <div class="row">
                 <div class="col" id="place-sessions-list">
                     <div class="superdownbox">
-                    
+                        {% if selectPlaceSessions|length != 0 %}
+                            <table>
+                                <tr>
+                                    <th><p>Персонал</p></th>
+                                    <th><p>Дата</p></th>
+                                    <th><p>Статус</p></th>
+                                    <th></th>
+                                </tr>
+                                {% for item in selectPlaceSessions %}
+                                    <tr>
+                                        <td>{{item.staff}}</td>
+                                        <td>{{item.startTime}}</td>
+                                        <td>
+                                            {% if item.isOpen %}
+                                                Открыта
+                                            {% else %}
+                                                Закрыта
+                                            {% endif %}
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                {% endfor %}
+                                
+                            </table>                        
+                        {% else %}
+                            <p>Упс... тут ничего нет</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
