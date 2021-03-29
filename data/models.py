@@ -42,8 +42,19 @@ class Profile(models.Model):
         )
     avatar = models.ImageField(
         'Аватар',
+        upload_to = 'images/userAvatar',
         blank = True,
         )
+    trainee = models.BooleanField(
+        'Метка стажёра',
+        default=True,
+        blank=True,
+    )
+    activate = models.BooleanField(
+        'Активный аккаунт',
+        default=False,
+        blank=True,
+    )
 
     def __str__(self):
         return self.name+' '+self.famName
@@ -61,7 +72,40 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+
+class Place(models.Model):
+    title = models.CharField(
+        'Название',
+        max_length= 25,
+        default= 'Заведение',
+        )
+    adres = models.CharField(
+        'Адрес',
+        max_length= 50,
+        default='Ул. __, д. __',
+        )
+    preview = models.ImageField(
+        'Превью',
+        upload_to = 'images/placePreview',
+        blank = True,
+        )
+    
+   
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Заведение'
+        verbose_name_plural = 'Заведения'
+
+
 class Recvisites(models.Model):
+    place = models.ForeignKey(
+        Place,
+        verbose_name='Заведение',
+        on_delete = models.CASCADE,
+        default= 0,
+    )
     title = models.CharField(
         'Юр. Имя',
         max_length= 50,
@@ -95,36 +139,6 @@ class Recvisites(models.Model):
         default=' ',
         blank=True,
     )
-
-class Place(models.Model):
-    title = models.CharField(
-        'Название',
-        max_length= 25,
-        default= 'Заведение',
-        )
-    adres = models.CharField(
-        'Адрес',
-        max_length= 50,
-        default='Ул. __, д. __',
-        )
-    preview = models.ImageField(
-        'Превью',
-        upload_to = 'images/',
-        blank = True,
-        )
-    recvisites = models.CharField(
-        'Реквизиты',
-        max_length=16,
-        blank= True,
-    )
-    
-   
-    def __str__(self):
-        return self.title
-    
-    class Meta:
-        verbose_name = 'Заведение'
-        verbose_name_plural = 'Заведения'
 
 class Position(models.Model):
     title = models.CharField(
@@ -202,6 +216,11 @@ class Session(models.Model):
         'Открыта ли смена',
         default=True,
         )
+    comment = models.TextField(
+        'Комментарий к окончанию смены',
+        default='',
+        blank=True,
+    )
     
     def __str__(self):
         return self.place.__str__()+' '+self.staff.__str__()+' '+str(self.startTime.date())+' '+str(self.startTime.time())+'-'+str(self.endTime.date())+' '+str(self.endTime.time())
@@ -361,18 +380,19 @@ class EndSession(models.Model):
     def __str__(self):
         return self.session.__str__()+' '+self.item.__str__()+' '+str(self.count)
 
-# class ImgForSession(models.Model):
-#     session = models.ForeignKey(
-#         Session,
-#         verbose_name= 'Смена',
-#         on_delete = models.CASCADE,
-#         )
-#     image = models.ImageField(
-#         'Сопроводительное изображение',
-#         )
-#     class Meta:
-#         verbose_name = 'Изображение для смены'
-#         verbose_name_plural = 'Изображения для смен' 
+class ImgForSession(models.Model):
+    session = models.ForeignKey(
+        Session,
+        verbose_name= 'Смена',
+        on_delete = models.CASCADE,
+        )
+    image = models.ImageField(
+        'Сопроводительное изображение',
+        upload_to = 'images/forSession',
+        )
+    class Meta:
+        verbose_name = 'Изображение для смены'
+        verbose_name_plural = 'Изображения для смен' 
 
 class AddToSession(models.Model):
     session = models.ForeignKey(
