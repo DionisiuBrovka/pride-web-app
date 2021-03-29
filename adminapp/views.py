@@ -87,7 +87,7 @@ def pg_session(request, pk=1):
     }
     return render(request, 'adminapp/pg_session.html', data)
 
-def pg_add_user(request)
+def pg_add_user(request):
     AddedUser = {}
 
     if (request.method == "POST"):
