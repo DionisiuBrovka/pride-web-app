@@ -62,7 +62,39 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 class Recvisites(models.Model):
-    pass
+    title = models.CharField(
+        'Юр. Имя',
+        max_length= 50,
+        default= 'Юр. Имя'
+    )
+    unp = models.CharField(
+        'УНП',
+        max_length=10,
+        default='123456789',
+    )
+    adress = models.CharField(
+        'Юр./почтовый адрес',
+        max_length= 50,
+        default=' '
+    )
+    ibanbyn = models.CharField(
+        'IBAN BYN',
+        max_length=24,
+        default='',
+        blank=True,
+    )
+    ibanusd = models.CharField(
+        'IBAN USD',
+        max_length=24,
+        default='',
+        blank=True,
+    )
+    bankcode = models.CharField(
+        'Код банка',
+        max_length= 10,
+        default=' ',
+        blank=True,
+    )
 
 class Place(models.Model):
     title = models.CharField(
