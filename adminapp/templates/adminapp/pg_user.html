@@ -29,10 +29,12 @@
                         <td>Телеграм</td>
                         <td>{{selectUser.telegramNick}}</td>
                     </tr>
+                    {% for item in selectUserPhones %}
                     <tr>
                         <td>Номер телефона</td>
-                        <td> --- </td>
+                        <td> {{item.number}} </td>
                     </tr>
+                    {% endfor %}
                 </table>
         </div>
     </div>
@@ -63,7 +65,7 @@
                                 </tr>
                                 {% for item in selectUserSessions %}
                                     <tr>
-                                        <td>{{item.place}}</td>
+                                        <td><a href="/adminapp/place/{{item.place.id}}/">{{item.place}}</a></td>
                                         <td>{{item.startTime}}</td>
                                         <td>
                                             {% if item.isOpen %}

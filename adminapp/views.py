@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from data.models import Profile, Place, Session, Recvisites
+from data.models import Profile, Place, Session, Recvisites, MobilePhone
 from data.forms import ProfileForm
 from adminapp.alghorytm import random_string
 
@@ -29,11 +29,13 @@ def pg_user(request, pk=1):
 
     selectUser = Profile.objects.get(id=pk)
     selectUserSessions = Session.objects.filter(staff__id=pk)
+    selectUserPhones = MobilePhone.objects.filter(staff__id=pk)
 
     data = {
         'user':user,
         'selectUser':selectUser,
         'selectUserSessions':selectUserSessions,
+        'selectUserPhones':selectUserPhones,
     }
 
     return render(request, 'adminapp/pg_user.html', data)
