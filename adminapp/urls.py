@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.index, name="adminapp"),
     path('users/', views.pg_users, name = "adminapp-users"),
     path('user/<int:pk>/', views.pg_user, name="adminapp-user"),
+    path('users/add', views.pg_add_user, name = "adminapp-adduser"),
     path('places/', views.pg_places, name = "adminapp-places"),
     path('place/<int:pk>/', views.pg_place, name="adminapp-place"),
     path('sessions/', views.pg_sessions, name = "adminapp-sessions"),

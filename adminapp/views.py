@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from data.models import Profile, Place, Session, Recvisites
 from data.forms import ProfileForm
+from adminapp.alghorytm import random_string
 
 # Create your views here.
 def index(request):
@@ -85,3 +86,36 @@ def pg_session(request, pk=1):
         'user':user,
     }
     return render(request, 'adminapp/pg_session.html', data)
+
+def pg_add_user(request)
+    AddedUser = {}
+
+    if (request.method == "POST"):
+        newProfile = ProfileForm(request.POST)
+        if newProfile.is_valid():
+            newUser = auth.models.User(
+                username = random_string.get_random_string(5),
+                password = random_string.get_random_string(10),
+            )
+            newUser.save()
+            userProfile = Profile.objects.get(user=newUser)
+            userProfile.name = newProfile.cleaned_data['name']
+            userProfile.famName = newProfile.cleaned_data['famName']
+            userProfile.fathName = newProfile.cleaned_data['fathName']
+            userProfile.vk = newProfile.cleaned_data['vk']
+            userProfile.avatar = newProfile.cleaned_data['avatar']
+            userProfile.telegramNick = newProfile.cleaned_data['telegramNick']
+            userProfile.save()
+            print (newUser.username)
+            print (newUser.password)
+            AddedUser = {
+                'login':newUser.username,
+                'password':newUser.password,
+            }
+            
+
+    data = {
+        'form':ProfileForm(),
+        'newUser':AddedUser,
+    }
+    return render(request, 'adminapp/pg_add_user.html',data)
