@@ -1,0 +1,567 @@
+{% extends 'root/root.html' %}
+
+{% block content %}
+
+{% include 'staffapp/elements/el_navbar.html'%}
+
+<div class="container">
+    
+    <div class="row upbox" id="session-info-table">
+        <div class="col">
+            <h1><a href="{% url 'adminapp-sessions' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Смена № {{session.id}}</h1>
+            <table>
+                <tr>
+                    <td><p>Статус :</p></td>
+                    <td>
+                        {% if session.isOpen %}
+                            <p class="text-status-open">Открыта</p>
+                        {% else %}
+                            <p>Закрыта</p>
+                        {% endif %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Открыта :</p>
+                    </td>
+                    <td>
+                        <p>{{ session.startTime }}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><p>Закрыта :</p></td>
+                    <td>
+                        {% if session.isOpen %}
+                            <p>---</p>
+                        {% else %}
+                            <p>{{ session.endTime }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><p>Заведение :</p></td>
+                    <td>
+                        <p><a href="/adminapp/place/{{ session.place.id }}/">{{ session.place }}</a></p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Сотрудник :</p>
+                    </td>
+                    <td>
+                        <p>
+                            <a href="/adminapp/user/{{ session.staff.id }}/">{{ session.staff }}  </a> 
+
+                            {% if session.isOpen %}
+                                <a href="#"><i class="fas fa-user-plus"></i></a>
+                            {% endif %}
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="row upbox" id="session-control-block">
+        <div class="col">
+            <form action="/adminapp/session/{{session.id}}/init/">
+                <button class="hoverbox">Добавить инвентарь (начало смены)</button>
+            </form>
+            <form action="/adminapp/session/{{session.id}}/change/">
+                <button class="hoverbox">Добавить инвентарь (привоз/увоз)</button>
+            </form>
+            <form action="/adminapp/session/{{session.id}}/end/">
+                <button class="hoverbox">Добавить инвентарь (оканчание смены)</button>
+            </form> 
+            <form action="/adminapp/session/{{session.id}}/addloss/">
+                <button class="hoverbox">Добавить *ущерб*</button>
+            </form> 
+        </div>
+        <div class="col">
+            <form action="/adminapp/session/{{session.id}}/addorder/">
+                <button class="hoverbox">Добавить кальян</button>
+            </form>
+            <form action="/adminapp/session/{{session.id}}/adddraft/">
+                <button class="hoverbox">Добавить чек</button>
+            </form> 
+            <form action="/adminapp/session/{{session.id}}/close/">
+                <button class="hoverbox">Закрыть смену</button>
+            </form> 
+        </div>
+    </div>
+
+
+    <!-- {% include 'staffapp/elements/scr_items_list_show.html' %} -->
+
+    <div class="row upbox" id="session-block-status-items">
+        <div class="col">   
+
+            <div class="row" id="block-head">
+                <div class="col">
+                    <h4>
+                        Инвентарь :
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn"><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+
+            <div class="row list-controls">
+                <div class="col " id="item-list-control">
+                    <button class="" onclick="showItemsAll()" id="b-all">All</button>
+                    <button class="" onclick="showItemsInit()" id="b-init">Начало смены</button>
+                    <button class="" onclick="showItemsAdd()" id="b-add">Привоз</button>
+                    <button class="" onclick="showItemsDec()" id="b-dec">Увоз</button>        
+
+                    {% if session.isOpen %}
+                        <button class="" onclick="showItemsEnd()" id="b-end">Закрыть смену</button>
+                    {% else %}
+                        <button class="" onclick="showItemsEnd()" id="b-end">Оканчание Смены</button>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col" id="items-lists">
+
+                    <!-- СПИСОК ВСЕХ ПОЗИЦИЙ -->
+                    <div class="superdownbox" id="items-all">
+                        <table>
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                            </tr>
+                            <tr>
+                                <th colspan="2"><p>Начало смены</p></th>
+                            </tr>
+                            {% if itemsInit|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsInit %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+
+                            <!-- ПРИВОЗ -->
+                            <tr>
+                                <th colspan="2"><p>Привоз</p></th>
+                            </tr>
+                            {% if itemsAdd|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsAdd %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+
+                            <!-- УВОЗ -->
+                            <tr>
+                                <th colspan="2"><p>Увоз</p></th>
+                            </tr>
+                            {% if itemsDec|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsAdd %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+
+                            <!-- КОНЕЦ -->
+                            <tr>
+                                <th colspan="2"><p>Оканчание смены</p></th>
+                            </tr>
+                            {% if itemsEnd|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsEnd %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+                        </table>              
+                    </div>
+
+                    <!-- СПИСОК НАЧАЛА СМЕНЫ -->
+                    <!-- <div class="superdownbox" id="items-init">
+                        <table>
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                            </tr>
+                            {% if itemsInit|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsInit %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+                        </table>              
+                    </div> -->
+
+                    <!-- СПИСОК ПРИВОЗА -->
+                    <!-- <div class="superdownbox" id="items-add">
+                        <table>
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                            </tr>
+                            {% if itemsAdd|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsAdd %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+                        </table>              
+                    </div> -->
+
+                    <!-- СПИСОК УВОЗА -->
+                    <!-- <div class="superdownbox" id="items-dec">
+                        <table>
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                            </tr>
+                            {% if itemsDec|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsDec %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+                        </table>
+                    </div> -->
+
+                    <!-- СПИСОК КОНЦА -->
+                    <!-- <div class="superdownbox" id="items-end">
+                        <table>
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                            </tr>
+                            {% if itemsEnd|length == 0 %}
+                                <tr>
+                                    <td>---</td>
+                                    <td>---</td>
+                                </tr> 
+                            {% else %}
+                                {% for item in itemsEnd %}
+                                    <tr>
+                                        <td>{{ item.item.title }}</td>
+                                        <td>{{ item.count }} {{ item.item.countType }}</td>
+                                    </tr> 
+                                {% endfor %}
+                            {% endif %}
+                        </table>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- {% include 'staffapp/elements/scr_hookahs_list_show.html' %} -->
+
+    <div class="row upbox" id="session-block-status-hookahs">
+        <div class="col">
+            <div class="row block-head">
+                <div class="col">
+                    <h4>
+                        Кальяны :
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn" ><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col list-controls" id="hookahs-list-control">
+                    <button class="" onclick="" id="b-all">All</button>
+                    <button class="" onclick="" id="b-orders">Заказы</button>
+                    <button class="" onclick="" id="b-self">Себе</button>
+                    <button class="" onclick="" id="b-bonus">Бонусы</button>        
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="hookahs-list">
+                    <div class="superdownbox" id="hookahs-all">
+                        <table>
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                                <th><p>Комментарий</p></th>
+                                <th><p>Сумма</p></th>
+                            </tr>
+
+                            <tr>
+                                <th colspan="4"><p>Заказы</p></th>
+                            </tr>
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>0</td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="4"><p>Себе</p></th>
+                            </tr>
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>0</td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="4"><p>Бонусы</p></th>
+                            </tr>
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>0</td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="3"><p>Итого :</p></th>
+                                
+                                <td> 0 </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- <div class="superdownbox" id="hookahs-orders">
+                        <table>
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                                <th><p>Комментарий</p></th>
+                                <th><p>Сумма</p></th>
+                            </tr>
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>0</td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="3"><p>Итого :</p></th>
+                                
+                                <td> 0 </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="superdownbox" id="hookahs-self">
+                        <table>
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                                <th><p>Комментарий</p></th>
+                                <th><p>Сумма</p></th>
+                            </tr>
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>0</td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="3"><p>Итого :</p></th>
+                                
+                                <td> 0 </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="superdownbox" id="hookahs-bonus">
+                        <table>
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Количество</p></th>
+                                <th><p>Комментарий</p></th>
+                                <th><p>Сумма</p></th>
+                            </tr>
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>0</td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="3"><p>Итого :</p></th>
+                                
+                                <td> 0 </td>
+                            </tr>
+                        </table>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row upbox" id="session-block-status-drafts">
+        <div class="col">
+            <div class="row block-head">
+                <div class="col">
+                    <h4>
+                        Чеки :
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn" ><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="drafts-list">
+                    <div class="superdownbox">
+                        <table>
+                            <tr>
+                                <th>
+                                    <p>Фото</p>
+                                </th>
+                                <th>
+                                    <p>Комментарий</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="test">---</td>
+                                <td>---</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row upbox" id="session-block-status-loss">
+        <div class="col">
+            <div class="row block-head">
+                <div class="col">
+                    <h4>
+                        Ущерб :
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn" ><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="loss-list">
+                    <div class="superdownbox">
+                        <table>
+                            <tr>
+                                <th>
+                                    <p>Фото</p>
+                                </th>
+                                <th>
+                                    <p>Комментарий</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row upbox" id="session-block-status-additional">
+        <div class="col">
+            <div class="row block-head">
+                <div class="col">
+                    <h4>
+                        Доп. рассходы :
+                    </h4>
+                </div>
+                <div class="col">
+                    <button onclick="showBlock()" class="downbox float-right show-content-btn" ><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="additional-list">
+                    <div class="superdownbox">
+                        <table>
+                            <tr>
+                                <th>
+                                    <p>Фото</p>
+                                </th>
+                                <th>
+                                    <p>Комментарий</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'staffapp/elements/el_bottom.html'%}
+{% endblock %}
+
+{% block title%}
+HookahPride | Смена №{{ session.id }}
+{% endblock %}

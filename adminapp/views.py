@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from data.models import Profile, Place, Session, Recvisites, MobilePhone
+from data.models import Profile, Place, Session, Recvisites, MobilePhone, StartSession, EndSession, AddToSession, DeleteOnSession
 from data.forms import ProfileForm
 from adminapp.alghorytm import random_string
 
@@ -74,8 +74,11 @@ def pg_sessions(request):
     if not user.is_authenticated:
         return redirect('autherror')
     
+    sessions = Session.objects.all().order_by("-startTime")
+
     data = {
         'user':user,
+        'sessions':sessions,
     }
     return render(request, 'adminapp/pg_sessions.html', data)
 
@@ -84,9 +87,20 @@ def pg_session(request, pk=1):
 
     if not user.is_authenticated:
         return redirect('autherror')
-    
+
+    curSession = Session.objects.get(id = pk)
+    itemsInit = StartSession.objects.filter(session = curSession)
+    itemsEnd = EndSession.objects.filter(session=curSession)
+    itemsAdd = AddToSession.objects.filter(session=curSession)
+    itemsDec = DeleteOnSession.objects.filter(session=curSession)
+
     data = {
-        'user':user,
+       'user':user,
+       'session':curSession,
+       'itemsInit':itemsInit,
+       'itemsEnd':itemsEnd,
+       'itemsAdd':itemsAdd,
+       'itemsDec':itemsDec,
     }
     return render(request, 'adminapp/pg_session.html', data)
 

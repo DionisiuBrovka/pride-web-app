@@ -1,0 +1,35 @@
+<div class="hoverbox min-sessions-item">
+    {% if item.isOpen %}
+        <div id="min-session-place">
+            <p><i class="fas fa-circle" id="min-session-indicator"></i> {{item.place}}</p>
+        </div>
+    {% else %}
+        <div id="min-session-place">   
+            <p>{{item.place}}</p>
+        </div>
+    {% endif %}
+
+    <div class="">
+        <p>{{item.staff}}</p>
+    </div> 
+
+    <div id="min-session-time" >
+        <p class="text-sub">{{item.startTime}} // 
+            {% if item.isOpen %}
+                ---
+            {% else %}
+                {{item.endTime}}
+            {% endif %}
+        </p>
+    </div>
+
+    {% if item.isOpen %}
+        <div id="min-session-show">
+            <a class="downbox" href="/adminapp/session/{{item.id}}/"><i class="fas fa-angle-double-right"></i></a>
+        </div>
+    {% else %}
+        <div id="min-session-show">
+            <a class="downbox" href="/adminapp/session/{{item.id}}/"><i class="fas fa-eye"></i></a>
+        </div>
+    {% endif %}
+</div>
