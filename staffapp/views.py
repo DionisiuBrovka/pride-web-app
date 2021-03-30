@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from data.models import Place, Session, EndSession, StartSession, Item, AddToSession, DeleteOnSession, EndSession, Order
+from django.contrib.auth.forms import UserCreationForm
+from data.models import Place, Session, EndSession, StartSession, Item, AddToSession, DeleteOnSession, EndSession, Order, Profile
 from data.forms import SessionForm, StratSessionForm, AddToSessionForm, EndSessionForm, OrderForm
 
 # Create your views here.
@@ -27,8 +28,20 @@ def pg_settings(request):
     if not user.is_authenticated:
         return redirect('autherror')
 
+    if request.method == "POST":
+        userLoginPass = UserCreationForm(request.POST)
+        if userLoginPass.is_valid():
+            user.username = userLoginPass.cleaned_data['username']
+            user.password = userLoginPass.cleaned_data['password1']
+            changeProfile = Profile.objects.get(user__id=user.id)
+            changeProfile.is_active = True
+            changeProfile.save()
+            user.save()
+
     content = {
        'user':user,
+       'profile':Profile.objects.get(user__id=user.id),
+       'form':UserCreationForm(),
     }
     return render(request, 'staffapp/pg_settings.html',content)
 

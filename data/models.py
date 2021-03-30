@@ -50,7 +50,7 @@ class Profile(models.Model):
         default=True,
         blank=True,
     )
-    activate = models.BooleanField(
+    is_active = models.BooleanField(
         'Активный аккаунт',
         default=False,
         blank=True,

@@ -1,8 +1,26 @@
 {% extends 'root/root.html' %}
 
+{% load widget_tweaks %}
+
 {% block content %}
 
 {% include 'staffapp/elements/el_navbar.html'%}
+
+
+{% if profile.is_active == False %}
+    <p>Активируйте аккаунт</p>
+    <form method="POST">
+        {% csrf_token %}
+        Новый логин {% render_field form.username  size="15" %} <br> <br>
+        Новый пароль {% render_field form.password1  size="15" %} <br>
+        Подтверждение пароля {% render_field form.password2  size="15" %} <br>
+        <button type="submit">Активировать</button>
+    </form>
+{% else %}    
+    {{profile.name}} <br>
+    {{profile.famName}} <br>
+    {{profile.fathName}} <br>
+{% endif %}
 
 {% endblock %}
 
