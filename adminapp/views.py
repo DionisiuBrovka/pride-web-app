@@ -23,7 +23,7 @@ def pg_users(request):
         'users':Profile.objects.all(),
         'form':ProfileForm(),
     }
-    return render(request, 'adminapp/pg_users.html', data)
+    return render(request, 'adminapp/user/pg_users.html', data)
 
 def pg_user(request, pk=1):
     user = request.user
@@ -42,7 +42,7 @@ def pg_user(request, pk=1):
         'selectUserPhones':selectUserPhones,
     }
 
-    return render(request, 'adminapp/pg_user.html', data)
+    return render(request, 'adminapp/user/pg_user.html', data)
 
 def pg_user_edit(request, pk=1):
     user = request.user
@@ -54,7 +54,7 @@ def pg_user_edit(request, pk=1):
         'user':user,
     }
 
-    return render(request, 'adminapp/pg_user_edit.html', data)
+    return render(request, 'adminapp/user/pg_user_edit.html', data)
 
 def pg_add_user(request):
     AddedUser = {}
@@ -87,7 +87,7 @@ def pg_add_user(request):
         'form':ProfileForm(),
         'newUser':AddedUser,
     }
-    return render(request, 'adminapp/pg_add_user.html',data)
+    return render(request, 'adminapp/user/pg_add_user.html',data)
 
 # ====================================================================================
 # ====================================================================================
@@ -102,7 +102,7 @@ def pg_places(request):
         'user':user,
         'places':Place.objects.all(),
     }
-    return render(request, 'adminapp/pg_places.html', data)
+    return render(request, 'adminapp/place/pg_places.html', data)
 
 def pg_place(request, pk=1):
     user = request.user
@@ -118,7 +118,7 @@ def pg_place(request, pk=1):
         'selectPlace':selectPlace,
         'selectPlaceSessions':selectPlaceSessions,
     }
-    return render(request, 'adminapp/pg_place.html', data)
+    return render(request, 'adminapp/place/pg_place.html', data)
 
 def pg_place_add(request):
     user = request.user
@@ -129,7 +129,7 @@ def pg_place_add(request):
     data = {
         'user':user,
     }
-    return render(request, 'adminapp/pg_place_add.html', data)
+    return render(request, 'adminapp/place/pg_place_add.html', data)
 
 def pg_place_edit(request, pk=1):
     user = request.user
@@ -140,7 +140,7 @@ def pg_place_edit(request, pk=1):
     data = {
         'user':user,
     }
-    return render(request, 'adminapp/pg_place_edit.html', data)
+    return render(request, 'adminapp/place/pg_place_edit.html', data)
 
 # ====================================================================================
 # ====================================================================================
@@ -157,7 +157,7 @@ def pg_sessions(request):
         'user':user,
         'sessions':sessions,
     }
-    return render(request, 'adminapp/pg_sessions.html', data)
+    return render(request, 'adminapp/session/pg_sessions.html', data)
 
 def pg_session(request, pk=1):
     user = request.user
@@ -179,7 +179,7 @@ def pg_session(request, pk=1):
        'itemsAdd':itemsAdd,
        'itemsDec':itemsDec,
     }
-    return render(request, 'adminapp/pg_session.html', data)
+    return render(request, 'adminapp/session/pg_session.html', data)
 
 def pg_session_add(request):
     user = request.user
@@ -193,7 +193,7 @@ def pg_session_add(request):
         'user':user,
         'sessions':sessions,
     }
-    return render(request, 'adminapp/pg_sessions_add.html', data)
+    return render(request, 'adminapp/session/pg_sessions_add.html', data)
 
 def pg_session_edit(request, pk=1):
     user = request.user
@@ -207,7 +207,7 @@ def pg_session_edit(request, pk=1):
         'user':user,
         'sessions':sessions,
     }
-    return render(request, 'adminapp/pg_sessions_edit.html', data)
+    return render(request, 'adminapp/session/pg_sessions_edit.html', data)
 
 # ====================================================================================
 # ====================================================================================
@@ -224,7 +224,7 @@ def pg_items(request):
         'user':user,
         'items':items,        
     }
-    return render(request, 'adminapp/pg_items.html', data)
+    return render(request, 'adminapp/item/pg_items.html', data)
 
 def pg_item(request, pk=1):
     user = request.user
@@ -238,5 +238,5 @@ def pg_item(request, pk=1):
         'user':user,
         'items':items,        
     }
-    return render(request, 'adminapp/pg_item.html', data)
+    return render(request, 'adminapp/item/pg_item.html', data)
 
