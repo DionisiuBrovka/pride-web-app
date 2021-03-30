@@ -264,6 +264,7 @@ def pg_session_addloss(request, pk=1):
         'session':curSession,
         'imgForm':ImgForSessionForm,
         'commentForm':DamageForm,
+        'damage':Damage.objects.filter(session = curSession),
     }
 
     return render(request, 'staffapp/pg_add_loss.html',content)
