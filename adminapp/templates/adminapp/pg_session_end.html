@@ -7,8 +7,8 @@
 {% if session.isOpen %}
     <div class="container">
         <div class="row">
-            <div class="col upbox font-main" id="init-items-list-block">
-                <h1><a href="/staffapp/session/{{session.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Добавить инвентарь (начало смены)</h1>
+            <div class="col upbox font-main" id="end-items-list-block">
+                <h1><a href="/staffapp/session/{{session.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Добавить инвентарь (конец смены)</h1>
 
                 <div class="superdownbox">
                     {% for el in forms %}
@@ -34,42 +34,16 @@
                     </div>
                     
                     {% endfor %}
-
-                    <div class="hoverbox el-item-input-form">
-                        <form method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="ItemID" value="{{el.item.item.id}}">
-                            <input type="hidden" name="ActionType" value="add">
-                            
-                            <div class="">
-                                <p>Добавить новый инвентарь</p>
-                            </div>
-
-                            <div class="">
-                                <select name="" id="">
-                                    
-                                </select>
-                            </div>
-
-                            <div class="">
-                                <input>                     
-                            
-                            <button type="submit" class="downbox">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                            </div>
-                        </form> 
-                    </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col upbox font-main" id="init-items-list-block-complite">  
+            <div class="col upbox font-main" id="end-items-list-block-complite">  
                 <div class="superdownbox">
                     <table border="1">
                         <tr>
-                            <th colspan="3"><p>Начало смены</p></th>
+                            <th colspan="3"><p>Конец смены</p></th>
                         </tr>
                         <tr>
                             <th><p>Позиция</p></th>

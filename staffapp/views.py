@@ -95,6 +95,7 @@ def pg_session_end(request, pk=1):
        'user':user,
        'forms':forms,
        'complete':completeItems,
+       'session':curSession,
 
     }
     return render(request, 'staffapp/pg_end_session.html',content)
@@ -193,6 +194,8 @@ def pg_session_change(request, pk=1):
     if not user.is_authenticated:
         return redirect('autherror')
 
+    curSession = Session.objects.get(id = pk)
+
     if request.method == "POST":
         newForm = AddToSessionForm(request.POST)
         if newForm.is_valid():
@@ -221,6 +224,7 @@ def pg_session_change(request, pk=1):
        'form':AddToSessionForm(),
        'addItems':nowAdd,
        'decItems':nowDec,
+       'session':curSession,
     }
     return render(request, 'staffapp/pg_change_session.html',content)
 
@@ -229,9 +233,12 @@ def pg_session_addloss(request, pk=1):
 
     if not user.is_authenticated:
         return redirect('autherror')
+
+    curSession = Session.objects.get(id = pk)
     
     content = {
         'user':user,
+        'session':curSession,
     }
 
     return render(request, 'staffapp/pg_add_loss.html',content)
@@ -241,9 +248,12 @@ def pg_session_adddraft(request, pk=1):
 
     if not user.is_authenticated:
         return redirect('autherror')
+
+    curSession = Session.objects.get(id = pk)
     
     content = {
         'user':user,
+        'session':curSession,
     }
 
     return render(request, 'staffapp/pg_add_draft.html',content)
@@ -253,6 +263,8 @@ def pg_session_addorder(request, pk=1):
 
     if not user.is_authenticated:
         return redirect('autherror')
+
+    curSession = Session.objects.get(id = pk)
 
     if request.method == "POST":
         newOrderForm = OrderForm(request.POST)
@@ -267,5 +279,6 @@ def pg_session_addorder(request, pk=1):
     content = {
        'user':user,
        'form':OrderForm(),
+       'session':curSession,
     }
     return render(request, 'staffapp/pg_add_order.html',content)
