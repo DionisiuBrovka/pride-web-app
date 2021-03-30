@@ -1,8 +1,16 @@
 {% extends 'root/root.html' %}
 
 {% block content %}
-    <h1>Вы вышли из системы</h1>
-    <a href="{% url 'staffapp' %}">в приложение сотрудника</a><br>
-    <a href="#">в приложение администратора</a><br>
-    <a href="#">на главную</a>
+<div class="container font-main">
+    <div class="row upbox" id="autherror-block">
+        <div class="col">
+                <h1>Успешно вышли из системы</h1>
+                <a class="downbox" href="{% url 'login' %}">Войти</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block title%}
+HookahPride
 {% endblock %}

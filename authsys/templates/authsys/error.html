@@ -4,8 +4,10 @@
 <div class="container font-main">
     <div class="row upbox" id="autherror-block">
         <div class="col">
-            {% if user.is_autheticated %}
-                <h1>Ошибка авторизации</h1>
+            {% if user.is_authenticated %}
+                <h1>Ошибка доступа</h1>
+                <p>Попробуйте повторно аккаунт или вернутся к главной странице</p>
+                <a class="downbox" href="{% url 'logout' %}">Сменить аккаунт</a>
             {% else %}
                 <h1>Ошибка авторизации</h1>
                 <p>Попробуйте повторно войти в сервис</p>
