@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row upbox" id="admin-places-filter-block">
         <div class="col">
-            <h1><a href="{% url 'adminapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Заведения :</h1>
+            <h1><a href="{% url 'adminapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Сменны :</h1>
             <hr>
             <form action="">
                 
@@ -20,7 +20,7 @@
             <div class="row block-head">
                 <div class="col">
                     <h4>
-                        
+                        {{sessions|length}} Сменн
                     </h4>
                 </div>
                 <div class="col">
@@ -31,7 +31,9 @@
             <div class="row">
                 <div class="col" id="users-list">
                     <div class="superdownbox">
-                        
+                        {% for item in sessions %}
+                            {% include 'adminapp/elements/el_sessions_min.html'%}
+                        {% endfor %}
                     </div>
                 </div>
             </div>

@@ -1,0 +1,65 @@
+{% extends 'root/root.html' %}
+
+{% block content %}
+
+{% include 'staffapp/elements/el_navbar.html'%}
+{% if session.isOpen %}
+    <div class="container">
+        <div class="row ">
+            <div class="col upbox font-main">
+                <div class="row">
+                    <div class="col">
+                        <h1><a href="/staffapp/session/{{session.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Добавить чек</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <form action="POST">
+                                                   
+                            <button type="submit">
+                                ADD
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col upbox font-main">
+                <div class="superdownbox">
+                    <table border="1">
+                        <tr>
+                            <th>
+                                <p>Фото</p>
+                            </th>
+                            <th>
+                                <p>Комментарий</p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>---</td>
+                            <td>---</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col upbox close-error font-main">
+                <i class="fas fa-exclamation-triangle error-logo"></i>
+                <p>Эта смена уже закрыта, ее редактирование невозможно</p>
+                <a href="/staffapp/session/{{session.id}}/" class="downbox">Назад</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% include 'staffapp/elements/el_bottom.html'%}
+{% endblock %}
+
+{% block title%}
+HookahPride | Добавить чек
+{% endblock %}

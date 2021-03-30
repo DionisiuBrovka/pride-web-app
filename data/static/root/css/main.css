@@ -330,6 +330,8 @@ i#min-session-indicator{
     animation-name: example;
     animation-duration: 2s;
     animation-iteration-count: infinite;
+
+    margin-right: 10px;
 }
 
 
@@ -425,6 +427,14 @@ i#min-session-indicator{
 
 /* =======================================( INDEX BLOCK )===========================================  */
 #session-info-table table{
+    border: 2px solid var(--c-upbox-back);
+}
+
+#admin-user-info-block table{
+    border: 2px solid var(--c-upbox-back);
+}
+
+#admin-place-info-block table{
     border: 2px solid var(--c-upbox-back);
 }
 
