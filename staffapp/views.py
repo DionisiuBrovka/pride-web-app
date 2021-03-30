@@ -251,7 +251,7 @@ def pg_session_addloss(request, pk=1):
 
     if request.method == "POST":
         newDamageForm = DamageForm(request.POST)
-        if DamageFormForm.is_valid():
+        if DamageForm.is_valid():
             newDamage = Damage(
                 comment=newDamageForm.cleaned_data['comment'],
                 session=curSession,
@@ -262,7 +262,6 @@ def pg_session_addloss(request, pk=1):
     content = {
         'user':user,
         'session':curSession,
-        'imgForm':ImgForSessionForm,
         'commentForm':DamageForm,
         'damage':Damage.objects.filter(session = curSession),
     }
@@ -276,10 +275,49 @@ def pg_session_adddraft(request, pk=1):
         return redirect('autherror')
 
     curSession = Session.objects.get(id = pk)
+
+    if request.method == "POST":
+        newDraftForm = DraftForm(request.POST)
+        if DraftForm.is_valid():
+            newDamage = Damage(
+                session=curSession,
+                image=newDraftForm.cleaned_data['image'],
+            )
+            newDraft.save()
     
     content = {
         'user':user,
         'session':curSession,
+        'commentForm':DraftForm,
+        'draft':Draft.objects.filter(session = curSession),
+    }
+
+    return render(request, 'staffapp/pg_add_draft.html',content)
+
+def pg_session_addedcost(request, pk = 1):
+    user = request.user
+
+    if not user.is_authenticated:
+        return redirect('autherror')
+
+    curSession = Session.objects.get(id = pk)
+
+    if request.method == "POST":
+        newAddedCostForm = AddedCostForm(request.POST)
+        if AddedCostForm.is_valid():
+            newAddedCost = AddedCost(
+                comment=newAddedCostForm.cleaned_data['comment'],
+                session=curSession,
+                image=newAddedCostForm.cleaned_data['image'],
+                cost=newAddedCostForm.cleaned_data['cost'],
+            )
+            newAddedCost.save()
+    
+    content = {
+        'user':user,
+        'session':curSession,
+        'commentForm':AddedCostForm,
+        'addedcost':AddedCost.objects.filter(session = curSession),
     }
 
     return render(request, 'staffapp/pg_add_draft.html',content)
