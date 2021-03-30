@@ -4,9 +4,13 @@
 <div class="container font-main">
     <div class="row upbox" id="autherror-block">
         <div class="col">
-            <h1>Ошибка авторизации</h1>
-            <p>Попробуйте повторно войти в сервис</p>
-            <a class="downbox" href="{% url 'login' %}">Войти</a>
+            {% if user.is_autheticated %}
+                <h1>Ошибка авторизации</h1>
+            {% else %}
+                <h1>Ошибка авторизации</h1>
+                <p>Попробуйте повторно войти в сервис</p>
+                <a class="downbox" href="{% url 'login' %}">Войти</a>
+            {% endif %}
         </div>
     </div>
 </div>
