@@ -4,6 +4,13 @@ from data.models import Profile, Place, Session, Recvisites, MobilePhone, StartS
 from data.forms import ProfileForm
 from adminapp.alghorytm import random_string
 
+
+def user_permission_check(user):
+    if (user.is_authenticated):
+        if (user.is_staff):
+            return False
+    return True
+
 # Create your views here.
 def index(request):
     return render(request, 'adminapp/index.html')
@@ -15,8 +22,9 @@ def index(request):
 def pg_users(request):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
+        
 
     data = {
         'user':user,
@@ -28,7 +36,7 @@ def pg_users(request):
 def pg_user(request, pk=1):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
 
     selectUser = Profile.objects.get(id=pk)
@@ -47,7 +55,7 @@ def pg_user(request, pk=1):
 def pg_user_edit(request, pk=1):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
 
     data = {
@@ -57,6 +65,11 @@ def pg_user_edit(request, pk=1):
     return render(request, 'adminapp/user/pg_user_edit.html', data)
 
 def pg_add_user(request):
+    user = request.user
+
+    if user_permission_check(user):
+        return redirect('autherror')
+    
     AddedUser = {}
 
     if (request.method == "POST"):
@@ -75,8 +88,6 @@ def pg_add_user(request):
             userProfile.avatar = newProfile.cleaned_data['avatar']
             userProfile.telegramNick = newProfile.cleaned_data['telegramNick']
             userProfile.save()
-            print (newUser.username)
-            print (newUser.password)
             AddedUser = {
                 'login':newUser.username,
                 'password':newUser.password,
@@ -95,7 +106,7 @@ def pg_add_user(request):
 def pg_places(request):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
     
     data = {
@@ -123,7 +134,7 @@ def pg_place(request, pk=1):
 def pg_place_add(request):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
 
     data = {
@@ -134,7 +145,7 @@ def pg_place_add(request):
 def pg_place_edit(request, pk=1):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
 
     data = {
@@ -148,7 +159,7 @@ def pg_place_edit(request, pk=1):
 def pg_sessions(request):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
     
     sessions = Session.objects.all().order_by("-startTime")
@@ -162,7 +173,7 @@ def pg_sessions(request):
 def pg_session(request, pk=1):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
 
     curSession = Session.objects.get(id = pk)
@@ -184,7 +195,7 @@ def pg_session(request, pk=1):
 def pg_session_add(request):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
     
     sessions = Session.objects.all().order_by("-startTime")
@@ -198,7 +209,7 @@ def pg_session_add(request):
 def pg_session_edit(request, pk=1):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
     
     sessions = Session.objects.all().order_by("-startTime")
@@ -215,7 +226,7 @@ def pg_session_edit(request, pk=1):
 def pg_items(request):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
 
     items = Item.objects.all()
@@ -229,7 +240,7 @@ def pg_items(request):
 def pg_item(request, pk=1):
     user = request.user
 
-    if not user.is_authenticated:
+    if user_permission_check(user):
         return redirect('autherror')
 
     items = Item.objects.all()

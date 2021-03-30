@@ -18,8 +18,6 @@ def pg_index(request):
        'userSessions':userSessions
     }
 
-    print(userSessions)
-
     return render(request, 'staffapp/pg_index.html', content)
 
 def pg_settings(request):
