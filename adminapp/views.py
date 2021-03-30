@@ -170,42 +170,6 @@ def pg_sessions(request):
     }
     return render(request, 'adminapp/session/pg_sessions.html', data)
 
-def pg_session(request, pk=1):
-    user = request.user
-
-    if user_permission_check(user):
-        return redirect('autherror')
-
-    curSession = Session.objects.get(id = pk)
-    itemsInit = StartSession.objects.filter(session = curSession)
-    itemsEnd = EndSession.objects.filter(session=curSession)
-    itemsAdd = AddToSession.objects.filter(session=curSession)
-    itemsDec = DeleteOnSession.objects.filter(session=curSession)
-
-    data = {
-       'user':user,
-       'session':curSession,
-       'itemsInit':itemsInit,
-       'itemsEnd':itemsEnd,
-       'itemsAdd':itemsAdd,
-       'itemsDec':itemsDec,
-    }
-    return render(request, 'adminapp/session/pg_session.html', data)
-
-def pg_session_add(request):
-    user = request.user
-
-    if user_permission_check(user):
-        return redirect('autherror')
-    
-    sessions = Session.objects.all().order_by("-startTime")
-
-    data = {
-        'user':user,
-        'sessions':sessions,
-    }
-    return render(request, 'adminapp/session/pg_sessions_add.html', data)
-
 def pg_session_edit(request, pk=1):
     user = request.user
 
