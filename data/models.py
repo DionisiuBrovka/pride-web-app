@@ -380,19 +380,69 @@ class EndSession(models.Model):
     def __str__(self):
         return self.session.__str__()+' '+self.item.__str__()+' '+str(self.count)
 
-class ImgForSession(models.Model):
+class Damage(models.Model):
     session = models.ForeignKey(
         Session,
         verbose_name= 'Смена',
         on_delete = models.CASCADE,
+        default=0,
+        blank=True,
         )
     image = models.ImageField(
         'Сопроводительное изображение',
         upload_to = 'images/forSession',
         )
+    comment = models.TextField(
+        'Комментарий',
+    )
+
     class Meta:
-        verbose_name = 'Изображение для смены'
-        verbose_name_plural = 'Изображения для смен' 
+        verbose_name = 'Изображение для ущерба'
+        verbose_name_plural = 'Изображения для ущерба' 
+
+class AddedCost(models.Model):
+    session = models.ForeignKey(
+        Session,
+        verbose_name= 'Смена',
+        on_delete = models.CASCADE,
+        default=0,
+        blank=True,
+        )
+    image = models.ImageField(
+        'Сопроводительное изображение',
+        upload_to = 'images/forSession',
+        )
+    comment = models.TextField(
+        'Комментарий',
+    )
+    cost = models.FloatField(
+        'Дополнительные расходы',
+        default = 0,
+    )
+
+    class Meta:
+        verbose_name = 'Изображение для дополнительного расхода'
+        verbose_name_plural = 'Изображения для дополнительных расходов' 
+
+class Draft(models.Model):
+    session = models.ForeignKey(
+        Session,
+        verbose_name= 'Смена',
+        on_delete = models.CASCADE,
+        default=0,
+        blank=True,
+        )
+    image = models.ImageField(
+        'Сопроводительное изображение',
+        upload_to = 'images/forSession',
+        )
+    comment = models.TextField(
+        'Комментарий',
+    )
+
+    class Meta:
+        verbose_name = 'Изображение для чека'
+        verbose_name_plural = 'Изображения для чеков' 
 
 class AddToSession(models.Model):
     session = models.ForeignKey(

@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
-from data.models import Place, Session, EndSession, StartSession, Item, AddToSession, DeleteOnSession, EndSession, Order, Profile
-from data.forms import SessionForm, StratSessionForm, AddToSessionForm, EndSessionForm, OrderForm
+#from data.models import Place, Session, EndSession, StartSession, Item, AddToSession, DeleteOnSession, EndSession, Order, Profile, Damage, AddedCost, Draft
+#from data.forms import SessionForm, StratSessionForm, AddToSessionForm, EndSessionForm, OrderForm, DamageForm, AddedCostForm, DraftForm
+from data.models import *
+from data.forms import *
 
 # Create your views here.
 def pg_index(request):
@@ -246,10 +248,22 @@ def pg_session_addloss(request, pk=1):
         return redirect('autherror')
 
     curSession = Session.objects.get(id = pk)
+
+    if request.method == "POST":
+        newDamageForm = DamageForm(request.POST)
+        if DamageFormForm.is_valid():
+            newDamage = Damage(
+                comment=newDamageForm.cleaned_data['comment'],
+                session=curSession,
+                image=newDamageForm.cleaned_data['image'],
+            )
+            newDamage.save()
     
     content = {
         'user':user,
         'session':curSession,
+        'imgForm':ImgForSessionForm,
+        'commentForm':DamageForm,
     }
 
     return render(request, 'staffapp/pg_add_loss.html',content)
