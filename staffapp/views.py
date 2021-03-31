@@ -336,6 +336,7 @@ def pg_session_addorder(request, pk=1):
         return redirect('autherror')
 
     curSession = Session.objects.get(id = pk)
+    orders = Order.objects.filter(session=curSession)
 
     if request.method == "POST":
         newOrderForm = OrderForm(request.POST)
@@ -349,6 +350,7 @@ def pg_session_addorder(request, pk=1):
 
     content = {
        'user':user,
+       'orders':orders,
        'form':OrderForm(),
        'session':curSession,
     }
