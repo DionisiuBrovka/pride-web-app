@@ -16,18 +16,19 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <form action="POST">
-                            <div class="">
-                                {% render_field form.position  size="5" %}
-                            </div>
-                            <div class="">
-                                {% render_field form.comment  size="12" %}
-                            </div>
+                        <div class="litlle-form">
+                            <form method="POST">
+                                {% csrf_token %}
+                            
+                                {% render_field form.position %}        
+                                {% render_field form.comment %}                                
+                            
+                                <button type="submit">
+                                    Добавить
+                                </button>
+                            </form>
+                        </div>
                         
-                            <button type="submit">
-                                ADD
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>
