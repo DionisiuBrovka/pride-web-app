@@ -6,13 +6,43 @@
 
 <div class="container">
     <div class="row upbox" id="admin-users-filter-block">
-        <div class="col">
-            <h1>HookahPride - AdminPanel</h1>
+        <div class="col index-butt">
+            <h1 id="main-text-el">HookahPride - AdminPanel</h1>
             <hr>
-            <a href="{% url 'adminapp-places' %}">Заведения</a><br>
-            <a href="{% url 'adminapp-users' %}">Персонал</a><br>
-            <a href="{% url 'adminapp-sessions' %}">Смены</a><br>
-            <a href="{% url 'adminapp-items' %}">Инвентарь</a><br>
+            <div class="row">
+                <div class="col">
+                    <form action="{% url 'adminapp-sessions' %}">
+                        <button><h4>Смены</h4></button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form action="{% url 'adminapp-places' %}">
+                        <button><h4>Заведения</h4></button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form action="{% url 'adminapp-users' %}">
+                        <button><h4>Сотрудники</h4></button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form action="{% url 'adminapp-items' %}">
+                        <button><h4>Инвентарь</h4></button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form action="">
+                        <button><h4>Кальяны</h4></button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form action="">
+                        <button><h4></h4></button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

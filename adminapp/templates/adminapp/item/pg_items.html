@@ -9,7 +9,8 @@
         <div class="col">
             <h1><a href="{% url 'adminapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Инвентарь :</h1>
             <hr>
-            <form action="">
+            <form method="POST">
+                {% csrf_token %}
                 
             </form>
         </div>

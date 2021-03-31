@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row upbox" id="admin-place-info-block">
         <div class="col">
-            <h1><a href="{% url 'adminapp-users' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> {{selectPlace}}</h1>
+            <h1>{{selectPlace}}</h1>
                 <table>
                     <tr>
                         <th colspan="2"><p>Реквизиты</p></th>
@@ -82,7 +82,7 @@
                                                 Закрыта
                                             {% endif %}
                                         </td>
-                                        <td><a href="/adminapp/session/{{item.id}}/" class="downbox"><i class="fas fa-eye"></i></a></td>
+                                        <td><a href="/staffapp/session/{{item.id}}/" class="downbox"><i class="fas fa-eye"></i></a></td>
                                     </tr>
                                 {% endfor %}
                                 

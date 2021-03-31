@@ -255,7 +255,7 @@ def pg_session_addloss(request, pk=1):
 
     if request.method == "POST":
         newDamageForm = DamageForm(request.POST)
-        if DamageForm.is_valid():
+        if newDamageForm.is_valid():
             newDamage = Damage(
                 comment=newDamageForm.cleaned_data['comment'],
                 session=curSession,
@@ -266,7 +266,7 @@ def pg_session_addloss(request, pk=1):
     content = {
         'user':user,
         'session':curSession,
-        'commentForm':DamageForm,
+        'form':DamageForm,
         'damage':Damage.objects.filter(session = curSession),
     }
 
@@ -282,17 +282,19 @@ def pg_session_adddraft(request, pk=1):
 
     if request.method == "POST":
         newDraftForm = DraftForm(request.POST)
-        if DraftForm.is_valid():
-            newDamage = Damage(
+        if newDraftForm.is_valid():
+            newDraft = Draft(
                 session=curSession,
                 image=newDraftForm.cleaned_data['image'],
             )
             newDraft.save()
+        else:
+            print('ded loh')
     
     content = {
         'user':user,
         'session':curSession,
-        'commentForm':DraftForm,
+        'form':DraftForm,
         'draft':Draft.objects.filter(session = curSession),
     }
 
@@ -308,7 +310,7 @@ def pg_session_addedcost(request, pk = 1):
 
     if request.method == "POST":
         newAddedCostForm = AddedCostForm(request.POST)
-        if AddedCostForm.is_valid():
+        if newAddedCostForm.is_valid():
             newAddedCost = AddedCost(
                 comment=newAddedCostForm.cleaned_data['comment'],
                 session=curSession,
@@ -320,7 +322,7 @@ def pg_session_addedcost(request, pk = 1):
     content = {
         'user':user,
         'session':curSession,
-        'commentForm':AddedCostForm,
+        'form':AddedCostForm,
         'addedcost':AddedCost.objects.filter(session = curSession),
     }
 

@@ -8,7 +8,7 @@
     
     <div class="row upbox" id="session-info-table">
         <div class="col">
-            <h1><a href="{% url 'staffapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Смена № {{session.id}}</h1>
+            <h1>Смена № {{session.id}}</h1>
             <table>
                 <tr>
                     <td><p>Статус :</p></td>
@@ -89,7 +89,7 @@
             <form action="/staffapp/session/{{session.id}}/adddraft/">
                 <button class="hoverbox">Добавить чек</button>
             </form>
-            <form action="/staffapp/session/{{session.id}}/close/">
+            <form action="/staffapp/session/{{session.id}}/addedcost/">
                 <button class="hoverbox">Добавить доп. рассходы</button>
             </form>  
             <form action="/staffapp/session/{{session.id}}/close/">
