@@ -254,7 +254,7 @@ def pg_session_addloss(request, pk=1):
     curSession = Session.objects.get(id = pk)
 
     if request.method == "POST":
-        newDamageForm = DamageForm(request.POST)
+        newDamageForm = DamageForm(request.POST, request.FILES)
         if newDamageForm.is_valid():
             newDamage = Damage(
                 comment=newDamageForm.cleaned_data['comment'],
@@ -281,7 +281,7 @@ def pg_session_adddraft(request, pk=1):
     curSession = Session.objects.get(id = pk)
 
     if request.method == "POST":
-        newDraftForm = DraftForm(request.POST)
+        newDraftForm = DraftForm(request.POST, request.FILES)
         if newDraftForm.is_valid():
             newDraft = Draft(
                 session=curSession,
@@ -310,7 +310,7 @@ def pg_session_addedcost(request, pk = 1):
 
     if request.method == "POST":
         print (request.POST)
-        newAddedCostForm = AddedCostForm(request.POST)
+        newAddedCostForm = AddedCostForm(request.POST, request.FILES)
         if newAddedCostForm.is_valid():
             newAddedCost = AddedCost(
                 comment=newAddedCostForm.cleaned_data['comment'],

@@ -7,43 +7,55 @@
 <div class="container">
     <div class="row upbox" id="admin-place-info-block">
         <div class="col">
-            <h1>{{selectPlace}}</h1>
-                <table>
-                    <tr>
-                        <th colspan="2"><p>Реквизиты</p></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td>Название</td>
-                        <td>{{selectPlace.recvisites.title}}</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>УВП</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Адресс</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>ibanBYN</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>ibanUSD</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>bankcode</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
+            <div class="row">
+                <div class="col">
+                    <h1>{{selectPlace}} </h1>
+                </div>
+                <div class="col">
+                    <h3><a href="/adminapp/place/{{selectPlace.id}}/edit" class="downbox float-right"><i class="far fa-edit"></i></a></h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <table>
+                        <tr>
+                            <th colspan="2"><p>Реквизиты</p></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>Название</td>
+                            <td>{{selectPlace.recvisites.title}}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>УВП</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Адресс</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>ibanBYN</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>ibanUSD</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>bankcode</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 

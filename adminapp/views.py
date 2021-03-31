@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from data.models import Profile, Place, Session, Recvisites, MobilePhone, StartSession, EndSession, AddToSession, DeleteOnSession, Item
-from data.forms import ProfileForm
+from data.forms import *
 from adminapp.alghorytm import random_string
 
 
@@ -145,11 +145,18 @@ def pg_place_add(request):
 def pg_place_edit(request, pk=1):
     user = request.user
 
+    curPlace = Place.objects.get(id=pk)
+
     if user_permission_check(user):
         return redirect('autherror')
 
+    form = RecvisitesForm()
+
     data = {
         'user':user,
+        'place':curPlace,
+        'form':form
+
     }
     return render(request, 'adminapp/place/pg_place_edit.html', data)
 
@@ -211,7 +218,8 @@ def pg_item(request, pk=1):
 
     data = {
         'user':user,
-        'items':items,        
+        'items':items,    
+        'form':Rec    
     }
     return render(request, 'adminapp/item/pg_item.html', data)
 

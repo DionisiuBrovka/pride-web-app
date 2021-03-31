@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Place, Session, StartSession, AddToSession, EndSession, Order, Profile, Damage, Draft, AddedCost
+from .models import Place, Session, StartSession, AddToSession, EndSession, Order, Profile, Damage, Draft, AddedCost, Recvisites
 
 class PlaceForm(ModelForm):
     class Meta:
@@ -51,3 +51,8 @@ class AddedCostForm(ModelForm):
     class Meta:
         model = AddedCost
         fields = ['image', 'comment', 'cost']
+
+class RecvisitesForm(ModelForm):
+    class Meta:
+        model = Recvisites
+        fields = ['title','unp','adress','ibanbyn','ibanusd','bankcode']

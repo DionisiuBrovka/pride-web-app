@@ -1,0 +1,35 @@
+{% extends 'root/root.html' %}
+
+{% block content %}
+
+{% include 'staffapp/elements/el_navbar.html'%}
+
+<div class="container">
+    <div class="row upbox" id="admin-place-info-block">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h1>{{place.title}} </h1>
+                </div>
+                <div class="col">
+                    
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="">
+                        {{form.as_table}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'staffapp/elements/el_bottom.html'%}
+{% endblock %}
+
+{% block title%}
+HookahPride - AdminPanel | {{selectPlace}}
+{% endblock %}
