@@ -183,6 +183,9 @@ def pg_session(request, pk=1):
        'itemsEnd':itemsEnd,
        'itemsAdd':itemsAdd,
        'itemsDec':itemsDec,
+       'damage':Damage.objects.filter(session=curSession),
+       'draft':Draft.objects.filter(session=curSession),
+       'addedCost':AddedCost.objects.filter(session=curSession),
     }
     return render(request, 'staffapp/pg_session.html',content)
 
@@ -320,7 +323,7 @@ def pg_session_addedcost(request, pk = 1):
         'addedcost':AddedCost.objects.filter(session = curSession),
     }
 
-    return render(request, 'staffapp/pg_add_draft.html',content)
+    return render(request, 'staffapp/pg_addedcost.html',content)
 
 def pg_session_addorder(request, pk=1):
     user = request.user

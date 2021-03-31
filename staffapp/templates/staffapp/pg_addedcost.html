@@ -40,10 +40,21 @@
                                 <p>Сумма</p>
                             </th>
                         </tr>
-                        <tr>
-                            <td>---</td>
-                            <td>---</td>
-                        </tr>
+                        {% if addedCost|length == 0 %}
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                            </tr>
+                        {% else %}
+                            {% for item in addedCost %}
+                                <tr>
+                                    <td><a href="{{item.image.url}}">{{item.image}}</a></td>
+                                    <td>{{item.comment}}</td>
+                                    <td>{{item.cost}}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
                     </table>
                 </div>
             </div>
