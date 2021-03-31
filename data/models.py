@@ -160,21 +160,6 @@ class Position(models.Model):
         'Стоимость позиции',
         default=23.0
         )
-    forGuest = "FG"
-    forSelf = "FS"
-    bonus = "B"
-    posTypeChoices = (
-        (forGuest, 'Гостю'),
-        (forSelf,'Себе'),
-        (bonus, 'Бонусный'),
-    )
-    positionType = models.CharField(
-        'Тип кальяна', 
-        max_length= 2,
-        choices=posTypeChoices,
-        default = forGuest,
-        blank= True,
-        )
     
 
     def __str__(self):
@@ -255,6 +240,21 @@ class Order(models.Model):
         'Комментарий',
         default=' ',
         blank=True,
+        )
+    forGuest = "FG"
+    forSelf = "FS"
+    bonus = "B"
+    posTypeChoices = (
+        (forGuest, 'Гостю'),
+        (forSelf,'Себе'),
+        (bonus, 'Бонусный'),
+    )
+    positionType = models.CharField(
+        'Тип кальяна', 
+        max_length= 2,
+        choices=posTypeChoices,
+        default = forGuest,
+        blank= True,
         )
     
     class Meta:

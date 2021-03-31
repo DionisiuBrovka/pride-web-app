@@ -266,7 +266,7 @@ def pg_session_addloss(request, pk=1):
     content = {
         'user':user,
         'session':curSession,
-        'form':DamageForm,
+        'form':DamageForm(),
         'damage':Damage.objects.filter(session = curSession),
     }
 
@@ -294,7 +294,7 @@ def pg_session_adddraft(request, pk=1):
     content = {
         'user':user,
         'session':curSession,
-        'form':DraftForm,
+        'form':DraftForm(),
         'draft':Draft.objects.filter(session = curSession),
     }
 
@@ -309,6 +309,7 @@ def pg_session_addedcost(request, pk = 1):
     curSession = Session.objects.get(id = pk)
 
     if request.method == "POST":
+        print (request.POST)
         newAddedCostForm = AddedCostForm(request.POST)
         if newAddedCostForm.is_valid():
             newAddedCost = AddedCost(
@@ -322,7 +323,7 @@ def pg_session_addedcost(request, pk = 1):
     content = {
         'user':user,
         'session':curSession,
-        'form':AddedCostForm,
+        'form':AddedCostForm(),
         'addedcost':AddedCost.objects.filter(session = curSession),
     }
 
