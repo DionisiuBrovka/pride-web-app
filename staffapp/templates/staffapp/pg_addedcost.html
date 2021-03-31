@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load widget_tweaks %}
+
 {% include 'staffapp/elements/el_navbar.html'%}
 {% if session.isOpen %}
     <div class="container">
@@ -14,12 +16,19 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <form action="POST">
-                                                   
-                            <button type="submit">
-                                ADD
-                            </button>
-                        </form>
+                        <div class="litlle-form" >
+                            <form method="POST">
+                                {% csrf_token %}  
+                                
+                                {% render_field form.image %}<br>
+                                {% render_field form.cost %}<br>
+                                {% render_field form.comment %}<br>
+                                
+                                <button type="submit">
+                                    Добавить
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,20 +49,24 @@
                                 <p>Сумма</p>
                             </th>
                         </tr>
-                        {% if addedCost|length == 0 %}
+                        {% if addedcost|length == 0 %}
                             <tr>
                                 <td>---</td>
                                 <td>---</td>
                                 <td>---</td>
                             </tr>
                         {% else %}
-                            {% for item in addedCost %}
+                            {% for item in addedcost %}
                                 <tr>
                                     <td><a href="{{item.image.url}}">{{item.image}}</a></td>
                                     <td>{{item.comment}}</td>
                                     <td>{{item.cost}}</td>
                                 </tr>
                             {% endfor %}
+                            <tr>
+                                <td colspan="2">Итого :</td>
+                                <td></td>
+                            </tr>
                         {% endif %}
                     </table>
                 </div>

@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load widget_tweaks %}
+
 {% include 'staffapp/elements/el_navbar.html'%}
 {% if session.isOpen %}
     <div class="container">
@@ -14,12 +16,17 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <form action="POST">
-                                                   
-                            <button type="submit">
-                                ADD
-                            </button>
-                        </form>
+                        <div class="litlle-form" >
+                            <form method="POST">
+                                {% csrf_token %}  
+                                
+                                {% render_field form.image %} <br>
+                                
+                                <button type="submit">
+                                    Добавить
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

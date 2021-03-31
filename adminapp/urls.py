@@ -14,8 +14,6 @@ urlpatterns = [
     path('place/<int:pk>/edit', views.pg_place_edit, name="adminapp-place-edit"),
 
     path('sessions/', views.pg_sessions, name = "adminapp-sessions"),
-    path('session/<int:pk>/', views.pg_session, name="adminapp-session"),
-    path('sessions/add', views.pg_session_add, name = "adminapp-sessions-add"),
     path('session/<int:pk>/edit', views.pg_session_edit, name="adminapp-session-edit"),
 
     path('items/', views.pg_items, name="adminapp-items"),
