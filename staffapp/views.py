@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.timezone import now
 #from data.models import Place, Session, EndSession, StartSession, Item, AddToSession, DeleteOnSession, EndSession, Order, Profile, Damage, AddedCost, Draft
 #from data.forms import SessionForm, StratSessionForm, AddToSessionForm, EndSessionForm, OrderForm, DamageForm, AddedCostForm, DraftForm
 from data.models import *
@@ -325,6 +326,7 @@ def pg_session_addedcost(request, pk = 1):
 
     return render(request, 'staffapp/pg_addedcost.html',content)
 
+
 def pg_session_addorder(request, pk=1):
     user = request.user
 
@@ -349,3 +351,25 @@ def pg_session_addorder(request, pk=1):
        'session':curSession,
     }
     return render(request, 'staffapp/pg_add_order.html',content)
+
+def pg_session_close(request, pk=1):
+    user = request.user
+
+    if not user.is_authenticated:
+        return redirect('autherror')
+    
+    curSession = Session.objects.get(id = pk)
+    curOrders = Order.objects.filter(session=curSession)
+
+    if request.method == "POST":
+        if (curSession.startTime == curSession.endTime):
+            curSession.endTime = now()
+            curSession.save()
+
+    content = {
+       'user':user,
+       'session':curSession,
+       'orders':curOrders,
+    }
+
+    return render(request, 'staffapp/pg_session_close.html', content)

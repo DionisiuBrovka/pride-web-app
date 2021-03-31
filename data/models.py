@@ -89,6 +89,16 @@ class Place(models.Model):
         upload_to = 'images/placePreview',
         blank = True,
         )
+    percentForPlace = models.FloatField(
+        'Процент заведению',
+        default=0,
+        blank=True,
+        )
+    percentForWorker = models.FloatField(
+        'Процент работнику',
+        default=0,
+        blank=True,
+        )
     
    
     def __str__(self):
@@ -394,6 +404,7 @@ class Damage(models.Model):
         )
     comment = models.TextField(
         'Комментарий',
+        blank=True,
     )
 
     class Meta:
@@ -414,6 +425,7 @@ class AddedCost(models.Model):
         )
     comment = models.TextField(
         'Комментарий',
+        blank=True,
     )
     cost = models.FloatField(
         'Дополнительные расходы',
@@ -438,6 +450,7 @@ class Draft(models.Model):
         )
     comment = models.TextField(
         'Комментарий',
+        blank=True,
     )
 
     class Meta:
