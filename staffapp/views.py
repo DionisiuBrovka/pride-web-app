@@ -187,6 +187,7 @@ def pg_session(request, pk=1):
        'damage':Damage.objects.filter(session=curSession),
        'draft':Draft.objects.filter(session=curSession),
        'addedCost':AddedCost.objects.filter(session=curSession),
+       'orders':Order.objects.filter(session=curSession),
     }
     return render(request, 'staffapp/pg_session.html',content)
 
@@ -348,6 +349,7 @@ def pg_session_addorder(request, pk=1):
     content = {
        'user':user,
        'form':OrderForm(),
+       'orders':Order.objects.filter(session=curSession),
        'session':curSession,
     }
     return render(request, 'staffapp/pg_add_order.html',content)

@@ -10,11 +10,11 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <h1><a href="{% url 'adminapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a> Инвентарь :</h1>
+                    <h1><a href="{% url 'adminapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a> Кальяны :</h1>
                 </div>
                 <div class="col">
                     <h3>
-                        <a href="{% url 'adminapp-items-add' %}" class="downbox float-right"><i class="fas fa-plus"></i></a>
+                        <a href="/admin/data/position/add/" class="downbox float-right"><i class="fas fa-plus"></i></a>
                     </h3>
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <div class="row block-head">
                 <div class="col">
                     <h4>
-                        {{items|length}} Позиций
+                        {{hookahs|length}} Позиций
                     </h4>
                 </div>
                 <div class="col">
@@ -43,29 +43,21 @@
                                     <p>Название</p>
                                 </th>
                                 <th>
-                                    <p>Группа</p>
-                                </th>
-                                <th>
-                                    <p>Тип исчисления</p>
+                                    <p>Стоимость</p>
                                 </th>
                                 <th>
                                     <p></p>
                                 </th>
                             </tr>
-                            {% for item in items %}
+                            {% for item in hookahs %}
                                 <tr>
                                     <td>{{item.title}}</td>
-                                    <td>
-                                        {% if item.itemType == 'c' %}   
-                                            Инвентарь
-                                        {% else %}
-                                            Рассходный материал
-                                        {% endif %}
+                                    <td>{{item.cost}}                                       
                                     </td>
-                                    <td>{{item.countType}}</td>
+                                    
                                     <td>
-                                        <a href="/admin/data/item/{{item.id}}/delete/" class="downbox float-right"><i class="fas fa-trash-alt"></i></a>
-                                        <a href="/adminapp/item/{{item.id}}/edit" class="downbox float-right"><i class="far fa-edit"></i></a>
+                                        <a href="/admin/data/position/{{item.id}}/delete/" class="downbox float-right"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="/admin/data/position/{{item.id}}/change/" class="downbox float-right"><i class="far fa-edit"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -81,5 +73,5 @@
 {% endblock %}
 
 {% block title%}
-HookahPride - AdminPanel | Инвентарь
+HookahPride - AdminPanel | Позиции
 {% endblock %}

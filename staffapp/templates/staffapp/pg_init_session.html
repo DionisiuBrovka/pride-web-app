@@ -4,7 +4,7 @@
 
 {% include 'staffapp/elements/el_navbar.html'%}
 
-{% if session.isOpen %}
+
     <div class="container">
         <div class="row">
             <div class="col upbox font-main" id="init-items-list-block">
@@ -97,17 +97,7 @@
             </div>
         </div>
     </div>
-{% else %}
-    <div class="container">
-        <div class="row">
-            <div class="col upbox close-error font-main">
-                <i class="fas fa-exclamation-triangle error-logo"></i>
-                <p>Эта смена уже закрыта, ее редактирование невозможно</p>
-                <a href="/staffapp/session/{{session.id}}/" class="downbox">Назад</a>
-            </div>
-        </div>
-    </div>
-{% endif %}
+
 {% include 'staffapp/elements/el_bottom.html'%}
 {% endblock %}
 

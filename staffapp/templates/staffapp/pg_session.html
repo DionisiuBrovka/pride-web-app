@@ -16,7 +16,7 @@
                 <div class="col">
                     <h3>
                         <a href="/admin/data/session/{{session.id}}/delete/" class="downbox float-right"><i class="fas fa-trash-alt"></i></a>
-                        <a href="/adminapp/session/{{session.id}}/edit" class="downbox float-right"><i class="far fa-edit"></i></a>
+                        <a href="/admin/data/session/{{session.id}}/change/" class="downbox float-right"><i class="far fa-edit"></i></a>
                     </h3>
                 </div>
             </div>
@@ -79,7 +79,7 @@
         </div>
     </div>
     
-    {% if session.isOpen %}
+    
     <div class="row upbox" id="session-control-block">
         <div class="col">
             <form action="/staffapp/session/{{session.id}}/init/">
@@ -110,7 +110,7 @@
             </form> 
         </div>
     </div>
-    {% endif %}
+    
 
     <!-- {% include 'staffapp/elements/scr_items_list_show.html' %} -->
 
@@ -352,46 +352,26 @@
                         <table>
                             <tr>
                                 <th><p>Позиция</p></th>
-                                <th><p>Количество</p></th>
+                                <th><p>Тип</p></th>
                                 <th><p>Комментарий</p></th>
                                 <th><p>Сумма</p></th>
                             </tr>
-
-                            <tr>
-                                <th colspan="4"><p>Заказы</p></th>
-                            </tr>
+                            {% if orders|length == 0%}
                             <tr>
                                 <td>---</td>
                                 <td>---</td>
                                 <td>---</td>
-                                <td>0</td>
+                                <td>---</td>
                             </tr>
-
+                            {% endif %}
+                            {% for item in orders %}
                             <tr>
-                                <th colspan="4"><p>Себе</p></th>
+                                <td>{{item.position}}</td>
+                                <td>{{item.positionType}}</td>
+                                <td>{{item.comment}}</td>
+                                <td>{{item.position.cost}}</td>
                             </tr>
-                            <tr>
-                                <td>---</td>
-                                <td>---</td>
-                                <td>---</td>
-                                <td>0</td>
-                            </tr>
-
-                            <tr>
-                                <th colspan="4"><p>Бонусы</p></th>
-                            </tr>
-                            <tr>
-                                <td>---</td>
-                                <td>---</td>
-                                <td>---</td>
-                                <td>0</td>
-                            </tr>
-
-                            <tr>
-                                <th colspan="3"><p>Итого :</p></th>
-                                
-                                <td> 0 </td>
-                            </tr>
+                            {% endfor %}
                         </table>
                     </div>
 

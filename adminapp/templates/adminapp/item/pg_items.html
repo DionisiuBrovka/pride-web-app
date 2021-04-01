@@ -14,7 +14,7 @@
                 </div>
                 <div class="col">
                     <h3>
-                        <a href="{% url 'adminapp-items-add' %}" class="downbox float-right"><i class="fas fa-plus"></i></a>
+                        <a href="/admin/data/item/add/" class="downbox float-right"><i class="fas fa-plus"></i></a>
                     </h3>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                                     <td>{{item.countType}}</td>
                                     <td>
                                         <a href="/admin/data/item/{{item.id}}/delete/" class="downbox float-right"><i class="fas fa-trash-alt"></i></a>
-                                        <a href="/adminapp/item/{{item.id}}/edit" class="downbox float-right"><i class="far fa-edit"></i></a>
+                                        <a href="/admin/data/item/{{item.id}}/change/" class="downbox float-right"><i class="far fa-edit"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
