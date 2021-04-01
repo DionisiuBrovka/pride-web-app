@@ -304,3 +304,21 @@ def pg_items_add(request):
         'user':user,
     }
     return render(request, 'adminapp/item/pg_item_add.html', data)
+
+
+# ====================================================================================
+# ====================================================================================
+# ====================================================================================
+def pg_hookahs(request):
+    user = request.user
+
+    if user_permission_check(user):
+        return redirect('autherror')
+
+    hookahs = Position.objects.all()
+
+    data = {
+        'user':user,
+        'hookahs':hookahs,
+    }
+    return render(request, 'adminapp/hookahs/pg_hookahs.html', data)

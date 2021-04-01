@@ -9,9 +9,16 @@
                 <div>
                     <p class="logoone">Pride Hookah</p>
                 </div>
+
+                {% if user.is_staff %}
+                <div  id="index-block-bttn">
+                    <a  class="downbox" href="{% url 'adminapp' %}">Войти в систему</a>
+                </div>  
+                {% else %}
                 <div  id="index-block-bttn">
                     <a  class="downbox" href="{% url 'staffapp' %}">Войти в систему</a>
                 </div>  
+                {% endif %}
             </div>
                
         </div>
