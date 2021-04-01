@@ -1,17 +1,60 @@
+{% extends 'root/root.html' %}
+
+{% block content %}
+
 {% load widget_tweaks %}
 
-{% if newUser %}
-<p>Login : {{newUser.login}}</p>
-<p>Password : {{newUser.password}}</p>
-{% endif %}
+{% include 'staffapp/elements/el_navbar.html'%}
 
-<form method="POST">
-    {% csrf_token %}
-    {% render_field form.name  size="5" %} <br>
-    {% render_field form.famName  size="5" %} <br>
-    {% render_field form.fathName  size="5" %} <br>
-    {% render_field form.vk  size="5" %} <br>
-    {% render_field form.telegramNick  size="5" %} <br>
-    {% render_field form.avatar  size="5" %} <br>
-    <button type="submit">add</button>
-</form>
+<div class="container">
+    <div class="row upbox" id="admin-place-info-block">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h1><a href="/adminapp/users/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a>  Добавить нового пользователя</h1>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="litlle-form">
+                        {% if newUser %}
+                        <div class="hoverbox">
+                            <p>Новый пользователь успешно создан.</p>
+                            <h5 align=center>Login : {{newUser.login}}</h5>
+                            <h5 align=center>Password : {{newUser.password}}</h5>
+
+                        </div>
+                        {% endif %}
+
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <p>Имя</p>
+                            {% render_field form.name  size="5" %}
+                            <p>Фамилия</p>
+                            {% render_field form.famName  size="5" %}
+                            <p>Отчество</p>
+                            {% render_field form.fathName  size="5" %}
+                            <p>ВК</p>
+                            {% render_field form.vk  size="5" %}
+                            <p>Телеграм</p>
+                            {% render_field form.telegramNick  size="5" %}
+                            <p>Аватар</p>
+                            {% render_field form.avatar  size="5" %}
+
+                            <button type="submit">Добавить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'staffapp/elements/el_bottom.html'%}
+{% endblock %}
+
+{% block title%}
+HookahPride - AdminPanel | Добавить пользователя
+{% endblock %}

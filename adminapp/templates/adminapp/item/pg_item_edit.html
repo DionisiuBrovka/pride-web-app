@@ -11,7 +11,7 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <h1><a href="/adminapp/places/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a>  Добавить заведение</h1>
+                    <h1><a href="/adminapp/items/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a>Изменить  {{item.title}} </h1>
                 </div>
                 <div class="col">
                     
@@ -24,9 +24,8 @@
                         <form method="POST">
                             {% csrf_token %}
                             
-
                             <button type="submit">
-                                Добавить
+                                Изменить
                             </button>
                         </form>
                     </div>
@@ -40,5 +39,5 @@
 {% endblock %}
 
 {% block title%}
-HookahPride - AdminPanel | Добавить заведение 
+HookahPride - AdminPanel | Изменить {{item}}
 {% endblock %}

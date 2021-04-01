@@ -1,0 +1,43 @@
+{% extends 'root/root.html' %}
+
+{% block content %}
+
+{% load widget_tweaks %}
+
+{% include 'staffapp/elements/el_navbar.html'%}
+
+<div class="container">
+    <div class="row upbox" id="admin-place-info-block">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h1><a href="/adminapp/user/{{selectUser.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a> Изменить пользователя №{{selectUser.id}} </h1>
+                </div>
+                <div class="col">
+                    
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="litlle-form">
+                        <form method="POST">
+                            {% csrf_token %}
+                    
+                            <button type="submit">
+                                Изменить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'staffapp/elements/el_bottom.html'%}
+{% endblock %}
+
+{% block title%}
+HookahPride - AdminPanel | Изменить {{selectUser}}
+{% endblock %}

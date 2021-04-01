@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load widget_tweaks %}
+
 {% include 'staffapp/elements/el_navbar.html'%}
 
 <div class="container">
@@ -9,7 +11,7 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <h1>{{place.title}} </h1>
+                    <h1><a href="/adminapp/place/{{place.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a>  {{place.title}} </h1>
                 </div>
                 <div class="col">
                     
@@ -18,8 +20,32 @@
             
             <div class="row">
                 <div class="col">
-                    <div class="">
-                        {{form.as_table}}
+                    <div class="litlle-form">
+                        <form method="POST">
+                            {% csrf_token %}
+                            
+                            <p>Название</p>
+                            {% render_field form.title %} 
+
+                            <p>УНП</p>
+                            {% render_field form.unp %}
+
+                            <p>Адресс</p>
+                            {% render_field form.adress %}
+
+                            <p>IBAN BYN</p>
+                            {% render_field form.ibanbyn %}
+
+                            <p>IBAN USD</p>
+                            {% render_field form.ibanusd %}
+
+                            <p>Банковский код</p>
+                            {% render_field form.bankcode %}
+
+                            <button type="submit">
+                                Изменить
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -31,5 +57,5 @@
 {% endblock %}
 
 {% block title%}
-HookahPride - AdminPanel | {{selectPlace}}
+HookahPride - AdminPanel | Изменить {{selectPlace}}
 {% endblock %}

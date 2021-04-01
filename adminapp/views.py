@@ -223,3 +223,25 @@ def pg_item(request, pk=1):
     }
     return render(request, 'adminapp/item/pg_item.html', data)
 
+def pg_item_edit(request, pk=1):
+    user = request.user
+
+    if user_permission_check(user):
+        return redirect('autherror')
+
+    data = {
+        'user':user,
+        'item':Item.objects.get(id=pk),
+    }
+    return render(request, 'adminapp/item/pg_item_edit.html', data)
+
+def pg_items_add(request):
+    user = request.user
+
+    if user_permission_check(user):
+        return redirect('autherror')
+
+    data = {
+        'user':user,
+    }
+    return render(request, 'adminapp/item/pg_item_add.html', data)
