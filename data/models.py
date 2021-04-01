@@ -477,7 +477,7 @@ class AddToSession(models.Model):
     
     class Meta:
         verbose_name = 'Привоз'
-        verbose_name_plural = 'Пирвозы'
+        verbose_name_plural = 'Привозы'
     
     def __str__(self):
         return self.item.__str__()+str(self.count)
