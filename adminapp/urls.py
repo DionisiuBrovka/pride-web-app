@@ -20,4 +20,9 @@ urlpatterns = [
     path('item/<int:pk>/', views.pg_item, name="adminapp-item"),
     path('items/add', views.pg_items_add, name="adminapp-items-add"),
     path('item/<int:pk>/edit', views.pg_item_edit, name="adminapp-item-edit"),
+
+    path('hookahs/', views.pg_hookahs, name="adminapp-hookahs"),
+    path('hookah/<int:pk>/', views.pg_item, name="adminapp-hookah"),
+    path('hookahs/add', views.pg_items_add, name="adminapp-hookahs-add"),
+    path('hookah/<int:pk>/edit', views.pg_item_edit, name="adminapp-hookah-edit"),
 ]
