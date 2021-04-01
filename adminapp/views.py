@@ -185,8 +185,7 @@ def pg_place_edit(request, pk=1):
 
     if request.method == "POST":
         newPlaceForm = PlaceForm(request.POST, request.FILES)
-        newIBANForm = IBANForm(request.POST)
-        if newPlaceForm.is_valid() and newIBANForm.is_valid():
+        if newPlaceForm.is_valid() and request.POST.get('ActionType') == "Edit":
             newPlace = Place.objects.get(id = pk)
             newPlace.title = newPlaceForm.cleaned_data['title']
             newPlace.preview = newPlaceForm.cleaned_data['preview']
@@ -198,9 +197,16 @@ def pg_place_edit(request, pk=1):
             newPlace.govAdress = newPlaceForm.cleaned_data['govAdress']
             newPlace.bankcode = newPlaceForm.cleaned_data['bankcode']
             newPlace.save()
-            newIBAN = IBAN.objects.get(place = newPlace)
-            newIBAN.iban = newIBANForm.cleaned_data['iban']
-            newIBAN.save()
+        if request.POST.get('ActionType') == "add":
+            newIBANForm = IBANForm(request.POST)
+            if newIBANForm.is_valid():
+                newIBAN = newIBANForm.save(commit=FALSE)
+                newIBAN.place = curPlace
+                newIBAN.save()
+        if (request.POST.get('ActionType') != "add") and request.POST.get('ActionType') != "Edit":
+            newIBAN = IBAN.objects.get(id = request.POST.get('ActionType'))
+            newIBAN.delete()
+
 
     data = {
         'user':user,
@@ -291,6 +297,8 @@ def pg_items_add(request):
 
     if user_permission_check(user):
         return redirect('autherror')
+
+    
 
     data = {
         'user':user,

@@ -24,27 +24,52 @@
                         <form method="POST">
                             {% csrf_token %}
                             
+                            <input type="hidden" name="ActionType" value="Edit">
+
                             <p>Название</p>
-                            {% render_field form.title %} 
+                            {% render_field placeForm.title %} 
+
+                            <p>Адрес</p>
+                            {% render_field placeForm.adres %} 
+
+                            <p>Превью</p>
+                            {% render_field placeForm.preview %} 
+
+                            <p>Процент заведению</p>
+                            {% render_field placeForm.percentForPlace %} 
+
+                            <p>Процент работнику</p>
+                            {% render_field placeForm.percentForWorker %}
+
+                            <p>Юридическое имя</p>
+                            {% render_field placeForm.govTitle %} 
 
                             <p>УНП</p>
-                            {% render_field form.unp %}
+                            {% render_field placeForm.unp %}
 
-                            <p>Адресс</p>
-                            {% render_field form.adress %}
-
-                            <p>IBAN BYN</p>
-                            {% render_field form.ibanbyn %}
-
-                            <p>IBAN USD</p>
-                            {% render_field form.ibanusd %}
+                            <p>Юридический адрес</p>
+                            {% render_field placeForm.govAdress %}
 
                             <p>Банковский код</p>
-                            {% render_field form.bankcode %}
+                            {% render_field placeForm.bankcode %}
 
                             <button type="submit">
                                 Изменить
                             </button>
+                        </form>
+                        {% for el in iban %}
+                        <form method="POST">
+                            <input type="hidden" name="ActionType" value="{{el.id}}">
+                            <p>{{el.title}}</p>
+                            <p>{{el.iban}}</p>
+                            <button>Удалить</button>
+                        </form>
+                        {% endfor %}
+                        <form method="POST">
+                            <input type="hidden" name="ActionType" value="add">
+                            {% render_field ibanForm.title %}
+                            {% render_field ibanForm.iban %}
+                            <button>Добавить</button>
                         </form>
                     </div>
                 </div>

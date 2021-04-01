@@ -111,7 +111,7 @@ class Place(models.Model):
         max_length=10,
         default='123456789',
     )
-    adress = models.CharField(
+    govAdress = models.CharField(
         'Юр./почтовый адрес',
         max_length= 50,
         default=' '
@@ -477,7 +477,7 @@ class AddToSession(models.Model):
     
     class Meta:
         verbose_name = 'Привоз'
-        verbose_name_plural = 'Привозы'
+        verbose_name_plural = 'Пирвозы'
     
     def __str__(self):
         return self.item.__str__()+str(self.count)
