@@ -288,8 +288,6 @@ def pg_session_adddraft(request, pk=1):
                 image=newDraftForm.cleaned_data['image'],
             )
             newDraft.save()
-        else:
-            print('ded loh')
     
     content = {
         'user':user,
@@ -309,7 +307,6 @@ def pg_session_addedcost(request, pk = 1):
     curSession = Session.objects.get(id = pk)
 
     if request.method == "POST":
-        print (request.POST)
         newAddedCostForm = AddedCostForm(request.POST, request.FILES)
         if newAddedCostForm.is_valid():
             newAddedCost = AddedCost(
@@ -337,7 +334,6 @@ def pg_session_addorder(request, pk=1):
         return redirect('autherror')
 
     curSession = Session.objects.get(id = pk)
-    orders = Order.objects.filter(session=curSession)
 
     if request.method == "POST":
         newOrderForm = OrderForm(request.POST)
@@ -351,7 +347,6 @@ def pg_session_addorder(request, pk=1):
 
     content = {
        'user':user,
-       'orders':orders,
        'form':OrderForm(),
        'session':curSession,
     }

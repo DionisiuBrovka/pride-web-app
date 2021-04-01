@@ -421,7 +421,7 @@ class AddedCost(models.Model):
         )
     image = models.ImageField(
         'Сопроводительное изображение',
-        upload_to = 'images/forSession',
+        upload_to = "images/forSession",
         )
     comment = models.TextField(
         'Комментарий',
