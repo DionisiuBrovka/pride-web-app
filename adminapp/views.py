@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from data.models import Profile, Place, Session, Recvisites, MobilePhone, StartSession, EndSession, AddToSession, DeleteOnSession, Item
+from data.models import *
 from data.forms import *
 from adminapp.alghorytm import random_string
 
