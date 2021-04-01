@@ -8,7 +8,19 @@
     
     <div class="row upbox" id="session-info-table">
         <div class="col">
-            <h1>Смена № {{session.id}}</h1>
+            <div class="row">
+                <div class="col">
+                    <h1>Смена № {{session.id}}</h1>
+                </div>
+                <div class="col">
+                    <h3>
+                        <a href="/admin/data/session/{{session.id}}/delete/" class="downbox float-right"><i class="fas fa-trash-alt"></i></a>
+                        <a href="/adminapp/session/{{session.id}}/edit" class="downbox float-right"><i class="far fa-edit"></i></a>
+                    </h3>
+                </div>
+            </div>
+
+            
             <table>
                 <tr>
                     <td><p>Статус :</p></td>

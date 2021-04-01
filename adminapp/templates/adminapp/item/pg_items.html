@@ -7,12 +7,16 @@
 <div class="container">
     <div class="row upbox" id="admin-places-filter-block">
         <div class="col">
-            <h1><a href="{% url 'adminapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Инвентарь :</h1>
-            <hr>
-            <form method="POST">
-                {% csrf_token %}
-                
-            </form>
+            <div class="row">
+                <div class="col">
+                    <h1><a href="{% url 'adminapp' %}" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a> Инвентарь :</h1>
+                </div>
+                <div class="col">
+                    <h3>
+                        <a href="{% url 'adminapp-items-add' %}" class="downbox float-right"><i class="fas fa-plus"></i></a>
+                    </h3>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -58,7 +62,10 @@
                                         {% endif %}
                                     </td>
                                     <td>{{item.countType}}</td>
-                                    <td></td>
+                                    <td>
+                                        <a href="/admin/data/item/{{item.id}}/delete/" class="downbox float-right"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="/adminapp/item/{{item.id}}/edit" class="downbox float-right"><i class="far fa-edit"></i></a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </table>

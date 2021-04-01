@@ -3,39 +3,52 @@
 {% block content %}
 
 {% include 'staffapp/elements/el_navbar.html'%}
+{% include 'staffapp/elements/el_navbar_root.html'%}
 
 <div class="container">
     <div class="row upbox" id="admin-user-info-block">
         <div class="col">
-            <h1>Пользователь #{{selectUser.id}}</h1>
-                <table>
-                    <tr>
-                        <td>Имя</td>
-                        <td>{{selectUser.name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Фамилия</td>
-                        <td>{{selectUser.famName}}</td>
-                    </tr>
-                    <tr>
-                        <td>Отчество</td>
-                        <td>{{selectUser.fathName}}</td>
-                    </tr>
-                    <tr>
-                        <td>Вк</td>
-                        <td>{{selectUser.vk}}</td>
-                    </tr>
-                    <tr>
-                        <td>Телеграм</td>
-                        <td>{{selectUser.telegramNick}}</td>
-                    </tr>
-                    {% for item in selectUserPhones %}
-                    <tr>
-                        <td>Номер телефона</td>
-                        <td> {{item.number}} </td>
-                    </tr>
-                    {% endfor %}
-                </table>
+            <div class="row">
+                <div class="col"><h1>Пользователь #{{selectUser.id}}</h1></div>
+                <div class="col">
+                    <h3>
+                        <a href="/admin/auth/user/{{selectUser.id}}/delete/" class="downbox float-right"><i class="fas fa-trash-alt"></i></a>
+                        <a href="/adminapp/user/{{selectUser.id}}/edit" class="downbox float-right"><i class="far fa-edit"></i></a>
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table>
+                        <tr>
+                            <td>Имя</td>
+                            <td>{{selectUser.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Фамилия</td>
+                            <td>{{selectUser.famName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Отчество</td>
+                            <td>{{selectUser.fathName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Вк</td>
+                            <td>{{selectUser.vk}}</td>
+                        </tr>
+                        <tr>
+                            <td>Телеграм</td>
+                            <td>{{selectUser.telegramNick}}</td>
+                        </tr>
+                        {% for item in selectUserPhones %}
+                        <tr>
+                            <td>Номер телефона</td>
+                            <td> {{item.number}} </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
