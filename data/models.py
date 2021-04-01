@@ -89,6 +89,7 @@ class Place(models.Model):
         upload_to = 'images/placePreview',
         blank = True,
         )
+    ###########################
     percentForPlace = models.FloatField(
         'Процент заведению',
         default=0,
@@ -99,24 +100,8 @@ class Place(models.Model):
         default=0,
         blank=True,
         )
-    
-   
-    def __str__(self):
-        return self.title
-    
-    class Meta:
-        verbose_name = 'Заведение'
-        verbose_name_plural = 'Заведения'
-
-
-class Recvisites(models.Model):
-    place = models.ForeignKey(
-        Place,
-        verbose_name='Заведение',
-        on_delete = models.CASCADE,
-        default= 0,
-    )
-    title = models.CharField(
+    ############################
+    govTitle = models.CharField(
         'Юр. Имя',
         max_length= 50,
         default= 'Юр. Имя'
@@ -131,24 +116,41 @@ class Recvisites(models.Model):
         max_length= 50,
         default=' '
     )
-    ibanbyn = models.CharField(
-        'IBAN BYN',
-        max_length=24,
-        default='',
-        blank=True,
-    )
-    ibanusd = models.CharField(
-        'IBAN USD',
-        max_length=24,
-        default='',
-        blank=True,
-    )
     bankcode = models.CharField(
         'Код банка',
         max_length= 10,
         default=' ',
         blank=True,
     )
+    
+   
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Заведение'
+        verbose_name_plural = 'Заведения'
+
+
+class IBAN(models.Model):
+    place = models.ForeignKey(
+        Place,
+        verbose_name='Заведение',
+        on_delete = models.CASCADE,
+        default= 0,
+    )
+    title = models.CharField(
+        'Условное имя счёта',
+        max_length=15,
+        default='IBAN BYN',
+    )
+    iban = models.CharField(
+        'IBAN',
+        max_length=40,
+        default='',
+        blank=True,
+    )
+    
 
 class Position(models.Model):
     title = models.CharField(
