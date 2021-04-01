@@ -89,23 +89,25 @@ class Place(models.Model):
         upload_to = 'images/placePreview',
         blank = True,
         )
-    ###########################
+    
     percentForPlace = models.FloatField(
         'Процент заведению',
         default=0,
         blank=True,
         )
+    
     percentForWorker = models.FloatField(
         'Процент работнику',
         default=0,
         blank=True,
         )
-    ############################
+    
     govTitle = models.CharField(
         'Юр. Имя',
         max_length= 50,
-        default= 'Юр. Имя'
+        default= 'Юр. Имя',
     )
+
     unp = models.CharField(
         'УНП',
         max_length=10,
@@ -257,7 +259,7 @@ class Order(models.Model):
         choices=posTypeChoices,
         default = forGuest,
         blank= True,
-        )
+    )
     
     class Meta:
         verbose_name = 'Заказ'
@@ -271,7 +273,7 @@ class ItemCountType(models.Model):
         'Способ исчисления',
         max_length=10,
         default='г'
-        )
+    )
 
     def __str__(self):
         return self.title
