@@ -11,7 +11,7 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <h1><a href="/adminapp/place/{{place.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a>  {{place.title}} </h1>
+                    <h1><a href="/adminapp/items/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a>  Добавить позицию инвенторя</h1>
                 </div>
                 <div class="col">
                     
@@ -24,26 +24,9 @@
                         <form method="POST">
                             {% csrf_token %}
                             
-                            <p>Название</p>
-                            {% render_field form.title %} 
-
-                            <p>УНП</p>
-                            {% render_field form.unp %}
-
-                            <p>Адресс</p>
-                            {% render_field form.adress %}
-
-                            <p>IBAN BYN</p>
-                            {% render_field form.ibanbyn %}
-
-                            <p>IBAN USD</p>
-                            {% render_field form.ibanusd %}
-
-                            <p>Банковский код</p>
-                            {% render_field form.bankcode %}
 
                             <button type="submit">
-                                Изменить
+                                Добавить
                             </button>
                         </form>
                     </div>
@@ -57,5 +40,5 @@
 {% endblock %}
 
 {% block title%}
-HookahPride - AdminPanel | Изменить {{selectPlace}}
+HookahPride - AdminPanel | Добавить позицию инвентаря
 {% endblock %}
