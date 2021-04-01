@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Place, Session, StartSession, AddToSession, EndSession, Order, Profile, Damage, Draft, AddedCost, IBAN
+from .models import *
 
 class PlaceForm(ModelForm):
     class Meta:
@@ -36,7 +36,6 @@ class ProfileForm(ModelForm):
         model = Profile
         fields = ['name','famName','fathName','vk','telegramNick','avatar']
 
-
 class DamageForm(ModelForm):
     class Meta:
         model = Damage
@@ -56,3 +55,8 @@ class IBANForm(ModelForm):
     class Meta:
         model = IBAN
         fields = ['title','iban']
+
+class MobileForm(ModelForm):
+    class Meta:
+        model = MobilePhone
+        fields = ['number']

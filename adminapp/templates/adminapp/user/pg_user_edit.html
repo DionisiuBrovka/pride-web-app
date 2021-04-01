@@ -23,7 +23,15 @@
                     <div class="litlle-form">
                         <form method="POST">
                             {% csrf_token %}
-                    
+                            {% render_field profileForm.name  size="5" %}
+                            {% render_field profileForm.famName  size="5" %}
+                            {% render_field profileForm.fathName  size="5" %}
+                            {% render_field profileForm.vk  size="5" %}
+                            {% render_field profileForm.telegamNick  size="5" %}
+                            {% render_field profileForm.date  size="5" %}
+                            {% render_field profileForm.avatar  size="5" %}
+                            {% render_field profileForm.trainee  size="5" %}
+                            {% render_field mobileForm.number  size="5" %}
                             <button type="submit">
                                 Изменить
                             </button>

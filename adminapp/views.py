@@ -58,8 +58,29 @@ def pg_user_edit(request, pk=1):
     if user_permission_check(user):
         return redirect('autherror')
 
+    if request.method == "POST":
+        newProfileForm = ProfileForm(request.POST, request.FILES)
+        newMobileForm = MobileForm(request.POST)
+        if newProfileForm.is_valid() and newMobileForm.is_valid():
+            newProfile = Profile.objects.get(user__id=pk)
+            newProfile.name = newProfileForm.cleaned_data['name']
+            newProfile.famName = newProfileForm.cleaned_data['famName']
+            newProfile.fathName = newProfileForm.cleaned_data['fathName']
+            newProfile.vk = newProfileForm.cleaned_data['vk']
+            newProfile.telegramNick = newProfileForm.cleaned_data['telegramNick']
+            newProfile.avatar = newProfileForm.cleaned_data['avatar']
+            newProfile.trainee = newProfileForm.cleaned_data['trainee']
+            newProfile.save()
+            newMobile = MobilePhone.objects.filter(staff = Profile.objects.get(user__id=pk))
+            newMobile.number = newMobileForm.cleaned_data['number']
+            newMobile.save()
+
     data = {
         'user':user,
+        'profileForm':ProfileForm(),
+        'mobileForm':MobileForm(),
+        'profile':Profile.objects.get(user__id=pk),
+        'mobile':MobilePhone.objects.filter(staff__user__id=pk),
     }
 
     return render(request, 'adminapp/user/pg_user_edit.html', data)
@@ -137,8 +158,20 @@ def pg_place_add(request):
     if user_permission_check(user):
         return redirect('autherror')
 
+    if request.method == "POST":
+        newPlaceForm = PlaceForm(request.POST, request.FILES)
+        newIBANForm = IBANForm(request.POST)
+        if newPlaceForm.is_valid() and newIBANForm.is_valid():
+            newPlace = newPlaceForm.save(commit=False)
+            newPlace.save()
+            newIBAN = newIBANForm.save(commit=False)
+            newIBAN.place = newPlace
+            newIBAN.save()
+
     data = {
         'user':user,
+        'placeForm':PlaceForm(),
+        'ibanForm':IBANForm(),
     }
     return render(request, 'adminapp/place/pg_place_add.html', data)
 
@@ -150,13 +183,31 @@ def pg_place_edit(request, pk=1):
     if user_permission_check(user):
         return redirect('autherror')
 
-    form = RecvisitesForm()
+    if request.method == "POST":
+        newPlaceForm = PlaceForm(request.POST, request.FILES)
+        newIBANForm = IBANForm(request.POST)
+        if newPlaceForm.is_valid() and newIBANForm.is_valid():
+            newPlace = Place.objects.get(id = pk)
+            newPlace.title = newPlaceForm.cleaned_data['title']
+            newPlace.preview = newPlaceForm.cleaned_data['preview']
+            newPlace.adres = newPlaceForm.cleaned_data['adres']
+            newPlace.percentForPlace = newPlaceForm.cleaned_data['percentForPlace']
+            newPlace.percentForWorker = newPlaceForm.cleaned_data['percentForWorker']
+            newPlace.govTitle = newPlaceForm.cleaned_data['govTitle']
+            newPlace.unp = newPlaceForm.cleaned_data['unp']
+            newPlace.govAdress = newPlaceForm.cleaned_data['govAdress']
+            newPlace.bankcode = newPlaceForm.cleaned_data['bankcode']
+            newPlace.save()
+            newIBAN = IBAN.objects.get(place = newPlace)
+            newIBAN.iban = newIBANForm.cleaned_data['iban']
+            newIBAN.save()
 
     data = {
         'user':user,
         'place':curPlace,
-        'form':form
-
+        'iban':IBAN.objects.filter(place=curPlace),
+        'placeForm':PlaceForm(),
+        'ibanForm':IBANForm(),
     }
     return render(request, 'adminapp/place/pg_place_edit.html', data)
 
