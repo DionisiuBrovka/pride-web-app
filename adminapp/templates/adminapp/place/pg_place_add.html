@@ -51,6 +51,12 @@
                             <p>Банковский код</p>
                             {% render_field placeForm.bankcode %}
 
+                            <p>Название IBAN</p>
+                            {% render_field ibanForm.title %}
+                            
+                            <p>Номер IBAN</p>
+                            {% render_field ibanForm.iban %}
+
                             <button type="submit">
                                 Добавить
                             </button>
