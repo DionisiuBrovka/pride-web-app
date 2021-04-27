@@ -63,9 +63,9 @@ def pg_user_edit(request, pk=1):
         newMobileForm = MobileForm(request.POST)
         if newProfileForm.is_valid() and newMobileForm.is_valid():
             newProfile = Profile.objects.get(user__id=pk)
-            newProfile.name = newProfileForm.cleaned_data['name']
-            newProfile.famName = newProfileForm.cleaned_data['famName']
-            newProfile.fathName = newProfileForm.cleaned_data['fathName']
+            newProfile.firstName = newProfileForm.cleaned_data['firstName']
+            newProfile.secondName = newProfileForm.cleaned_data['secondName']
+            newProfile.thirdName = newProfileForm.cleaned_data['thirdName']
             newProfile.vk = newProfileForm.cleaned_data['vk']
             newProfile.telegramNick = newProfileForm.cleaned_data['telegramNick']
             newProfile.avatar = newProfileForm.cleaned_data['avatar']
@@ -102,9 +102,9 @@ def pg_add_user(request):
             )
             newUser.save()
             userProfile = Profile.objects.get(user=newUser)
-            userProfile.name = newProfile.cleaned_data['name']
-            userProfile.famName = newProfile.cleaned_data['famName']
-            userProfile.fathName = newProfile.cleaned_data['fathName']
+            userProfile.firstName = newProfile.cleaned_data['firstName']
+            userProfile.secondName = newProfile.cleaned_data['secondName']
+            userProfile.thirdName = newProfile.cleaned_data['thirdName']
             userProfile.vk = newProfile.cleaned_data['vk']
             userProfile.avatar = newProfile.cleaned_data['avatar']
             userProfile.telegramNick = newProfile.cleaned_data['telegramNick']

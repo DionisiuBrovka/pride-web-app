@@ -6,7 +6,6 @@ class PlaceForm(ModelForm):
         model = Place
         fields = ['title', 'adres', 'preview','unp','govAdress','bankcode']
 
-
 class SessionForm(ModelForm):
     class Meta:
         model = Session

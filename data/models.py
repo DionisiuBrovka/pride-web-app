@@ -57,7 +57,7 @@ class Profile(models.Model):
     )
 
     def __str__(self):
-        return self.name+' '+self.famName
+        return self.firstName+' '+self.secondName
     
     class Meta:
         verbose_name = 'Профиль'
