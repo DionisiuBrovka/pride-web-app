@@ -9,17 +9,17 @@ class Profile(models.Model):
         User, 
         on_delete = models.CASCADE
         )
-    name = models.CharField(
+    firstName = models.CharField(
         'Имя', 
         max_length= 20, 
         default='Имя',
         )
-    famName = models.CharField(
+    secondName = models.CharField(
         'Фамилия', 
         max_length= 20, 
         default='Фамилия',
         )
-    fathName = models.CharField(
+    thirdName = models.CharField(
         'Отчество', 
         max_length= 20, 
         default='Отчество',
@@ -89,25 +89,11 @@ class Place(models.Model):
         upload_to = 'images/placePreview',
         blank = True,
         )
-    
-    percentForPlace = models.FloatField(
-        'Процент заведению',
-        default=0,
-        blank=True,
-        )
-    
-    percentForWorker = models.FloatField(
-        'Процент работнику',
-        default=0,
-        blank=True,
-        )
-    
     govTitle = models.CharField(
         'Юр. Имя',
         max_length= 50,
-        default= 'Юр. Имя',
+        default= 'Юр. Имя'
     )
-
     unp = models.CharField(
         'УНП',
         max_length=10,
@@ -125,7 +111,6 @@ class Place(models.Model):
         blank=True,
     )
     
-   
     def __str__(self):
         return self.title
     
@@ -153,18 +138,12 @@ class IBAN(models.Model):
         blank=True,
     )
     
-
 class Position(models.Model):
     title = models.CharField(
         'Название позиции',
         max_length=20,
         default='Simple',
-        )
-    cost = models.FloatField(
-        'Стоимость позиции',
-        default=23.0
-        )
-    
+        )    
 
     def __str__(self):
         return self.title+' '+str(self.cost)
@@ -172,6 +151,27 @@ class Position(models.Model):
     class Meta:
         verbose_name = 'Позиция на продажу'
         verbose_name_plural = 'Позиции на продажу'
+    
+class Percents(models.Model):
+    place = models.ForeignKey(
+        Place, 
+        verbose_name= "Заведение",
+        on_delete = models.CASCADE
+        )
+    position = models.ForeignKey(
+        Position,
+        verbose_name= "Позиция",
+        on_delete = models.CASCADE,
+    )
+    cost = models.FloatField(
+        "Стоимость",
+    )
+    percentForWorker = models.FloatField(
+        "Процент работника",
+    )
+    percentForLid = models.FloatField(
+        "Доход от позиции",
+    )
 
 class MobilePhone(models.Model):
     staff = models.ForeignKey(
@@ -259,7 +259,7 @@ class Order(models.Model):
         choices=posTypeChoices,
         default = forGuest,
         blank= True,
-    )
+        )
     
     class Meta:
         verbose_name = 'Заказ'
@@ -273,7 +273,7 @@ class ItemCountType(models.Model):
         'Способ исчисления',
         max_length=10,
         default='г'
-    )
+        )
 
     def __str__(self):
         return self.title
@@ -479,7 +479,7 @@ class AddToSession(models.Model):
     
     class Meta:
         verbose_name = 'Привоз'
-        verbose_name_plural = 'Пирвозы'
+        verbose_name_plural = 'Привозы'
     
     def __str__(self):
         return self.item.__str__()+str(self.count)
