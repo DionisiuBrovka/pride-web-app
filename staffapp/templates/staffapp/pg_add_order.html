@@ -5,67 +5,69 @@
 {% load widget_tweaks %}
 
 {% include 'staffapp/elements/el_navbar.html'%}
-
-    <div class="container">
-        <div class="row ">
-            <div class="col upbox font-main">
-                <div class="row">
-                    <div class="col">
-                        <h1><a href="/staffapp/session/{{session.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a> Добавить заказ</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="litlle-form">
-                            <form method="POST">
-                                {% csrf_token %}
-                            
-                                {% render_field form.position %}        
-                                {% render_field form.comment %}                                
-                            
-                                <button type="submit">
-                                    Добавить
-                                </button>
-                            </form>
+    {% if user.is_staff or session.isOpen %}
+        <div class="container">
+            <div class="row ">
+                <div class="col upbox font-main">
+                    <div class="row">
+                        <div class="col">
+                            <h1><a href="/staffapp/session/{{session.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a> Добавить заказ</h1>
                         </div>
-                        
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="litlle-form">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                
+                                    {% render_field form.position %}        
+                                    {% render_field form.comment %}                                
+                                
+                                    <button type="submit">
+                                        Добавить
+                                    </button>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col upbox font-main">
+                    <div class="superdownbox">
+                        <table>
+                            <tr>
+                                <th><p>Позиция</p></th>
+                                <th><p>Тип</p></th>
+                                <th><p>Комментарий</p></th>
+                                <th><p>Сумма</p></th>
+                            </tr>
+                            {% if orders|length == 0%}
+                            <tr>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                            </tr>
+                            {% endif %}
+                            {% for item in orders %}
+                            <tr>
+                                <td>{{item.position}}</td>
+                                <td>{{item.positionType}}</td>
+                                <td>{{item.comment}}</td>
+                                <td>{{item.position.cost}}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col upbox font-main">
-                <div class="superdownbox">
-                    <table>
-                        <tr>
-                            <th><p>Позиция</p></th>
-                            <th><p>Тип</p></th>
-                            <th><p>Комментарий</p></th>
-                            <th><p>Сумма</p></th>
-                        </tr>
-                        {% if orders|length == 0%}
-                        <tr>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                        </tr>
-                        {% endif %}
-                        {% for item in orders %}
-                        <tr>
-                            <td>{{item.position}}</td>
-                            <td>{{item.positionType}}</td>
-                            <td>{{item.comment}}</td>
-                            <td>{{item.position.cost}}</td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    {% else %}
+        Ошибка
+    {% endif %}
 {% include 'staffapp/elements/el_bottom.html'%}
 {% endblock %}
 

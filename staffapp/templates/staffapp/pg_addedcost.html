@@ -5,7 +5,7 @@
 {% load widget_tweaks %}
 
 {% include 'staffapp/elements/el_navbar.html'%}
-
+    {% if user.is_staff or session.isOpen %}
     <div class="container">
         <div class="row ">
             <div class="col upbox font-main">
@@ -73,7 +73,9 @@
             </div>
         </div>
     </div>
-
+    {% else %}
+        Ошибка
+    {% endif %}
 {% include 'staffapp/elements/el_bottom.html'%}
 {% endblock %}
 

@@ -5,70 +5,67 @@
 {% load widget_tweaks %}
 
 {% include 'staffapp/elements/el_navbar.html'%}
-
-    {% if user.is_staff %}
-        
-    {% else %}
-        Ошибка
-    {% endif %}
-
-    <div class="container">
-        <div class="row ">
-            <div class="col upbox font-main">
-                <div class="row">
-                    <div class="col">
-                        <h1><a href="/staffapp/session/{{session.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Добавить чек</h1>
+    {% if user.is_staff or session.isOpen %}
+            <div class="container">
+                <div class="row ">
+                    <div class="col upbox font-main">
+                        <div class="row">
+                            <div class="col">
+                                <h1><a href="/staffapp/session/{{session.id}}/" class="back-btn"><i class="fas fa-chevron-left downbox"></i></a></i> Добавить чек</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="litlle-form" >
+                                    <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}  
+                                        
+                                        {% render_field form.image %} <br>
+                                        
+                                        <button type="submit">
+                                            Добавить
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="col">
-                        <div class="litlle-form" >
-                            <form method="POST" enctype="multipart/form-data">
-                                {% csrf_token %}  
-                                
-                                {% render_field form.image %} <br>
-                                
-                                <button type="submit">
-                                    Добавить
-                                </button>
-                            </form>
+                    <div class="col upbox font-main">
+                        <div class="superdownbox">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <p>Фото</p>
+                                    </th>
+                                    <th>
+                                        <p>Комментарий</p>
+                                    </th>
+                                </tr>
+                                {% if draft|length == 0 %}
+                                    <tr>
+                                        <td>---</td>
+                                        <td>---</td>
+                                    </tr>
+                                {% else %}
+                                    {% for item in draft %}
+                                        <tr>
+                                            <td><a href="{{item.image.url}}">{{item.image}}</a></td>
+                                            <td>{{item.comment}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col upbox font-main">
-                <div class="superdownbox">
-                    <table>
-                        <tr>
-                            <th>
-                                <p>Фото</p>
-                            </th>
-                            <th>
-                                <p>Комментарий</p>
-                            </th>
-                        </tr>
-                        {% if draft|length == 0 %}
-                            <tr>
-                                <td>---</td>
-                                <td>---</td>
-                            </tr>
-                        {% else %}
-                            {% for item in draft %}
-                                <tr>
-                                    <td><a href="{{item.image.url}}">{{item.image}}</a></td>
-                                    <td>{{item.comment}}</td>
-                                </tr>
-                            {% endfor %}
-                        {% endif %}
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-{% include 'staffapp/elements/el_bottom.html'%}
+        {% include 'staffapp/elements/el_bottom.html'%}
+    {% else %}
+        Ошибка
+    {% endif %}
 {% endblock %}
 
 {% block title%}
