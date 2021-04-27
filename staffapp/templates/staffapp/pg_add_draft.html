@@ -6,6 +6,12 @@
 
 {% include 'staffapp/elements/el_navbar.html'%}
 
+    {% if user.is_staff %}
+        
+    {% else %}
+        Ошибка
+    {% endif %}
+
     <div class="container">
         <div class="row ">
             <div class="col upbox font-main">
@@ -62,7 +68,6 @@
             </div>
         </div>
     </div>
-
 {% include 'staffapp/elements/el_bottom.html'%}
 {% endblock %}
 
