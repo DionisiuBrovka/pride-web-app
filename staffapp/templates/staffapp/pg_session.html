@@ -14,10 +14,17 @@
                     <h1>Смена № {{session.id}}</h1>
                 </div>
                 <div class="col">
-                    <h3>
-                        <a href="/admin/data/session/{{session.id}}/delete/" class="downbox float-right"><i class="fas fa-trash-alt"></i></a>
-                        <a href="/admin/data/session/{{session.id}}/change/" class="downbox float-right"><i class="far fa-edit"></i></a>
-                    </h3>
+                    {% if user.is_staff or session.isOpen %}
+                        <h3>
+                            <form method="POST">
+                                {% csrf_token %}  
+                                <input type="hidden" name="ActionType" value="DELETE">
+                                <button class="float-right">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </h3>
+                    {% endif %}
                 </div>
             </div>
 
