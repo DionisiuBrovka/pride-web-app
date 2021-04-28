@@ -1,0 +1,27 @@
+<script>
+    function lol(){
+
+        
+
+        var div_title = document.getElementById('id_title');
+        var div_adres = document.getElementById('id_adres');
+        var div_preview = document.getElementById('id_preview');
+        var div_unp = document.getElementById('id_unp');
+        var div_govAdress = document.getElementById('id_govAdress');
+        var div_bankcode = document.getElementById('id_bankcode');
+        var div_govTitle = document.getElementById('id_govTitle');
+
+        div_title.value = "{{ place.title }}"
+        div_adres.value = "{{ place.adres }}"
+        div_preview.value = "{{ place.preview }}"
+        div_unp.value = "{{ place.unp }}"
+        div_govAdress.value = "{{ place.govAdress }}"
+        div_bankcode.value = "{{ place.bankcode }}"
+        div_govTitle.value = "{{ place.govTitle }}"
+
+    }
+
+    window.onload = function () {
+        lol()
+    }
+</script>
