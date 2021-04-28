@@ -203,13 +203,15 @@ def pg_place_edit(request, pk=1):
         if request.POST.get('ActionType') == "add":
             newIBANForm = IBANForm(request.POST)
             if newIBANForm.is_valid():
-                newIBAN = newIBANForm.save(commit=FALSE)
+                newIBAN = newIBANForm.save(commit=False)
                 newIBAN.place = curPlace
                 newIBAN.save()
         if (request.POST.get('ActionType') != "add") and request.POST.get('ActionType') != "Edit":
             newIBAN = IBAN.objects.get(id = request.POST.get('ActionType'))
             newIBAN.delete()
 
+
+    curPlace = Place.objects.get(id=pk)
 
     data = {
         'user':user,
