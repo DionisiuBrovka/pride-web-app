@@ -34,13 +34,7 @@
                             {% render_field placeForm.adres %} 
 
                             <p>Превью</p>
-                            {% render_field placeForm.preview %} 
-
-                            <p>Процент заведению</p>
-                            {% render_field placeForm.percentForPlace %} 
-
-                            <p>Процент работнику</p>
-                            {% render_field placeForm.percentForWorker %}
+                            {% render_field placeForm.preview %}
 
                             <p>Юридическое имя</p>
                             {% render_field placeForm.govTitle %} 
@@ -58,6 +52,8 @@
                                 Изменить
                             </button>
                         </form>
+
+                        <!-- сделать таблицу -->
                         {% for el in iban %}
                         <form method="POST">
                             {% csrf_token %}
@@ -66,6 +62,7 @@
                             <p>{{el.iban}}</p>
                             <button>Удалить</button>
                         </form>
+                        
                         {% endfor %}
                         <form method="POST">
                             {% csrf_token %}
