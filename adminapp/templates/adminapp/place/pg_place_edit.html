@@ -28,25 +28,25 @@
                             <input type="hidden" name="ActionType" value="Edit">
 
                             <p>Название</p>
-                            {% render_field placeForm.title %} 
+                            {% render_field placeForm.title placeholder=place.title %} 
 
                             <p>Адрес</p>
-                            {% render_field placeForm.adres %} 
+                            {% render_field placeForm.adres placeholder=place.adres %} 
 
                             <p>Превью</p>
-                            {% render_field placeForm.preview %}
+                            {% render_field placeForm.preview placeholder=place.preview %}
 
                             <p>Юридическое имя</p>
-                            {% render_field placeForm.govTitle %} 
+                            {% render_field placeForm.govTitle placeholder=place.govTitle  %} 
 
                             <p>УНП</p>
-                            {% render_field placeForm.unp %}
+                            {% render_field placeForm.unp placeholder=place.unp %}
 
                             <p>Юридический адрес</p>
-                            {% render_field placeForm.govAdress %}
+                            {% render_field placeForm.govAdress placeholder=place.govAdress %}
 
                             <p>Банковский код</p>
-                            {% render_field placeForm.bankcode %}
+                            {% render_field placeForm.bankcode placeholder=place.bankcode %}
 
                             <button type="submit">
                                 Изменить
