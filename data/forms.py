@@ -44,7 +44,7 @@ class DamageForm(ModelForm):
 class DraftForm(ModelForm):
     class Meta:
         model = Draft
-        fields = ['image']
+        fields = ['image','comment']
 
 class AddedCostForm(ModelForm):
     class Meta:

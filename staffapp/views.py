@@ -14,11 +14,16 @@ def pg_index(request):
     if not user.is_authenticated:
         return redirect('autherror')
 
+    curProfile = Profile.objects.get(user = user)
+    openSessions = len(Session.objects.filter(staff = curProfile, isOpen=True))
+    print(openSessions)
+
     userSessions = Session.objects.filter(staff__id=user.profile.id).order_by("-startTime")
 
     content = {
        'user':user,
-       'userSessions':userSessions
+       'userOpenSessions':openSessions,
+       'userSessions':userSessions,
     }
 
     return render(request, 'staffapp/pg_index.html', content)
@@ -177,6 +182,9 @@ def pg_session(request, pk=1):
     itemsAdd = AddToSession.objects.filter(session=curSession)
     itemsDec = DeleteOnSession.objects.filter(session=curSession)
 
+    if request.method == "POST" and request.POST.get("ActionType") == "DELETE":
+        curSession.delete()
+
     content = {
        'user':user,
        'session':curSession,
@@ -213,6 +221,9 @@ def pg_session_change(request, pk=1):
         return redirect('autherror')
 
     curSession = Session.objects.get(id = pk)
+
+    if request.method == "POST" and request.POST.get("ActionType") == "DELETE":
+        curSession.delete()
 
     if request.method == "POST":
         newForm = AddToSessionForm(request.POST)

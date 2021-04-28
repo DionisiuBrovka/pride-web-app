@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.contrib.auth.models import User
 from data.models import *
 from data.forms import *
 from adminapp.alghorytm import random_string
@@ -57,6 +58,12 @@ def pg_user_edit(request, pk=1):
 
     if user_permission_check(user):
         return redirect('autherror')
+
+    if request.method == "POST" and request.POST.get("ActionType") == "DELETE":
+        curProfile = Profile.objects.get(user__id=pk)
+        User.objects.get(id = curProfile.user.id).delete()
+        curProfile.delete()
+
 
     if request.method == "POST":
         newProfileForm = ProfileForm(request.POST, request.FILES)
@@ -152,7 +159,7 @@ def pg_place(request, pk=1):
     }
     return render(request, 'adminapp/place/pg_place.html', data)
 
-def pg_place_add(request):
+def pg_place_add(request, pk=1):
     user = request.user
 
     if user_permission_check(user):
@@ -160,18 +167,13 @@ def pg_place_add(request):
 
     if request.method == "POST":
         newPlaceForm = PlaceForm(request.POST, request.FILES)
-        newIBANForm = IBANForm(request.POST)
-        if newPlaceForm.is_valid() and newIBANForm.is_valid():
+        if newPlaceForm.is_valid():
             newPlace = newPlaceForm.save(commit=False)
             newPlace.save()
-            newIBAN = newIBANForm.save(commit=False)
-            newIBAN.place = newPlace
-            newIBAN.save()
 
     data = {
         'user':user,
         'placeForm':PlaceForm(),
-        'ibanForm':IBANForm(),
     }
     return render(request, 'adminapp/place/pg_place_add.html', data)
 
@@ -183,6 +185,9 @@ def pg_place_edit(request, pk=1):
     if user_permission_check(user):
         return redirect('autherror')
 
+    if request.method == "POST" and request.POST.get("ActionType") == "DELETE":
+        curPlace.delete()
+
     if request.method == "POST":
         newPlaceForm = PlaceForm(request.POST, request.FILES)
         if newPlaceForm.is_valid() and request.POST.get('ActionType') == "Edit":
@@ -190,8 +195,6 @@ def pg_place_edit(request, pk=1):
             newPlace.title = newPlaceForm.cleaned_data['title']
             newPlace.preview = newPlaceForm.cleaned_data['preview']
             newPlace.adres = newPlaceForm.cleaned_data['adres']
-            newPlace.percentForPlace = newPlaceForm.cleaned_data['percentForPlace']
-            newPlace.percentForWorker = newPlaceForm.cleaned_data['percentForWorker']
             newPlace.govTitle = newPlaceForm.cleaned_data['govTitle']
             newPlace.unp = newPlaceForm.cleaned_data['unp']
             newPlace.govAdress = newPlaceForm.cleaned_data['govAdress']
@@ -239,6 +242,9 @@ def pg_session_edit(request, pk=1):
 
     if user_permission_check(user):
         return redirect('autherror')
+
+    if request.method == "POST" and request.POST.get("ActionType") == "DELETE":
+        Session.objects.get(id = pk).delete()
     
     sessions = Session.objects.all().order_by("-startTime")
 
@@ -285,6 +291,9 @@ def pg_item_edit(request, pk=1):
 
     if user_permission_check(user):
         return redirect('autherror')
+
+    if request.method == "POST" and request.POST.get("ActionType") == "DELETE":
+        Item.objects.get(id = pk).delete()
 
     data = {
         'user':user,
