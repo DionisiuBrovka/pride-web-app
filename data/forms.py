@@ -4,7 +4,7 @@ from .models import *
 class PlaceForm(ModelForm):
     class Meta:
         model = Place
-        fields = ['title', 'adres', 'preview','unp','govAdress','bankcode']
+        fields = ['title', 'adres', 'preview','unp','govAdress','bankcode','govTitle']
 
 class SessionForm(ModelForm):
     class Meta:

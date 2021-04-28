@@ -16,8 +16,7 @@ def pg_index(request):
 
     curProfile = Profile.objects.get(user = user)
     openSessions = len(Session.objects.filter(staff = curProfile, isOpen=True))
-    print(openSessions)
-
+    
     userSessions = Session.objects.filter(staff__id=user.profile.id).order_by("-startTime")
 
     content = {
