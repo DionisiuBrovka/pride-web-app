@@ -60,6 +60,7 @@
                         </form>
                         {% for el in iban %}
                         <form method="POST">
+                            {% csrf_token %}
                             <input type="hidden" name="ActionType" value="{{el.id}}">
                             <p>{{el.title}}</p>
                             <p>{{el.iban}}</p>
@@ -67,6 +68,7 @@
                         </form>
                         {% endfor %}
                         <form method="POST">
+                            {% csrf_token %}
                             <input type="hidden" name="ActionType" value="add">
                             {% render_field ibanForm.title %}
                             {% render_field ibanForm.iban %}
