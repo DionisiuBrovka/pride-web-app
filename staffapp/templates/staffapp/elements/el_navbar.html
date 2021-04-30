@@ -2,9 +2,23 @@
     <div class="row">
         <div class="col upbox" id="navbar">
             <div class="navflex" id="start">
-                <div class="navbar-item">
-                    <p id="avatar"><a href="{% url 'staffapp' %}"><i class="fas fa-user-circle"></i></a></p>
+                <div class="navber-item">
+                    <p id="avatar"><a href="
+                    {% if user.is_staff %}
+                        {% url 'adminapp' %}
+                    {% else %}
+                        {% url 'staffapp' %}
+                    {% endif %}    
+                        
+                    "><i class="fas fa-home"></i></a></p>
                 </div>
+
+                {% if user.is_staff == False %}
+                    <div class="navbar-item">
+                        <p id="avatar"><a href="{% url 'staffapp' %}"><i class="fas fa-user-circle"></i></a></p>
+                    </div>
+                {% endif %}
+
                 <div class="username navbar-item">
                     <p>{{user.username}}</p>
                 </div>
